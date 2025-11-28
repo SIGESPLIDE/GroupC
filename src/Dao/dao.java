@@ -1,11 +1,12 @@
-package dao;
+package Dao;
 
 import java.sql.Connection;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class Dao {
+public class dao {
+
 	static DataSource ds;
 
 	public Connection getConnection() throws Exception {
@@ -19,4 +20,5 @@ public class Dao {
 		//DBへの接続
 		return ds.getConnection();
 	}
+
 }
