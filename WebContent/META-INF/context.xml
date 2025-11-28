@@ -7,10 +7,10 @@
 		name="jdbc/book"
 		auth="Container"
 		type="javax.sql.DataSource"
-		driverClassName="org.postgresql.Driver"
-		url="jdbc:postgresql://localhost:5432/book"
-		username="postgres"
-		password="pass"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost/book"
+		username="username"
+		password="password"
 	/>  -->
 	<!-- teamiに接続 -->
 	<Resource
