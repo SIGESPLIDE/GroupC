@@ -8,7 +8,7 @@ import tool.CommonServlet;
 
 /**
  * メニュー画面の表示を行うコントローラクラス
- * GET リクエストでメニュー画面（MMNU001.jsp）をフォワードし表示する
+ * GET リクエストでメニュー画面（mainmenu.jsp）をフォワードし表示する
  */
 @WebServlet(urlPatterns = { "/loginlogout/mainmenu" })
 public class MenuController extends CommonServlet {
