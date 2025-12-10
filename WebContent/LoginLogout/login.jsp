@@ -61,7 +61,6 @@
             <div class="card-body p-4">
                 <h3 class="text-center mt-3 mb-4">ログイン</h3>
 
-                <%-- ★ 修正: form タグをこの位置に設定し直す ★ --%>
                 <form action="main.jsp" method="get">
 
                     <div class="input-container mb-4">

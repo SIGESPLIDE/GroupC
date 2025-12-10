@@ -1,33 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%-- 1. ヘッダーをインクルード --%>
+<%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="削除完了" /></jsp:include>
 
-<%-- 2. サイドメニュー部分 --%>
+<%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />
 </div>
 
-<%-- 3. メインコンテンツ部分 --%>
+<%-- 3. メイン --%>
 <div class="col-md-10 content-area d-flex flex-column h-100">
 
     <div class="container mt-5 flex-grow-1 d-flex flex-column">
 
-        <%-- ★ 1. タイトル行 (中央揃え) ★ --%>
         <div class="text-center mb-4">
             <h2 class="mb-0">削除完了画面</h2>
             <hr class="mt-2">
         </div>
 
-        <%-- ★ 2. 完了メッセージとボタンを含むエリア ★ --%>
         <div class="d-flex flex-column justify-content-between flex-grow-1 pb-5">
 
-            <%-- 完了メッセージ (左揃え) --%>
             <div class="text-start">
                 <h3 class="ms-3">削除が完了しました</h3>
             </div>
 
-            <%-- 戻るボタン (左下配置) --%>
             <div class="text-start">
                 <button
                     type="button"
@@ -42,5 +38,5 @@
 
 </div>
 
-<%-- 4. フッターをインクルード --%>
+<%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
