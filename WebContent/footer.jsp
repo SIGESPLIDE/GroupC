@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-        </div> <%-- row を閉じる --%>
-    </div> <%-- container-fluid main-content-wrapper を閉じる --%>
+            </div> <%-- main-content-wrapper > row を閉じる --%>
+        </div> <%-- container-fluid main-content-wrapper を閉じる --%>
 
-    <footer class="text-center bg-primary bg-opacity-25 py-2" style="background-color: #e6f0ff !important; border-top: 1px solid #c0c0c0;">
+    <footer class="footer-fixed">
         ©ユニパス_GroupC
     </footer>
 
