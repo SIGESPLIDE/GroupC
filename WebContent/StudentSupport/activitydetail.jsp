@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%-- headerの読込 --%>
-<jsp:include page="../header.jsp"><jsp:param name="title" value="時間割一覧" /></jsp:include>
+<jsp:include page="../header.jsp"><jsp:param name="title" value="交流詳細" /></jsp:include>
 
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
@@ -12,38 +12,37 @@
 <div class="col-md-10 content-area d-flex flex-column h-100">
 
         <div class="text-center mb-4">
-            <h2 class="mb-0">時間割一覧</h2>
+            <h2 class="mb-0">交流詳細</h2>
             <hr class="mt-2">
         </div>
-
-		<div class="d-flex justify-content-end mb-3">
-        	<button type="button" class="btn btn-primary">新規登録</button>
-		</div>
 
 <%-- テーブル --%>
 	    <table class="table table-bordered text-center border-secondary">
 			<thead>
 			    <tr>
-			      <th scope="col" style="width: 90%;">クラス</th>
-			      <th scope="col" style="width: 10%; white-space: nowrap;"></th>
+			      <th scope="col">日付</th>
+			      <th scope="col">生徒気分</th>
+			      <th scope="col">ユニボ気分</th>
+			      <th scope="col" style="width: 1%;"></th>
 			    </tr>
 			</thead>
 
 		  	<tbody>
 			    <tr>
-			      <td class="">1年1組</td>
-			      <td><button type="button" class="btn btn-primary">詳細</button></td>
+			      <td>12/1</td>
+			      <td>&#128516;</td>
+			      <td>&#128516;</td>
+			      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
 			    </tr>
 			    <tr>
-			      <td>2年1組</td>
-			      <td><button type="button" class="btn btn-primary">詳細</button></td>
-			    </tr>
-			    <tr>
-			      <td>3年1組</td>
-			      <td><button type="button" class="btn btn-primary">詳細</button></td>
+			      <td>12/2</td>
+			      <td>&#128532;</td>
+			      <td>&#128516;</td>
+			      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
 			    </tr>
 	  		</tbody>
 		</table>
+
 
 		<div class="d-flex justify-content-start mt-auto">
         	<button type="button" class="btn btn-secondary">戻る</button>

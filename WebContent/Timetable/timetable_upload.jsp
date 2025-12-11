@@ -22,7 +22,7 @@
 		</p>
 
 		<div>
-		  <button class="btn btn-outline-primary btn-lg">写真を選択</button>
+		  <input type="file" class="form-control form-control-lg">
 		</div>
 
 
