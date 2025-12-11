@@ -18,7 +18,7 @@
 
 
 <%-- テーブル --%>
-	    <table class="table table-bordered text-center">
+	    <table class="table table-bordered table-hover text-center">
 			<thead>
 			    <tr class="table-secondary">
 			      <th scope="col">＃</th>
@@ -33,118 +33,118 @@
 		  	<tbody>
 			    <tr>
 			      <th scope="row" class="table-secondary">1</th>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">2</th>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				</tr>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+
+			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">3</th>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				</tr>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">4</th>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">5</th>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">6</th>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
-				      <td>
-				        国語
-				      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
+			      <td>
+			        <input type="text">
+			      </td>
 			    </tr>
-
 	  		</tbody>
 		</table>
 

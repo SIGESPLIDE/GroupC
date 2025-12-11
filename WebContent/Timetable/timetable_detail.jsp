@@ -18,7 +18,7 @@
 
 
 <%-- テーブル --%>
-	    <table class="table table-bordered text-center">
+	    <table class="table table-bordered table-hover text-center">
 			<thead>
 			    <tr class="table-secondary">
 			      <th scope="col">＃</th>

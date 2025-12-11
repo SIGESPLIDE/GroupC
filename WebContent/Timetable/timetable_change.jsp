@@ -18,15 +18,15 @@
 
 
 <%-- テーブル --%>
-	    <table class="table table-bordered text-center">
+	    <table class="table table-bordered text-center table-hover w-auto">
 			<thead>
 			    <tr class="table-secondary">
-			      <th scope="col">＃</th>
-			      <th scope="col">月</th>
-			      <th scope="col">火</th>
-			      <th scope="col">水</th>
-			      <th scope="col">木</th>
-			      <th scope="col">金</th>
+			      <th scope="col" class="w-10">＃</th>
+			      <th scope="col" class="w-18">月</th>
+			      <th scope="col" class="w-18">火</th>
+			      <th scope="col" class="w-18">水</th>
+			      <th scope="col" class="w-18">木</th>
+			      <th scope="col" class="w-18">金</th>
 			    </tr>
 			</thead>
 
@@ -34,327 +34,117 @@
 			    <tr>
 			      <th scope="row" class="table-secondary">1</th>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">2</th>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
+
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">3</th>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">4</th>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">5</th>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">6</th>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			      <td>
-			        <select>
-			          <option>国語</option>
-			          <option>数学</option>
-			          <option>英語</option>
-			          <option>社会</option>
-			          <option>理科</option>
-			          <option>ー</option>
-			        </select>
+			        <input type="text">
 			      </td>
 			    </tr>
-
 	  		</tbody>
 		</table>
 

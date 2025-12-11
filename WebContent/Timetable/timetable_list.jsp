@@ -21,7 +21,7 @@
 		</div>
 
 <%-- テーブル --%>
-	    <table class="table table-bordered text-center">
+	    <table class="table table-bordered text-center border-secondary">
 			<thead>
 			    <tr>
 			      <th scope="col" style="width: 90%;">クラス</th>
