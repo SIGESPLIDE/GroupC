@@ -41,7 +41,7 @@
 
         <div class="flex-grow-1">
             <div class="text-end mb-3">
-                <button type="button" class="btn btn-primary" style="width: 7rem;">
+                <button type="button" class="btn btn-primary" style="width: 7rem;" onclick="window.location.href='kyword_register.jsp';">
                     新規登録
                 </button>
             </div>
@@ -75,7 +75,8 @@
                 <button
                     type="button"
                     class="btn btn-secondary"
-                    style="width: 7rem;">
+                    style="width: 7rem;"
+                    onclick="window.location.href='../LoginLogout/main.jsp';">
                     戻る
                 </button>
             </div>
