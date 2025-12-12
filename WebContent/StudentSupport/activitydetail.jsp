@@ -17,32 +17,33 @@
         </div>
 
 <%-- テーブル --%>
-	    <table class="table table-bordered text-center border-secondary">
-			<thead>
-			    <tr>
-			      <th scope="col">日付</th>
-			      <th scope="col">生徒気分</th>
-			      <th scope="col">ユニボ気分</th>
-			      <th scope="col" style="width: 1%;"></th>
-			    </tr>
-			</thead>
+		<div class="w-50 mx-auto">
+		    <table class="table table-bordered text-center border-secondary">
+				<thead>
+				    <tr>
+				      <th scope="col" class="w-18">日付</th>
+				      <th scope="col" class="w-18">生徒気分</th>
+				      <th scope="col" class="w-18">ユニボ気分</th>
+				      <th scope="col" style="width: 1%;"></th>
+				    </tr>
+				</thead>
 
-		  	<tbody>
-			    <tr>
-			      <td>12/1</td>
-			      <td>&#128516;</td>
-			      <td>&#128516;</td>
-			      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
-			    </tr>
-			    <tr>
-			      <td>12/2</td>
-			      <td>&#128532;</td>
-			      <td>&#128516;</td>
-			      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
-			    </tr>
-	  		</tbody>
-		</table>
-
+			  	<tbody>
+				    <tr>
+				      <td>12/1</td>
+				      <td class="fs-3">&#128516;</td>
+				      <td class="fs-3">&#128516;</td>
+				      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
+				    </tr>
+				    <tr>
+				      <td>12/2</td>
+				      <td class="fs-3">&#128516;</td>
+				      <td class="fs-3">&#128532;</td>
+				      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
+				    </tr>
+		  		</tbody>
+			</table>
+		</div>
 
 		<div class="d-flex justify-content-start mt-auto">
         	<button type="button" class="btn btn-secondary">戻る</button>

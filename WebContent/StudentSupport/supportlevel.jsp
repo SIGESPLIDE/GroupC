@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%-- headerの読込 --%>
-<jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報一覧" /></jsp:include>
+<jsp:include page="../header.jsp"><jsp:param name="title" value="支援段階" /></jsp:include>
 
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
@@ -12,62 +12,28 @@
 <div class="col-md-10 content-area d-flex flex-column h-100">
 
         <div class="text-center mb-4">
-            <h2 class="mb-0">生徒情報一覧</h2>
+            <h2 class="mb-0">支援段階</h2>
             <hr class="mt-2">
         </div>
 
-		<div class="d-flex justify-content-between">
-			<div>
-
-		</div>
-			<div>
-				<input type="text" placeholder="生徒IDまたは氏名で検索">
-			</div>
-			<div class="d-flex justify-content-end mb-3">
-	        	<button type="button" class="btn btn-primary">新規登録</button>
-			</div>
-		</div>
-
+		<div class="d-flex justify-content-center">
 <%-- テーブル --%>
-	    <table class="table table-bordered text-center border-secondary">
-			<thead>
-			    <tr>
-			      <th scope="col">生徒ID</th>
-			      <th scope="col">名前</th>
-			      <th scope="col" style="white-space: nowrap;"></th>
-			      <th scope="col" style="white-space: nowrap;"></th>
-			      <th scope="col" style="white-space: nowrap;"></th>
-			      <th scope="col" style="white-space: nowrap;"></th>
-			    </tr>
-			</thead>
+		    <table class="table table-bordered text-center border-secondary w-25">
+			  	<tbody>
+				    <tr>
+				      <td>学生滞在時間</td>
+				    </tr>
+				    <tr>
+				      <td>教室滞在時間</td>
+				    </tr>
+				    <tr>
+				      <td>登校日数</td>
+				    </tr>
+		  		</tbody>
+			</table>
 
-		  	<tbody>
-			    <tr>
-			      <td>A</td>
-			      <td>aaaaaaaaaaa</td>
-			      <td><button type="button" class="btn btn-primary">交流詳細</button></td>
-			      <td><button type="button" class="btn btn-primary">支援段階</button></td>
-			      <td><button type="button" class="btn btn-primary">生徒詳細</button></td>
-			      <td><button type="button" class="btn btn-danger">削除</button></td>
-			    </tr>
-			    <tr>
-			      <td>B</td>
-			      <td>bbbbbbbbbbb</td>
-			      <td><button type="button" class="btn btn-primary">交流詳細</button></td>
-			      <td><button type="button" class="btn btn-primary">支援段階</button></td>
-			      <td><button type="button" class="btn btn-primary">生徒詳細</button></td>
-			      <td><button type="button" class="btn btn-danger">削除</button></td>
-			    </tr>
-			    <tr>
-			      <td>C</td>
-			      <td>ccccccccccc</td>
-			      <td><button type="button" class="btn btn-primary">交流詳細</button></td>
-			      <td><button type="button" class="btn btn-primary">支援段階</button></td>
-			      <td><button type="button" class="btn btn-primary">生徒詳細</button></td>
-			      <td><button type="button" class="btn btn-danger">削除</button></td>
-			    </tr>
-	  		</tbody>
-		</table>
+			<textarea rows="" cols="" class="w-25"></textarea>
+		</div>
 
 		<div class="d-flex justify-content-start mt-3">
         	<button type="button" class="btn btn-secondary">戻る</button>
