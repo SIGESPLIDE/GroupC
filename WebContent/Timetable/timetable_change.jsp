@@ -20,6 +20,7 @@
 
 
 <%-- テーブル --%>
+	<form action="" method="POST" class="d-flex flex-column h-100">
 	    <table class="table table-bordered text-center table-hover w-auto">
 			<thead>
 			    <tr class="table-secondary">
@@ -151,14 +152,10 @@
 		</table>
 
 		<div class="d-flex justify-content-between mt-auto">
-			<div>
-	        	<button type="button" class="btn btn-secondary">戻る</button>
-			</div>
-
-			<div>
-	        	<button type="button" class="btn btn-primary">変更</button>
-			</div>
+			<div><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_detail'" type="button" class="btn btn-secondary">戻る</button></div>
+			<div><button type="button" class="btn btn-primary">変更</button></div>
 		</div>
+	</form>
 
 </div>
 

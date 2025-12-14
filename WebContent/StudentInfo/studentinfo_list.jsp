@@ -24,7 +24,7 @@
 				<input type="text" placeholder="生徒IDまたは氏名で検索">
 			</div>
 			<div class="d-flex justify-content-end mb-3">
-	        	<button type="button" class="btn btn-primary">新規登録</button>
+	        	<button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'" type="button" class="btn btn-primary">新規登録</button>
 			</div>
 		</div>
 

@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="d-flex justify-content-between mt-auto">
-			<div><button type="button" class="btn btn-secondary">戻る</button></div>
+			<div><button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" type="button" class="btn btn-secondary">戻る</button></div>
 			<div><button type="button" class="btn btn-primary">登録</button></div>
 		</div>
 

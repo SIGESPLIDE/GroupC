@@ -20,14 +20,12 @@
 		  時間割を登録します。<br>
 		  時間割の写真をアップロードしてください。
 		</p>
-		<form action="/timetable/timetable_regist" method="POST">
+		<form action="${pageContext.request.contextPath}/timetable/timetable_regist" method="POST" class="d-flex flex-column h-100">
 		<div><input type="file" class="form-control form-control-lg"></div>
 
 
 		<div class="d-flex justify-content-between mt-auto">
-			<div>
-	        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_list'" type="button" class="btn btn-secondary">戻る</button>
-			</div>
+			<div><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_list'" type="button" class="btn btn-secondary">戻る</button></div>
 			<div><input type="submit" class="btn btn-primary" value="次へ"></div>
 		</div>
 		</form>

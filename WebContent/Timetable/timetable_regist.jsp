@@ -18,7 +18,7 @@
 
 
 <%-- テーブル --%>
-		<form action"" method="POST">
+		<form action"" method="POST" class="d-flex flex-column h-100">
 	    <table class="table table-bordered table-hover text-center">
 			<thead>
 			    <tr class="table-secondary">
@@ -150,7 +150,7 @@
 		</table>
 
 		<div class="d-flex justify-content-between mt-auto">
-			<div><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_list'" type="button" class="btn btn-secondary">戻る</button></div>
+			<div><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_upload'" type="button" class="btn btn-secondary">戻る</button></div>
 			<div><input type="submit" class="btn btn-primary" value="登録"></div>
 		</div>
 		</form>
