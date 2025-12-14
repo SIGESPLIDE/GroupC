@@ -150,11 +150,11 @@
 
 		<div class="d-flex justify-content-between mt-auto">
 			<div>
-	        	<button type="button" class="btn btn-secondary">戻る</button>
+	        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_list'" type="button" class="btn btn-secondary">戻る</button>
 			</div>
 
 			<div>
-	        	<button type="button" class="btn btn-primary">変更</button>
+	        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_change'" type="button" class="btn btn-primary">変更</button>
 			</div>
 		</div>
 

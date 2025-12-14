@@ -17,7 +17,7 @@
         </div>
 
 		<div class="d-flex justify-content-end mb-3">
-        	<button type="button" class="btn btn-primary">新規登録</button>
+        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_upload'" type="button" class="btn btn-primary">新規登録</button>
 		</div>
 
 <%-- テーブル --%>
@@ -32,7 +32,7 @@
 		  	<tbody>
 			    <tr>
 			      <td class="">1年1組</td>
-			      <td><button type="button" class="btn btn-primary">詳細</button></td>
+			      <td><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_detail'" type="button" class="btn btn-primary">詳細</button></td>
 			    </tr>
 			    <tr>
 			      <td>2年1組</td>
@@ -46,7 +46,7 @@
 		</table>
 
 		<div class="d-flex justify-content-start mt-auto">
-        	<button type="button" class="btn btn-secondary">戻る</button>
+        	<button onclick="location.href='${pageContext.request.contextPath}/loginlogout/mainmenu" type="button" class="btn btn-secondary">戻る</button>
 		</div>
 </div>
 
