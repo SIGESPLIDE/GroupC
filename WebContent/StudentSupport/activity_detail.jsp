@@ -46,7 +46,7 @@
 		</div>
 
 		<div class="d-flex justify-content-start mt-auto">
-        	<button type="button" class="btn btn-secondary">戻る</button>
+        	<button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" type="button" class="btn btn-secondary">戻る</button>
 		</div>
 </div>
 

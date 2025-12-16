@@ -9,25 +9,19 @@
 </div>
 
 
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
         <div class="text-center mb-4">
             <h2 class="mb-0">生徒情報一覧</h2>
             <hr class="mt-2">
         </div>
 
-		<div class="d-flex justify-content-between">
-			<div>
-
+<%-- メイン --%>
+	<div class="container w-75">
+		<div class="d-flex justify-content-between my-3">
+			<div class="w-75"><input class="rounded-start rounded-end w-100" type="text" placeholder="生徒IDまたは名前で検索"></div>
+			<div class=""><button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'" type="button" class="btn btn-primary">新規登録</button></div>
 		</div>
-			<div>
-				<input type="text" placeholder="生徒IDまたは氏名で検索">
-			</div>
-			<div class="d-flex justify-content-end mb-3">
-	        	<button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'" type="button" class="btn btn-primary">新規登録</button>
-			</div>
-		</div>
-
 <%-- テーブル --%>
 	    <table class="table table-bordered text-center border-secondary">
 			<thead>
@@ -45,9 +39,9 @@
 			    <tr>
 			      <td>A</td>
 			      <td>aaaaaaaaaaa</td>
-			      <td><button type="button" class="btn btn-primary">交流詳細</button></td>
-			      <td><button type="button" class="btn btn-primary">支援段階</button></td>
-			      <td><button type="button" class="btn btn-primary">生徒詳細</button></td>
+			      <td><button onclick="location.href='${pageContext.request.contextPath}/studentsupport/activity_detail'" type="button" class="btn btn-primary">交流詳細</button></td>
+			      <td><button onclick="location.href='${pageContext.request.contextPath}/studentsupport/support_level'" type="button" class="btn btn-primary">支援段階</button></td>
+			      <td><button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_detail'" type="button" class="btn btn-primary">生徒詳細</button></td>
 			      <td><button type="button" class="btn btn-danger">削除</button></td>
 			    </tr>
 			    <tr>
@@ -68,10 +62,8 @@
 			    </tr>
 	  		</tbody>
 		</table>
-
-		<div class="d-flex justify-content-start mt-auto">
-        	<button type="button" class="btn btn-secondary">戻る</button>
-		</div>
+		<div onclick="location.href='${pageContext.request.contextPath}#'" class="position-absolute bottom-0 start-0"><button class="btn btn-secondary m-5">戻る</button></div>
+	</div>
 </div>
 
 <%-- footerの読込 --%>
