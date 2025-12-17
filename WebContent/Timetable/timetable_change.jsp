@@ -11,153 +11,154 @@
 </div>
 
 
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
         <div class="text-center mb-4">
             <h2 class="mb-0">時間割変更</h2>
             <hr class="mt-2">
         </div>
 
-
+<%-- メイン --%>
+	<div class="container w-75">
 <%-- テーブル --%>
-	<form action="" method="POST" class="d-flex flex-column h-100">
-	    <table class="table table-bordered text-center table-hover w-auto">
+	    <table class="table table-bordered table-hover text-center">
 			<thead>
 			    <tr class="table-secondary">
-			      <th scope="col" class="w-10">＃</th>
-			      <th scope="col" class="w-18">月</th>
-			      <th scope="col" class="w-18">火</th>
-			      <th scope="col" class="w-18">水</th>
-			      <th scope="col" class="w-18">木</th>
-			      <th scope="col" class="w-18">金</th>
+			      <th scope="col"></th>
+			      <th scope="col">月</th>
+			      <th scope="col">火</th>
+			      <th scope="col">水</th>
+			      <th scope="col">木</th>
+			      <th scope="col">金</th>
 			    </tr>
 			</thead>
 
 		  	<tbody>
 			    <tr>
 			      <th scope="row" class="table-secondary">1</th>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto" >
+				      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">2</th>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-
-			    </tr>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto" >
+				      </td>
+				</tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">3</th>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			    </tr>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto" >
+				      </td>
+				</tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">4</th>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto" >
+				      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">5</th>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto" >
+				      </td>
 			    </tr>
 
 			    <tr>
 			      <th scope="row" class="table-secondary">6</th>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
-			      <td>
-			        <input type="text">
-			      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto">
+				      </td>
+				      <td>
+				        <input type="text" class="w-75 mx-auto" >
+				      </td>
 			    </tr>
+
 	  		</tbody>
 		</table>
-
-		<div class="d-flex justify-content-between mt-auto">
-			<div><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_detail'" type="button" class="btn btn-secondary">戻る</button></div>
-			<div><button type="button" class="btn btn-primary">変更</button></div>
-		</div>
-	</form>
+<%-- ボタン --%>
+		<div class="position-absolute bottom-0 start-0"><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_detail'" class="btn btn-secondary m-5">戻る</button></div>
+		<div class="position-absolute bottom-0 end-0"><button class="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#updateConfirmModal">変更</button></div>
+	</div>
 
 </div>
 
 <%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
+
+<%-- 変更完了専用モーダルの読込 --%>
+<jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />

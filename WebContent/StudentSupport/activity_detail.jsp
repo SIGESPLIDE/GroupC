@@ -9,7 +9,7 @@
 </div>
 
 
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
         <div class="text-center mb-4">
             <h2 class="mb-0">交流詳細</h2>
@@ -17,7 +17,7 @@
         </div>
 
 <%-- テーブル --%>
-		<div class="w-50 mx-auto">
+		<div class="container w-50">
 		    <table class="table table-bordered text-center border-secondary">
 				<thead>
 				    <tr>
@@ -33,7 +33,7 @@
 				      <td>12/1</td>
 				      <td class="fs-3">&#128516;</td>
 				      <td class="fs-3">&#128516;</td>
-				      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
+				      <td><button onclick="location.href='${pageContext.request.contextPath}/studentsupport/communicate_detail'" type="button" class="btn btn-primary text-nowrap">詳細</button></td>
 				    </tr>
 				    <tr>
 				      <td>12/2</td>
@@ -45,9 +45,7 @@
 			</table>
 		</div>
 
-		<div class="d-flex justify-content-start mt-auto">
-        	<button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" type="button" class="btn btn-secondary">戻る</button>
-		</div>
+		<div onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" class="position-absolute bottom-0 start-0"><button class="btn btn-secondary m-5">戻る</button></div>
 </div>
 
 <%-- footerの読込 --%>

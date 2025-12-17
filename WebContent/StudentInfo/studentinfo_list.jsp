@@ -20,7 +20,7 @@
 	<div class="container w-75">
 		<div class="d-flex justify-content-between my-3">
 			<div class="w-75"><input class="rounded-start rounded-end w-100" type="text" placeholder="生徒IDまたは名前で検索"></div>
-			<div class=""><button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'" type="button" class="btn btn-primary">新規登録</button></div>
+			<div><button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'" type="button" class="btn btn-primary">新規登録</button></div>
 		</div>
 <%-- テーブル --%>
 	    <table class="table table-bordered text-center border-secondary">
@@ -62,7 +62,10 @@
 			    </tr>
 	  		</tbody>
 		</table>
-		<div onclick="location.href='${pageContext.request.contextPath}#'" class="position-absolute bottom-0 start-0"><button class="btn btn-secondary m-5">戻る</button></div>
+
+		<div onclick="location.href='${pageContext.request.contextPath}#'" class="position-absolute bottom-0 start-0">
+			<button class="btn btn-secondary m-5">戻る</button>
+		</div>
 	</div>
 </div>
 

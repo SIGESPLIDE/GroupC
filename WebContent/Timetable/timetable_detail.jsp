@@ -9,19 +9,20 @@
 </div>
 
 
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
         <div class="text-center mb-4">
             <h2 class="mb-0">時間割詳細</h2>
             <hr class="mt-2">
         </div>
 
-
+<%-- メイン --%>
+	<div class="container w-75">
 <%-- テーブル --%>
 	    <table class="table table-bordered table-hover text-center">
 			<thead>
 			    <tr class="table-secondary">
-			      <th scope="col">＃</th>
+			      <th scope="col"></th>
 			      <th scope="col">月</th>
 			      <th scope="col">火</th>
 			      <th scope="col">水</th>
@@ -147,17 +148,11 @@
 
 	  		</tbody>
 		</table>
+<%-- ボタン --%>
+		<div class="position-absolute bottom-0 start-0"><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_list'" type="button" class="btn btn-secondary m-5">戻る</button></div>
+		<div class="position-absolute bottom-0 end-0"><button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_change'" type="button" class="btn btn-primary m-5">変更</button></div>
 
-		<div class="d-flex justify-content-between mt-auto">
-			<div>
-	        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_list'" type="button" class="btn btn-secondary">戻る</button>
-			</div>
-
-			<div>
-	        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_change'" type="button" class="btn btn-primary">変更</button>
-			</div>
-		</div>
-
+	</div>
 </div>
 
 <%-- footerの読込 --%>

@@ -9,18 +9,17 @@
 </div>
 
 
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
         <div class="text-center mb-4">
             <h2 class="mb-0">会話詳細</h2>
             <hr class="mt-2">
         </div>
 
-        <textarea rows="50" cols=""></textarea>
-
-		<div class="d-flex justify-content-start mt-auto">
-        	<button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" type="button" class="btn btn-secondary">戻る</button>
-		</div>
+	<div class="container w-50 h-50">
+        <textarea class="w-100 h-100" rows="50" cols=""></textarea>
+	</div>
+		<div onclick="location.href='${pageContext.request.contextPath}/studentsupport/activity_detail'" class="position-absolute bottom-0 start-0"><button class="btn btn-secondary m-5">戻る</button></div>
 </div>
 
 <%-- footerの読込 --%>

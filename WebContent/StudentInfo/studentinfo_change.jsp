@@ -18,9 +18,9 @@
 
 <%-- 入力欄 --%>
 		<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
-			<label>生徒ID</label><input type="text" placeholder="生徒ID">
-			<label>年・組</label><input type="text" placeholder="年・組">
-			<label>名前</label><input type="text" placeholder="名前">
+			<label>生徒ID</label><input type="text" placeholder="生徒IDを入力してください">
+			<label>年・組</label><input type="text" placeholder="年・組を入力してください">
+			<label>名前</label><input type="text" placeholder="名前を入力してください">
     		<div class="mb-3">
   				<label for="fileInput" class="form-label">QR</label>
   				<input class="form-control border-secondary" type="file" id="fileInput">
@@ -28,9 +28,14 @@
 		</div>
 
 		<div onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_detail'" class="position-absolute bottom-0 start-0"><button class="btn btn-secondary m-5">戻る</button></div>
-		<div onclick="location.href='${pageContext.request.contextPath}#'" class="position-absolute bottom-0 end-0"><button class="btn btn-primary m-5">変更</button></div>
+		<div class="position-absolute bottom-0 end-0">
+			<button class="btn btn-primary m-5"  data-bs-toggle="modal" data-bs-target="#updateConfirmModal">変更</button>
+		</div>
 
 </div>
 
 <%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
+
+<%-- 変更完了専用モーダルの読込 --%>
+<jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />

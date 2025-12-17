@@ -16,22 +16,17 @@
             <hr class="mt-2">
         </div>
 
-<%-- 入力欄 --%>
-		<div class="container w-50 h-50">
-<%-- テーブル --%>
-			<table class="table table-bordered border border-dark w-100 h-100">
-<%-- <thead style="display: none;"> --%>
- 			<thead >
-				<tr><th class=""></th><th class=""></th><th class="w-75"></th></tr>
-			</thead>
-			<tbody>
-				<tr><td class="">生徒ID</td><td>：</td><td>AAA</td></tr>
-				<tr><td>年・組</td><td>：</td><td>AAA</td></tr>
-				<tr><td>名前</td><td>：</td><td>AAA</td></tr>
-				<tr><td>QR</td><td>：</td><td><img src="" alt="QRコードの画像"></td></tr>
-			</tbody>
-			</table>
+<%-- 情報欄 --%>
+		<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
+			<label>生徒ID</label><div class="text-center border bg-light rounded-start rounded-end">AAA</div>
+			<label>年・組</label><div class="text-center border bg-light rounded-start rounded-end">AAA</div>
+			<label>名前</label><div class="text-center border bg-light rounded-start rounded-end">AAA</div>
+    		<div class="mb-3">
+  				<label for="fileInput" class="form-label">QR</label>
+  				<input class="form-control border-secondary" type="file" id="fileInput">
+			</div>
 		</div>
+
 
 		<div onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" class="position-absolute bottom-0 start-0"><button class="btn btn-secondary m-5">戻る</button></div>
 		<div onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_change'" class="position-absolute bottom-0 end-0"><button class="btn btn-primary m-5">変更</button></div>

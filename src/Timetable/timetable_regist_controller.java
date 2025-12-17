@@ -13,13 +13,13 @@ public class timetable_regist_controller extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
+        // 時間割登録画面に遷移
+        req.getRequestDispatcher("/Timetable/timetable_regist.jsp").forward(req, resp);
     }
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        // 時間割登録画面に遷移
-        req.getRequestDispatcher("/Timetable/timetable_regist.jsp").forward(req, resp);
+
     }
 
     @Override
