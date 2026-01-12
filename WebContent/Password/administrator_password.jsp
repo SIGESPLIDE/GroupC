@@ -112,7 +112,7 @@
                     type="button"
                     class="btn btn-secondary"
                     style="width: 7rem;"
-                    onclick="window.location.href='./teacher_password.jsp';">
+                    onclick="window.location.href='${pageContext.request.contextPath}/password/teacher_password';">
                     戻る
                 </button>
             </div>

@@ -108,15 +108,14 @@
 
 		<div class="action-footer">
             <div class="text-start mt-4 flex-shrink-0">
-                <button
-                    type="button"
+                <a
                     class="btn btn-secondary"
                     style="width: 7rem;"
-                    onclick="window.location.href='../LoginLogout/main.jsp';">
+                    href="${pageContext.request.contextPath}/loginlogout/mainmenu">
                     戻る
-                </button>
+                </a>
             </div>
-            <a href="administrator_password.jsp" class="btn btn-primary px-4">管理者パスワードの設定</a>
+            <a href="${pageContext.request.contextPath}/password/administrator_password" class="btn btn-primary px-4">管理者パスワードの設定</a>
         </div>
 
     </div>

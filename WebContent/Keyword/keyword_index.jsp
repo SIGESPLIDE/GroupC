@@ -41,9 +41,9 @@
 
         <div class="flex-grow-1">
             <div class="text-end mb-3">
-                <button type="button" class="btn btn-primary" style="width: 7rem;" onclick="window.location.href='kyword_register.jsp';">
+                <a href="${pageContext.request.contextPath}/keyword/keyword_register;" class="btn btn-primary" style="width: 7rem;">
                     新規登録
-                </button>
+                </a>
             </div>
 
             <div class="keyword-list-card">
@@ -72,13 +72,12 @@
             </div>
 
             <div class="text-start mt-4 flex-shrink-0">
-                <button
-                    type="button"
+                <a
                     class="btn btn-secondary"
                     style="width: 7rem;"
-                    onclick="window.location.href='../LoginLogout/main.jsp';">
+                    href="${pageContext.request.contextPath}/loginlogout/mainmenu">
                     戻る
-                </button>
+                </a>
             </div>
 
         </div>
