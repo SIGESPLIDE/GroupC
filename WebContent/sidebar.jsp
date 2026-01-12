@@ -4,5 +4,5 @@
     <a href="${pageContext.request.contextPath}/studentinfo/studentinfo_list">生徒情報</a>
     <a href="${pageContext.request.contextPath}/timetable/timetable_list">時間割</a>
     <a href="../Keyword/keyword_index.jsp">キーワード設定</a>
-    <a href="password.jsp">パスワード</a>
+    <a href="../Password/teacher_password.jsp">パスワード</a>
 </div>
