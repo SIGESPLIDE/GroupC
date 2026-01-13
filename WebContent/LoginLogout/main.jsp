@@ -32,11 +32,11 @@
 <div class="col-md-10 content-area d-flex flex-column h-100">
     <div class="tile-container h-100 d-flex flex-column">
 
-        <a href="student.jsp" class="text-decoration-none h-50 d-flex flex-column tile-link-top">
+        <a href="${pageContext.request.contextPath}/studentinfo/studentinfo_list" class="text-decoration-none h-50 d-flex flex-column tile-link-top">
             <div class="content-tile tile-student shadow">生徒情報</div>
         </a>
 
-        <a href="timetable.jsp" class="text-decoration-none h-50 d-flex flex-column">
+        <a href="${pageContext.request.contextPath}/timetable/timetable_list" class="text-decoration-none h-50 d-flex flex-column">
             <div class="content-tile tile-timetable shadow">時間割</div>
         </a>
     </div>
