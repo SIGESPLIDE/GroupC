@@ -63,7 +63,7 @@
 	  		</tbody>
 		</table>
 
-		<div onclick="location.href='${pageContext.request.contextPath}#'" class="position-absolute bottom-0 start-0">
+		<div onclick="location.href='${pageContext.request.contextPath}/loginlogout/mainmenu'" class="position-absolute bottom-0 start-0">
 			<button class="btn btn-secondary m-5">戻る</button>
 		</div>
 	</div>

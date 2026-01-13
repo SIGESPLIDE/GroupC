@@ -49,7 +49,7 @@
 		</div>
 
 		<div class="position-absolute bottom-0 start-0">
-			<button onclick="location.href='${pageContext.request.contextPath}#'" class="btn btn-secondary m-5">戻る</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/loginlogout/mainmenu'" class="btn btn-secondary m-5">戻る</button>
 		</div>
 </div>
 
