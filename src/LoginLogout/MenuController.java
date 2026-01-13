@@ -20,7 +20,7 @@ public class MenuController extends CommonServlet {
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         // メニュー画面に遷移
-        req.getRequestDispatcher("/LoginLogout/main.jsp.jsp").forward(req, resp);
+        req.getRequestDispatcher("/LoginLogout/main.jsp").forward(req, resp);
     }
 
     @Override
