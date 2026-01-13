@@ -3,20 +3,30 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報登録" /></jsp:include>
 
+<style>
+    /* メインエリア */
+    .content-area {
+        padding-bottom: 80px !important;
+    }
+</style>
+
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />
 </div>
 
-
+<%-- メイン --%>
 <div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
-        <div class="text-center mb-4">
-            <h2 class="mb-0">生徒情報登録</h2>
-            <hr class="mt-2">
+    <div class="container mt-5 flex-grow-1 overflow-y-auto">
+
+        <div class="text-center mb-4 flex-shrink-0">
+            <h2 class="mb-0">生徒情報変更</h2>
         </div>
 
-<%-- 入力欄 --%>
+        <hr class="mt-0 flex-shrink-0">
+
+        <%-- 入力欄 --%>
 		<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
 			<label>生徒ID</label><input type="text" placeholder="生徒IDを入力してください">
 			<label>年・組</label><input type="text" placeholder="年・組を入力してください">
@@ -27,13 +37,27 @@
 			</div>
 		</div>
 
-		<div onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_list'" class="position-absolute bottom-0 start-0">
-			<button class="btn btn-secondary m-5">戻る</button>
-		</div>
-		<div class="position-absolute bottom-0 end-0">
-			<button class="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#registerConfirmModal">登録</button>
-		</div>
+		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-5">
 
+	        <%-- 戻るボタン --%>
+	        <a class="btn btn-secondary shadow-sm"
+	           style="width: 7rem;"
+	           href="${pageContext.request.contextPath}/studentinfo/studentinfo_list">
+	           戻る
+	        </a>
+
+	        <%-- 登録ボタン --%>
+	        <button type="button"
+		            class="btn btn-primary shadow-sm"
+		            style="width: 7rem;"
+		            data-bs-toggle="modal"
+		            data-bs-target="#registerConfirmModal">
+		        登録
+		    </button>
+
+		 </div>
+
+    </div>
 </div>
 
 <%-- footerの読込 --%>
