@@ -17,7 +17,7 @@
 -->
 	<!-- h2 データベースと接続する為の設定 -->
 	<Resource
-		name="jdbc/book"
+		name="jdbc/groupc"
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.h2.Driver"
