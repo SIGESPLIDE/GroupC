@@ -1,26 +1,28 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Eclipseの警告を消すための記述 -->
 <!DOCTYPE configuration>
- 上記はEclipseの警告を消すための記述です。
 
 <Context reloadable="true">
-	<Resource
-		name="jdbc/book"
+<!-- postgres SQL と接続する為の設定 -->
+<!--
+<Resource
+		name="jdbc/book/posgre"
 		auth="Container"
 		type="javax.sql.DataSource"
-		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost/book"
-		username="username"
-		password="password"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/book"
+		username="postgres"
+		password="pass"
 	/>
-	 teamiに接続
-	<Resource
-		name="jdbc/teami"
+-->
+<!-- h2 データベースと接続する為の設定 -->
+<Resource
+		name="jdbc/groupc"
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.h2.Driver"
-		url="jdbc:h2:tcp://localhost/~/teami"
+		url="jdbc:h2:tcp://localhost/~/groupc"
 		username="sa"
 		password=""
 	/>
 </Context>
--->
