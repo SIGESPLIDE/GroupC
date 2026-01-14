@@ -22,7 +22,7 @@ public class studentinfo_dao extends dao {
 				studentinfo stuInf = new studentinfo();
 
 				stuInf.setStudentId(rSet.getInt("studentid"));
-				stuInf.setStudentName(rSet.getString("name"));
+				stuInf.setStudentName(rSet.getString("studentname"));
 				stuInf.setClasses(rSet.getString("classes"));
 
 				list.add(stuInf);
@@ -43,7 +43,7 @@ public class studentinfo_dao extends dao {
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
 
-		String order = "order by studentid asc";
+		String order = " order by studentid asc";
 
 		// sqlの処理
 		try {
@@ -74,8 +74,8 @@ public class studentinfo_dao extends dao {
 		return list;
 	}
 
-	// 学生idで検索を掛ける
-	public List<studentinfo> filter(int studentid) throws Exception {
+	// 生徒idで検索を掛ける
+	public List<studentinfo> idFilter(int studentid) throws Exception {
 		List<studentinfo> list = new ArrayList<>();
 
 		// DBへの接続
@@ -84,8 +84,8 @@ public class studentinfo_dao extends dao {
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
 
-		String condition = "and studentid = ?";
-		String order = "order by studentid asc";
+		String condition = " where studentid = ?";
+		String order = " order by studentid asc";
 
 		// sqlの処理
 		try {
@@ -118,6 +118,48 @@ public class studentinfo_dao extends dao {
 	}
 
 	// 生徒名で検索をかける
+	// 学生idで検索を掛ける
+	public List<studentinfo> nameFilter(int studentid) throws Exception {
+		List<studentinfo> list = new ArrayList<>();
+
+		// DBへの接続
+		Connection connection = getConnection();
+		// SQL用
+		PreparedStatement statement = null;
+		ResultSet rSet = null;
+
+		String condition = " where studentname = ?";
+		String order = " order by studentid asc";
+
+		// sqlの処理
+		try {
+			statement = connection.prepareStatement(baseSql + condition + order);
+			statement.setInt(1, studentid);
+			// sqlの実行
+				rSet = statement.executeQuery();
+				list = postFilter(rSet);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// SQL文の入力を終了
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// DBを切断
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		return list;
+	}
 
 	// 生徒情報を保存する 引数:学生番号、学生名、
 }

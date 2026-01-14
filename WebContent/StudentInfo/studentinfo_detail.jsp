@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報詳細" /></jsp:include>
@@ -40,15 +41,16 @@
 
         <%-- 情報欄 --%>
         <div class="container form-group form-control form-control-lg d-flex flex-column w-50 shadow-sm p-4">
+        <c:forEach var="stuInfo" items="${stuInfoList}">
             <label class="small text-muted">生徒ID</label>
-            <div class="text-center border bg-light rounded mb-3 py-2">AAA</div>
+            <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.studentId}</div>
 
             <label class="small text-muted">年・組</label>
-            <div class="text-center border bg-light rounded mb-3 py-2">AAA</div>
+            <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.classes}</div>
 
             <label class="small text-muted">名前</label>
-            <div class="text-center border bg-light rounded mb-3 py-2">AAA</div>
-
+            <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.studentName}</div>
+		</c:forEach>
             <div class="mb-3">
                 <label class="small text-muted">QR</label>
                 <div class="qr-display-box border border-secondary mx-auto">
