@@ -46,6 +46,8 @@
 				</thead>
 
 			  	<tbody>
+			  	<%-- controllerがDBから持ってきたリストからデータを取り出して、テーブルに入れる --%>
+
 				    <tr>
 				      <td>A</td>
 				      <td>aaaaaaaaaaa</td>

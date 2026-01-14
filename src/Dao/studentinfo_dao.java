@@ -23,11 +23,53 @@ public class studentinfo_dao extends dao {
 
 				stuInf.setStudentId(rSet.getInt("studentid"));
 				stuInf.setStudentName(rSet.getString("name"));
+				stuInf.setClasses(rSet.getString("classes"));
 
 				list.add(stuInf);
 			}
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
+		}
+		return list;
+	}
+
+	// 一覧を表示
+	public List<studentinfo> selectAll() throws Exception {
+		List<studentinfo> list = new ArrayList<>();
+
+		// DBへの接続
+		Connection connection = getConnection();
+		// SQL用
+		PreparedStatement statement = null;
+		ResultSet rSet = null;
+
+		String order = "order by studentid asc";
+
+		// sqlの処理
+		try {
+			statement = connection.prepareStatement(baseSql + order);
+			// sqlの実行
+				rSet = statement.executeQuery();
+				list = postFilter(rSet);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// SQL文の入力を終了
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// DBを切断
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
 		}
 		return list;
 	}
@@ -75,4 +117,7 @@ public class studentinfo_dao extends dao {
 		return list;
 	}
 
+	// 生徒名で検索をかける
+
+	// 生徒情報を保存する 引数:学生番号、学生名、
 }
