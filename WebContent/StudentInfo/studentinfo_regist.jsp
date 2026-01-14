@@ -5,8 +5,8 @@
 
 <style>
     /* メインエリア */
-    .content-area {
-        padding-bottom: 80px !important;
+    .scroll-content {
+        padding-bottom: 100px !important;
     }
 </style>
 
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 
-		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-5">
+		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 
 	        <%-- 戻るボタン --%>
 	        <a class="btn btn-secondary shadow-sm"

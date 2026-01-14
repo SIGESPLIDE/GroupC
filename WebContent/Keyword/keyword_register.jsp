@@ -5,6 +5,11 @@
 
 <%-- スタイル --%>
 <style>
+	/* メインエリア */
+    .scroll-content {
+        padding-bottom: 100px !important;
+    }
+
     /* キーワード登録画面専用のスタイル */
     .register-form-container {
         /* フォームの枠線や背景が必要な場合はここにスタイルを追加 */
@@ -24,7 +29,7 @@
 </div>
 
 <%-- メインコンテンツエリア --%>
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
     <div class="container mt-5 flex-grow-1 overflow-y-auto">
 
@@ -62,7 +67,7 @@
 
     </div>
 
-    <div class="button-area d-flex justify-content-between mx-4 mb-4 flex-shrink-0" style="padding: 0 20px;">
+    <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 
         <%-- 戻るボタン (左下) --%>
         <button type="button"

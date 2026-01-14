@@ -5,6 +5,11 @@
 
 <%-- スタイル --%>
 <style>
+	/* メインエリア */
+    .scroll-content {
+        padding-bottom: 100px !important;
+    }
+
     /* パスワード変更画面専用のスタイル */
     .content-area {
         background-color: #ffffff;
@@ -106,17 +111,23 @@
 			</div>
 		</div>
 
-		<div class="action-footer">
-            <div class="text-start mt-4 flex-shrink-0">
-                <a
-                    class="btn btn-secondary"
-                    style="width: 7rem;"
-                    href="${pageContext.request.contextPath}/loginlogout/mainmenu">
-                    戻る
-                </a>
-            </div>
-            <a href="${pageContext.request.contextPath}/password/administrator_password" class="btn btn-primary px-4">管理者パスワードの設定</a>
-        </div>
+		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
+
+	        <%-- 戻るボタン (左下) --%>
+	        <button type="button"
+	                class="btn btn-secondary"
+	                style="width: 7rem;"
+	                onclick="window.location.href='${pageContext.request.contextPath}/loginlogout/mainmenu';">
+	            戻る
+	        </button>
+
+	        <button type="button"
+	                class="btn btn-primary"
+	                style="width: 15rem;"
+	                onclick="window.location.href='${pageContext.request.contextPath}/password/administrator_password';">
+				管理者パスワードの設定
+	        </button>
+		</div>
 
     </div>
 </div>

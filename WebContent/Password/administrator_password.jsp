@@ -5,6 +5,11 @@
 
 <%-- スタイル --%>
 <style>
+	/* メインエリア */
+    .scroll-content {
+        padding-bottom: 100px !important;
+    }
+
     /* パスワード変更画面専用のスタイル */
     .content-area {
         background-color: #ffffff;
@@ -73,7 +78,7 @@
 </div>
 
 <%-- メイン --%>
-<div class="col-md-10 content-area d-flex flex-column h-100">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
 
     <div class="container mt-5 flex-grow-1 overflow-y-auto">
 
@@ -106,17 +111,17 @@
 			</div>
 		</div>
 
-		<div class="action-footer">
-            <div class="text-start mt-4 flex-shrink-0">
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    style="width: 7rem;"
-                    onclick="window.location.href='${pageContext.request.contextPath}/password/teacher_password';">
-                    戻る
-                </button>
-            </div>
-        </div>
+		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
+
+	        <%-- 戻るボタン (左下) --%>
+	        <button type="button"
+	                class="btn btn-secondary"
+	                style="width: 7rem;"
+	                onclick="window.location.href='${pageContext.request.contextPath}/password/teacher_password';"> <%-- キーワード一覧画面への遷移を設定 --%>
+	            戻る
+	        </button>
+
+	    </div>
 
     </div>
 </div>
