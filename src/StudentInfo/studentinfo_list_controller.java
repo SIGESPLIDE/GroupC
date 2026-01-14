@@ -35,25 +35,25 @@ public class studentinfo_list_controller extends CommonServlet {
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
     	// 検索バーに入力された値の受け取り
     	String search = req.getParameter("search");
-    	// true=ID検索
-    	boolean conversion = true;
+
+    	List<studentinfo> stuInfoList;
 
     	studentinfo_dao studentInfoDao = new studentinfo_dao();
-    	List<studentinfo> stuInfoList = studentInfoDao.idFilter(search);
 
-    	// 受け取った値がidなのか、名前なのかを判断
-    	// 変換しようとしたときにエラーをキャッチしたら名前で検索をかける
-    	// エラーが起こらなかったらidで検索をかける
+    	// idでの検索をtry、無理だったら名前検索
     	try {
-    		Integer.parseInt(search);
+    		stuInfoList = studentInfoDao.idFilter(Integer.parseInt(search));
     	} catch(NumberFormatException nfe) {
-    		conversion = false;
-    		System.out.println("変換に失敗しました。");
+    		stuInfoList = studentInfoDao.nameFilter(search);
     	}
 
-    	if (conversion==true) {
+    	System.out.println(search);
 
-    	}
+    	// 受け取った一覧をjspに渡す
+    	req.setAttribute("stuInfoList", stuInfoList);
+
+    	// 生徒情報一覧画面に遷移
+        req.getRequestDispatcher("/StudentInfo/studentinfo_list.jsp").forward(req, resp);
     }
 
     @Override

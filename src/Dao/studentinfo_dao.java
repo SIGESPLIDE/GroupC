@@ -118,8 +118,7 @@ public class studentinfo_dao extends dao {
 	}
 
 	// 生徒名で検索をかける
-	// 学生idで検索を掛ける
-	public List<studentinfo> nameFilter(int studentid) throws Exception {
+	public List<studentinfo> nameFilter(String studentname) throws Exception {
 		List<studentinfo> list = new ArrayList<>();
 
 		// DBへの接続
@@ -128,13 +127,13 @@ public class studentinfo_dao extends dao {
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
 
-		String condition = " where studentname = ?";
+		String condition = " where studentname like '%' || ? || '%'";
 		String order = " order by studentid asc";
 
 		// sqlの処理
 		try {
 			statement = connection.prepareStatement(baseSql + condition + order);
-			statement.setInt(1, studentid);
+			statement.setString(1, studentname);
 			// sqlの実行
 				rSet = statement.executeQuery();
 				list = postFilter(rSet);
@@ -162,4 +161,6 @@ public class studentinfo_dao extends dao {
 	}
 
 	// 生徒情報を保存する 引数:学生番号、学生名、
+
+	// 生徒情報を変更する 引数：学生番号
 }
