@@ -1,4 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // URLの ?from=xxx を受け取る
+    String from = request.getParameter("from");
+    String backUrl = request.getContextPath() + "/loginlogout/mainmenu"; // デフォルトの戻り先
+
+    // ここに、戻る為に必要なルートを設定
+    // 各コントローラ―の画面遷移の最後に書かれている?from=の先で、""の中身が一致していれば〇
+    if ("keyword".equals(from)) {
+        backUrl = request.getContextPath() + "/keyword/keyword_index";
+    } else if ("student".equals(from)){
+    	backUrl = request.getContextPath() + "/studentinfo/studentinfo_list";
+    }
+%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="削除完了" /></jsp:include>
@@ -25,10 +38,12 @@
             </div>
 
             <div class="text-start">
+                <%-- onclickの中で Javaで決めた変数 backUrl を使う --%>
                 <button
                     type="button"
                     class="btn btn-secondary mt-4 ms-3"
-                    style="width: 7rem;">
+                    style="width: 7rem;"
+                    onclick="location.href='<%= backUrl %>'">
                     戻る
                 </button>
             </div>

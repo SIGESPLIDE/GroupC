@@ -5,8 +5,7 @@ import java.io.Serializable;
 public class password implements Serializable {
 
 	private int id;
-	private String roomTPass;
-	private String adminPass;
+	private String password;
 
 	public int getId() {
 		return id;
@@ -14,16 +13,10 @@ public class password implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getRoomTPass() {
-		return roomTPass;
+	public String getPassword() {
+		return password;
 	}
-	public void setRoomTPass(String roomTPass) {
-		this.roomTPass = roomTPass;
-	}
-	public String getAdminPass() {
-		return adminPass;
-	}
-	public void setAdminPass(String adminPass) {
-		this.adminPass = adminPass;
+	public void setPassword(String Password) {
+		this.password = Password;
 	}
 }

@@ -95,18 +95,18 @@
 	                    別室担任パスワード変更
 	            </div>
 	            <div class="password-card-body">
-	            	<form action="UpdatePasswordServlet" method="post">
-	                	<input type="password" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力">
-	                    <div>
-	                        <button type="button"
-                					class="btn btn-submit-red"
-                					style="width: 7rem;"
-                					data-bs-toggle="modal"
-                					data-bs-target="#updateConfirmModal"> <%-- 変更モーダルを起動 --%>
-            					変更
-        					</button>
-	                    </div>
-	                </form>
+	            	<form action="${pageContext.request.contextPath}/password/teacher_password" method="post">
+					    <input type="password" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力">
+					    <div>
+					        <button type="button"
+					                class="btn btn-submit-red"
+					                style="width: 7rem;"
+					                data-bs-toggle="modal"
+					                data-bs-target="#updateConfirmModal">
+					            変更
+					        </button>
+					    </div>
+					</form>
 	            </div>
 			</div>
 		</div>

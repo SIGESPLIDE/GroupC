@@ -30,17 +30,19 @@
 
 <%--遷移用 JavaScript --%>
 <script>
-    // DOM要素が完全に読み込まれた後に実行
     document.addEventListener('DOMContentLoaded', function() {
         var confirmButton = document.getElementById('confirmRegisterBtn');
 
         if (confirmButton) {
             confirmButton.addEventListener('click', function() {
-                // 遷移先のURLを定義 (KeywordRegisterServlet の成功時のリダイレクト先を想定)
-                var completedUrl = '<%= request.getContextPath() %>/ModalCompletion/update_completed.jsp';
+                // ページ内の最初の「form」タグを取得する
+                var targetForm = document.forms[0];
 
-                // モーダルが閉じた後にページを遷移させる
-                window.location.href = completedUrl;
+                if (targetForm) {
+                    targetForm.submit(); // 見つかったフォームを送信
+                } else {
+                    console.error("送信できるフォームがページ内に見つかりません。");
+                }
             });
         }
     });
