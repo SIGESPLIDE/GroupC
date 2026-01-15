@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="キーワード" /></jsp:include>
@@ -47,29 +48,43 @@
             </div>
 
             <div class="keyword-list-card">
+			    <table class="table keyword-table">
+			        <tbody>
+			            <%-- Controllerから届いた "keywords" を1つずつ "k" として取り出す --%>
+			            <c:forEach var="k" items="${keywords}">
+			                <tr>
+			                    <td style="width: 70%;">
+			                        <div class="keyword-text">
+			                            <%-- Beanの getPhrase() を呼び出して表示 --%>
+			                            <c:out value="${k.phrase}" />
+			                        </div>
+			                    </td>
+			                    <td class="text-end" style="width: 30%;">
+			                        <%-- 削除ボタン --%>
+									<button type="button"
+									        class="btn btn-danger btn-delete-trigger"
+									        data-bs-toggle="modal"
+									        data-bs-target="#deleteConfirmModal"
+									        data-id="${k.id}"
+									        style="width: 5rem;">
+									    削除
+									</button>
+									<form id="deleteForm" action="${pageContext.request.contextPath}/keyword/keyword_index" method="post">
+									    <input type="hidden" name="id" id="deleteIdInput" value="">
+									</form>
+			                    </td>
+			                </tr>
+			            </c:forEach>
 
-                <table class="table keyword-table">
-                    <tbody>
-                        <tr>
-                            <td style="width: 70%;"><div class="keyword-text">キーワード1</div></td>
-                            <td class="text-end" style="width: 30%;">
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal" style="width: 5rem;">削除</button>
-                            </td>
-                        </tr>
-
-                        <% for (int i = 4; i <= 30; i++) { %>
-                        <tr>
-                            <td><div class="keyword-text">テストキーワード<%= i %> (長い行の確認用)</div></td>
-                            <td class="text-end">
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal" style="width: 5rem;">削除</button>
-                            </td>
-                        </tr>
-                        <% } %>
-
-                    </tbody>
-                </table>
-
-            </div>
+			            <%-- もしキーワードが1つもなかった時の表示 --%>
+			            <c:if test="${empty keywords}">
+			                <tr>
+			                    <td colspan="2" class="text-center text-muted">キーワードが登録されていません。</td>
+			                </tr>
+			            </c:if>
+			        </tbody>
+			    </table>
+			</div>
 
             <div class="text-start mt-4 flex-shrink-0">
                 <a
@@ -90,3 +105,22 @@
 
 <%-- 削除専用モーダルの読込 --%>
 <jsp:include page="/ModalCompletion/delete_modal.jsp" flush="true" />
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 全ての削除ボタンを取得
+        const deleteButtons = document.querySelectorAll('.btn-delete-trigger');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // ボタンに隠したIDを取得
+                const id = this.getAttribute('data-id');
+                // モーダル内にある「削除実行用のフォーム」の隠し入力欄にIDをセット
+                const modalInput = document.getElementById('deleteIdInput');
+                if (modalInput) {
+                    modalInput.value = id;
+                }
+            });
+        });
+    });
+</script>

@@ -43,7 +43,7 @@
         <%-- 登録フォーム --%>
         <div class="register-form-container flex-grow-1">
 
-            <form action="KeywordRegisterServlet" method="post">
+            <form action="${pageContext.request.contextPath}/keyword/keyword_register" method="post">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-md-10">
 
@@ -77,13 +77,9 @@
             戻る
         </button>
 
-        <button type="button"
-                class="btn btn-primary"
-                style="width: 7rem;"
-                data-bs-toggle="modal"
-                data-bs-target="#registerConfirmModal"> <%-- 登録完了モーダルを起動 --%>
-            登録
-        </button>
+        <button type="button" class="btn btn-primary" style="width: 7rem;" id="preRegisterCheck">
+    		登録
+		</button>
 
     </div>
 
@@ -94,3 +90,22 @@
 
 <%-- 登録完了専用モーダルの読込 --%>
 <jsp:include page="/ModalCompletion/register_modal.jsp" flush="true" />
+
+<%-- 制御用のスクリプト --%>
+<script>
+    document.getElementById('preRegisterCheck').addEventListener('click', function() {
+        const input = document.getElementById('keywordInput');
+
+        // 1. 入力チェック（ブラウザ標準の吹き出しを出す）
+        if (!input.checkValidity()) {
+            // 入力が空、または形式が正しくない場合に吹き出しを表示
+            input.reportValidity();
+            return; // モーダルは開かずに終了
+        }
+
+        // 2. 入力がある場合のみ、モーダルを表示
+        var modalElement = document.getElementById('registerConfirmModal');
+        var myModal = new bootstrap.Modal(modalElement);
+        myModal.show();
+    });
+</script>
