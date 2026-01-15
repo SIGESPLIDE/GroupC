@@ -160,7 +160,57 @@ public class studentinfo_dao extends dao {
 		return list;
 	}
 
-	// 生徒情報を保存する 引数:学生番号、学生名、
+	// 生徒1人の情報を返す
+	// 生徒idで検索を掛ける
+	public studentinfo idPickUp(int studentid) throws Exception {
+		studentinfo stuInfo = null;
+
+		// DBへの接続
+		Connection connection = getConnection();
+		// SQL用
+		PreparedStatement statement = null;
+		ResultSet rSet = null;
+
+		String condition = " where studentid = ?";
+
+		// sqlの処理
+		try {
+			statement = connection.prepareStatement(baseSql + condition);
+			statement.setInt(1, studentid);
+			// sqlの実行
+			rSet = statement.executeQuery();
+			while (rSet.next()) {
+				stuInfo = new studentinfo();
+
+				stuInfo.setStudentId(rSet.getInt("studentid"));
+				stuInfo.setStudentName(rSet.getString("studentname"));
+				stuInfo.setClasses(rSet.getString("classes"));
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// SQL文の入力を終了
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// DBを切断
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		return stuInfo;
+	}
+
+	// 生徒情報を登録する 引数:学生番号、学生名、
+
 
 	// 生徒情報を変更する 引数：学生番号
 }

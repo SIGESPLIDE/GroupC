@@ -41,7 +41,6 @@
 
         <%-- 情報欄 --%>
         <div class="container form-group form-control form-control-lg d-flex flex-column w-50 shadow-sm p-4">
-        <c:forEach var="stuInfo" items="${stuInfoList}">
             <label class="small text-muted">生徒ID</label>
             <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.studentId}</div>
 
@@ -50,7 +49,6 @@
 
             <label class="small text-muted">名前</label>
             <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.studentName}</div>
-		</c:forEach>
             <div class="mb-3">
                 <label class="small text-muted">QR</label>
                 <div class="qr-display-box border border-secondary mx-auto">
@@ -63,20 +61,23 @@
 
     <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 
-        <%-- 戻るボタン --%>
-        <a class="btn btn-secondary shadow-sm"
-           style="width: 7rem;"
-           href="${pageContext.request.contextPath}/studentinfo/studentinfo_list">
-           戻る
-        </a>
+        	<input type="hidden" value="${stuInfo.studentId}" name="studentId">
+	        <%-- 戻るボタン --%>
+	        <a class="btn btn-secondary shadow-sm"
+	           style="width: 7rem;"
+	           href="${pageContext.request.contextPath}/studentinfo/studentinfo_list">
+	           戻る
+	        </a>
 
-        <%-- 変更ボタン --%>
-        <a class="btn btn-primary shadow-sm"
-           style="width: 7rem;"
-           href="${pageContext.request.contextPath}/studentinfo/studentinfo_change">
-           変更
-        </a>
-
+        <form action="${pageContext.request.contextPath}/studentinfo/studentinfo_change" method="post">
+        	<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+	        <%-- 変更ボタン --%>
+	        <button type="submit"
+		            class="btn btn-primary shadow-sm"
+		            style="width: 7rem;">
+		        変更
+		    </button>
+		</form>
     </div>
 </div>
 

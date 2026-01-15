@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報変更" /></jsp:include>
@@ -30,9 +31,9 @@
 
         <%-- 入力欄 --%>
 		<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
-			<label>生徒ID</label><input type="text" placeholder="生徒IDを入力してください">
-			<label>年・組</label><input type="text" placeholder="年・組を入力してください">
-			<label>名前</label><input type="text" placeholder="名前を入力してください">
+			<label>生徒ID</label><input type="text" value="${stuInfo.studentId}" placeholder="生徒IDを入力してください">
+			<label>年・組</label><input type="text" value="${stuInfo.classes}" placeholder="年・組を入力してください">
+			<label>名前</label><input type="text" value="${stuInfo.studentName}" placeholder="名前を入力してください">
     		<div class="mb-3">
   				<label for="fileInput" class="form-label">QR</label>
   				<input class="form-control border-secondary" type="file" id="fileInput">

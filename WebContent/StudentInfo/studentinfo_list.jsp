@@ -52,12 +52,27 @@
 				  	<%-- controllerがDBから持ってきたリストからデータを取り出して、テーブルに入れる --%>
 					    <c:forEach var="stuInfo" items="${stuInfoList}">
 					    	<tr>
-						      <td>${stuInfo.studentId}</td>
 						      <td>${stuInfo.studentName}</td>
-						      <td><button name="activity" onclick="location.href='${pageContext.request.contextPath}/studentsupport/activity_detail?studentId=${stuInfo.studentId}'" class="btn btn-primary">交流詳細</button></td>
-						      <td><button name="support" onclick="location.href='${pageContext.request.contextPath}/studentsupport/support_level?studentId=${stuInfo.studentId}'" class="btn btn-primary">支援段階</button></td>
-						      <td><button name="detail" onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_detail?studentId=${stuInfo.studentId}'" class="btn btn-primary">生徒詳細</button></td>
-						      <td><button class="btn btn-danger">削除</button></td>
+						      <td>${stuInfo.studentId}</td>
+						      	<td>
+				  					<form action="${pageContext.request.contextPath}/studentsupport/activity_detail" method="post">
+				  						<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+						      			<button type="submit" name="activity" class="btn btn-primary">交流詳細</button>
+									</form>
+								</td>
+								<td>
+									<form action="${pageContext.request.contextPath}/studentsupport/support_level" method="post">
+										<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+						      			<button type="submit" class="btn btn-primary">支援段階</button>
+						      		</form>
+						      	</td>
+						      	<td>
+						      		<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_detail" method="post">
+						      			<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+						      			<button type="submit" class="btn btn-primary">生徒詳細</button>
+						      		</form>
+						      	</td>
+						      <td><button type="submit" class="btn btn-danger">削除</button></td>
 						    </tr>
 					    </c:forEach>
 		  		</tbody>
