@@ -28,9 +28,6 @@
         <hr class="mt-0 flex-shrink-0">
 
 		<div class="container w-75">
-			<div class=" d-flex justify-content-end mb-3">
-	        	<button onclick="location.href='${pageContext.request.contextPath}/timetable/timetable_upload'" type="button" class="btn btn-primary">新規登録</button>
-			</div>
 
 			<%-- テーブル --%>
 		    <table class="table table-bordered text-center border-secondary">
