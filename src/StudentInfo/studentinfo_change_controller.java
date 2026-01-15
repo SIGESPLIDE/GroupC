@@ -29,14 +29,7 @@ public class studentinfo_change_controller extends CommonServlet {
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// 送られてきた学生IDを獲得
-    	int studentId = Integer.parseInt(req.getParameter("studentId"));
-
-    	// 生徒IDから生徒情報を取り出す
-    	studentinfo_dao studentInfoDao = new studentinfo_dao();
-    	studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
-
-    	req.setAttribute("stuInfo", stuInfo);
+    	// 変更処理
 
 
     	// 生徒情報変更画面に遷移
