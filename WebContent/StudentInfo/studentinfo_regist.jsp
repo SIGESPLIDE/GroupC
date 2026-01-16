@@ -29,7 +29,7 @@
         <%-- 入力欄 --%>
         <form action="${pageContext.request.contextPath}/studentinfo/studentinfo_regist" method="post">
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
-					<label>生徒ID</label><input type="text" id="idInput" name="studentId" placeholder="生徒IDを入力してください" required>
+					<label>生徒ID</label><input type="text" id="idInput" name="studentId" value="${newStuId}" readonly>
 					<label>年・組</label><input type="text" id="classesInput" name="classes" placeholder="年・組を入力してください" required>
 					<label>名前</label><input type="text" id="nameInput" name="studentName" placeholder="名前を入力してください" required>
 	    		<div class="mb-3">
@@ -71,6 +71,8 @@
 <script>
     document.getElementById('preRegisterCheck').addEventListener('click', function() {
         const input = document.getElementById('idInput');
+        const input2 = document.getElementById('nameInput');
+        const input3 = document.getElementById('classesInput');
 
         // 1. 入力チェック（ブラウザ標準の吹き出しを出す）
         if (!input.checkValidity()) {

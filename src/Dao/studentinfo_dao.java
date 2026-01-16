@@ -209,6 +209,53 @@ public class studentinfo_dao extends dao {
 		return stuInfo;
 	}
 
+
+	// 学生ID一覧を取得
+	public List<Integer> getAllID() throws Exception {
+		String sql = "select studentid from studentinfo";
+		List<Integer> list = new ArrayList<>();
+
+		// DBへの接続
+		Connection connection = getConnection();
+		// SQL用
+		PreparedStatement statement = null;
+		ResultSet rSet = null;
+
+		String order = " order by studentid asc";
+
+		// sqlの処理
+		try {
+			statement = connection.prepareStatement(sql + order);
+			// sqlの実行
+			rSet = statement.executeQuery();
+			while (rSet.next()) {
+				int stuId = rSet.getInt("studentid");
+
+				list.add(stuId);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// SQL文の入力を終了
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// DBを切断
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		return list;
+	}
+
 	// 生徒情報を保存する 引数:生徒インスタンス
 	public boolean save(studentinfo stuInfo) throws Exception {
 		//DBに接続
