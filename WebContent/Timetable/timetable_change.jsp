@@ -7,12 +7,7 @@
 
 <%-- スタイル --%>
 <style>
-    /* メインエリア */
-    .scroll-content {
-        padding-bottom: 100px !important;
-    }
-
-    /* 入力欄の微調整 */
+    .scroll-content { padding-bottom: 100px !important; }
     .table input[type="text"] {
         border: 1px solid #ced4da;
         border-radius: 4px;
@@ -26,72 +21,71 @@
 </div>
 
 <%-- メイン --%>
-<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
+<form action="${pageContext.request.contextPath}/timetable/timetable_change" method="post" class="col-md-10">
+    <div class="content-area d-flex flex-column h-100 position-relative">
 
-    <div class="container mt-5 flex-grow-1 overflow-y-auto">
+        <%-- どのクラスのデータか送信するために隠し持っておく --%>
+        <input type="hidden" name="class_name" value="${className}">
 
-        <div class="text-center mb-4 flex-shrink-0">
-            <h2 class="mb-0">時間割変更</h2>
-        </div>
+        <div class="container mt-5 flex-grow-1 overflow-y-auto">
+            <div class="text-center mb-4 flex-shrink-0">
+                <h2 class="mb-0">時間割変更</h2>
+            </div>
+            <hr class="mt-0 flex-shrink-0">
 
-        <hr class="mt-0 flex-shrink-0">
-
-        <%-- テーブルコンテナ --%>
-        <div class="container w-75">
-            <table class="table table-bordered table-hover text-center shadow-sm">
-                <thead>
-                    <tr class="table-secondary">
-                        <th scope="col" style="width: 50px;"></th>
-                        <th scope="col">月</th>
-                        <th scope="col">火</th>
-                        <th scope="col">水</th>
-                        <th scope="col">木</th>
-                        <th scope="col">金</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <%-- 1限から6限までループ構造を想定 --%>
-                    <c:forEach var="i" begin="1" end="6">
-                        <tr>
-                            <th scope="row" class="table-secondary align-middle">${i}</th>
-                            <c:forEach var="j" begin="1" end="5">
-                                <td class="align-middle">
-                                    <input type="text" class="form-control form-control-sm mx-auto" style="width: 90%;">
-                                </td>
+            <div class="container w-75">
+                <table class="table table-bordered table-hover text-center shadow-sm">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col" style="width: 50px;"></th>
+                            <%-- 曜日ヘッダー --%>
+                            <c:forEach var="wd" items="${weekdayList}">
+                                <th scope="col">${fn:substring(wd, 0, 1)}</th>
                             </c:forEach>
                         </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        <c:forEach var="i" begin="1" end="6">
+                            <tr>
+                                <th scope="row" class="table-secondary align-middle">${i}</th>
+                                <c:forEach var="wd" items="${weekdayList}">
+                                    <td class="align-middle">
+                                        <input type="text"
+                                               name="subject_${wd}_${i}"
+                                               value="${timetableMap[wd][i]}"
+                                               class="form-control form-control-sm mx-auto"
+                                               style="width: 90%;">
+                                    </td>
+                                </c:forEach>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <%-- ボタンエリア --%>
+        <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
+            <a class="btn btn-secondary shadow-sm"
+               style="width: 7rem;"
+               href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${className}">
+                戻る
+            </a>
+
+            <button type="button"
+                    class="btn btn-primary shadow-sm"
+                    style="width: 7rem;"
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateConfirmModal">
+                変更
+            </button>
         </div>
     </div>
-
-    <%-- ボタン --%>
-    <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
-
-        <%-- 戻るボタン --%>
-        <a class="btn btn-secondary shadow-sm"
-           style="width: 7rem;"
-           href="${pageContext.request.contextPath}/timetable/timetable_detail">
-            戻る
-        </a>
-
-        <%-- 変更ボタン --%>
-        <button type="button"
-                class="btn btn-primary shadow-sm"
-                style="width: 7rem;"
-                data-bs-toggle="modal"
-                data-bs-target="#updateConfirmModal">
-            変更
-        </button>
-
-    </div>
-
-</div>
+</form>
 
 <%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
 
-<%-- 変更完了専用モーダルの読込 --%>
+<%-- modalの読込 --%>
 <jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />
