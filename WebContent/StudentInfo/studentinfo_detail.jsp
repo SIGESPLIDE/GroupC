@@ -71,6 +71,7 @@
 
         <form action="${pageContext.request.contextPath}/studentinfo/studentinfo_change" method="post">
         	<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+        	<input type="hidden" name="action" value="execute">
 	        <%-- 変更ボタン --%>
 	        <button type="submit"
 		            class="btn btn-primary shadow-sm"

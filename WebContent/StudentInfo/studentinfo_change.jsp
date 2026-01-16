@@ -30,15 +30,17 @@
         <hr class="mt-0 flex-shrink-0">
 
         <%-- 入力欄 --%>
-		<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
-			<label>生徒ID</label><input type="text" value="${stuInfo.studentId}" placeholder="生徒IDを入力してください">
-			<label>年・組</label><input type="text" value="${stuInfo.classes}" placeholder="年・組を入力してください">
-			<label>名前</label><input type="text" value="${stuInfo.studentName}" placeholder="名前を入力してください">
-    		<div class="mb-3">
-  				<label for="fileInput" class="form-label">QR</label>
-  				<input class="form-control border-secondary" type="file" id="fileInput">
+		<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_change" method="post">
+			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
+					<label>生徒ID</label><input type="text" id="idInput" value="${stuInfo.studentId}" name="studentId" placeholder="生徒IDを入力してください" required>
+					<label>年・組</label><input type="text" id="classesInput" value="${stuInfo.classes}" name="classes" placeholder="年・組を入力してください" required>
+					<label>名前</label><input type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" placeholder="名前を入力してください" required>
+		    		<div class="mb-3">
+		  				<label for="fileInput" class="form-label">QR</label>
+		  				<input class="form-control border-secondary" type="file" id="fileInput">
+					</div>
 			</div>
-		</div>
+		</form>
 
 		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 
@@ -53,8 +55,7 @@
 	        <button type="button"
 		            class="btn btn-primary shadow-sm"
 		            style="width: 7rem;"
-		            data-bs-toggle="modal"
-		            data-bs-target="#updateConfirmModal">
+					id="preUpdateCheck">
 		        変更
 		    </button>
 
@@ -68,3 +69,22 @@
 
 <%-- 変更完了専用モーダルの読込 --%>
 <jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />
+
+<%-- 制御用のスクリプト --%>
+<script>
+    document.getElementById('preUpdateCheck').addEventListener('click', function() {
+        const input = document.getElementById('idInput');
+
+        // 1. 入力チェック（ブラウザ標準の吹き出しを出す）
+        if (!input.checkValidity()) {
+            // 入力が空、または形式が正しくない場合に吹き出しを表示
+            input.reportValidity();
+            return; // モーダルは開かずに終了
+        }
+
+        // 2. 入力がある場合のみ、モーダルを表示
+        var modalElement = document.getElementById('updateConfirmModal');
+        var myModal = new bootstrap.Modal(modalElement);
+        myModal.show();
+    });
+</script>

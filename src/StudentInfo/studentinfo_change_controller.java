@@ -29,12 +29,41 @@ public class studentinfo_change_controller extends CommonServlet {
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// 変更処理
+    	String action = req.getParameter("action");
+    	// detailから遷移したときに使用
+    	if (action != null){
+    		int studentId = Integer.parseInt(req.getParameter("studentId"));
+        	// 生徒IDから生徒情報を取り出す
+        	studentinfo_dao studentInfoDao = new studentinfo_dao();
+        	studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
 
+        	req.setAttribute("stuInfo", stuInfo);
 
-    	// 生徒情報変更画面に遷移
-        req.getRequestDispatcher("/StudentInfo/studentinfo_change.jsp").forward(req, resp);
+	    	// 生徒情報変更画面に遷移
+	    	req.getRequestDispatcher("/StudentInfo/studentinfo_change.jsp").forward(req, resp);
 
+    	} else {
+	    	// 変更処理で使用
+	    	// 入力された値の受け取り
+	    	int studentId = Integer.parseInt(req.getParameter("studentId"));
+	    	String studentName = req.getParameter("studentName");
+	    	String classes = req.getParameter("classes");
+	    	// 変更された内容で学生インスタンス作成
+	    	studentinfo stuInfo = new studentinfo();
+
+	    	stuInfo.setStudentId(studentId);
+	    	stuInfo.setStudentName(studentName);
+	    	stuInfo.setClasses(classes);
+
+	    	// 変更処理
+	    	studentinfo_dao stuInfoDao = new studentinfo_dao();
+
+	    	// 変更の実行
+	        if (stuInfoDao.save(stuInfo)){
+	            // 成功したら完了画面へ（合言葉 from=student を付ける）
+	            resp.sendRedirect(req.getContextPath() + "/ModalCompletion/update_completed.jsp?from=student");
+	        }
+    	}
     }
 
     @Override

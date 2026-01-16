@@ -33,8 +33,8 @@
 			<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_list" method="post">
 				<div class="w-75"><input class="rounded-start rounded-end w-100" type="text" placeholder="生徒IDまたは名前で検索" name="search"></div>
 			</form>
-				<div><button onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'" type="button" class="btn btn-primary">新規登録</button></div>
-			</div>
+				<div><button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'">新規登録</button></div>
+		</div>
 			<%-- テーブル --%>
 		    <table class="table table-bordered text-center border-secondary">
 				<thead>
@@ -52,8 +52,8 @@
 				  	<%-- controllerがDBから持ってきたリストからデータを取り出して、テーブルに入れる --%>
 					    <c:forEach var="stuInfo" items="${stuInfoList}">
 					    	<tr>
-						      <td>${stuInfo.studentName}</td>
 						      <td>${stuInfo.studentId}</td>
+						      <td>${stuInfo.studentName}</td>
 						      	<td>
 				  					<form action="${pageContext.request.contextPath}/studentsupport/activity_detail" method="post">
 				  						<input type="hidden" name="studentId" value="${stuInfo.studentId}">
