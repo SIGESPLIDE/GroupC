@@ -325,4 +325,33 @@ public class studentinfo_dao extends dao {
 			return false;
 		}
 	}
+
+	// 指定した生徒を削除する
+	public boolean delete(int studentId) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		int count = 0;
+
+		String delete = "delete from studentinfo";
+		String condition = " where studentid=?";
+
+		try {
+			statement = connection.prepareStatement(delete + condition);
+			statement.setInt(1, studentId);
+			count = statement.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (statement != null) { try { statement.close(); } catch (SQLException sqle) { throw sqle; } }
+			if (connection != null) { try { connection.close(); } catch (SQLException sqle) { throw sqle; } }
+		}
+
+		if (count > 0) {
+			// 実行件数が1件以上ある場合
+			return true;
+		} else {
+			// 実行件数が0件の場合
+			return false;
+		}
+	}
 }
