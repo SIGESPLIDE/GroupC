@@ -35,13 +35,14 @@
 				<div class="w-75"><input class="rounded-start rounded-end w-100" type="text" placeholder="生徒IDまたは名前で検索" name="search"></div>
 			</form>
 			<%-- 新規登録ボタン --%>
-			<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_regist" method="post">
-	        	<input type="hidden" name="action" value="execute">
-				<div><button type="submit" class="btn btn-primary">新規登録</button></div>
-			</form>
+				<div><button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/studentinfo/studentinfo_regist'">新規登録</button></div>
 		</div>
+		<c:if test="${not empty deleteError}">
+		  <div class="text-center text-primary">${deleteError}</div>
+		</c:if>
 			<%-- テーブル --%>
-		    <table class="table table-bordered text-center border-secondary">
+			<div style="max-height: 200px; overflow-y: auto;">
+		    <table class="table table-bordered text-center border-secondary table-responsive">
 				<thead>
 				    <tr>
 				      <th scope="col">生徒ID</th>
@@ -55,7 +56,7 @@
 
 			  	<tbody>
 				  	<%-- controllerがDBから持ってきたリストからデータを取り出して、テーブルに入れる --%>
-					    <c:forEach var="stuInfo" items="${stuInfoList}">
+				  		<c:forEach var="stuInfo" items="${stuInfoList}">
 					    	<tr>
 						      <td>${stuInfo.studentId}</td>
 						      <td>${stuInfo.studentName}</td>
@@ -65,24 +66,29 @@
 						      			<button type="submit" name="activity" class="btn btn-primary">交流詳細</button>
 									</form>
 								</td>
-								<td>
-									<form action="${pageContext.request.contextPath}/studentsupport/support_level" method="post">
-										<input type="hidden" name="studentId" value="${stuInfo.studentId}">
-						      			<button type="submit" class="btn btn-primary">支援段階</button>
-						      		</form>
-						      	</td>
-						      	<td>
-						      		<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_detail" method="post">
-						      			<input type="hidden" name="studentId" value="${stuInfo.studentId}">
-						      			<button type="submit" class="btn btn-primary">生徒詳細</button>
-						      		</form>
-						      	</td>
-						      <td><button type="submit" class="btn btn-danger">削除</button></td>
+							 <td>
+								<form action="${pageContext.request.contextPath}/studentsupport/support_level" method="post">
+									<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+						      		<button type="submit" class="btn btn-primary">支援段階</button>
+						      	</form>
+						      </td>
+						      <td>
+						      	<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_detail" method="post">
+						      	<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+						      	<button type="submit" class="btn btn-primary">生徒詳細</button>
+						      	</form>
+						      </td>
+						      <td>
+						      	<button type="button" class="btn btn-danger btn-delete-trigger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal" data-id="${stuInfo.studentId}">削除</button>
+						      	<form id="deleteForm" action="${pageContext.request.contextPath}/studentinfo/studentinfo_delete" method="post">
+									<input type="hidden" name="studentId" id="deleteIdInput">
+								</form>
+						      </td>
 						    </tr>
 					    </c:forEach>
 		  		</tbody>
 			</table>
-
+			</div>
 	        <%-- 戻るボタン --%>
 	        <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 		        <a class="btn btn-secondary shadow-sm"
@@ -99,3 +105,32 @@
 
 <%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
+
+<%-- 登録完了専用モーダルの読込 --%>
+<jsp:include page="/ModalCompletion/delete_modal.jsp" flush="true" />
+
+<%-- 制御用のスクリプト --%>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. 削除ボタンが押されたら、隠し入力欄にIDをコピーする
+        const deleteButtons = document.querySelectorAll('.btn-delete-trigger');
+        const modalInput = document.getElementById('deleteIdInput');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                if (modalInput) {
+                    modalInput.value = id;
+                }
+            });
+        });
+
+        // 2. モーダルの確定ボタンが押されたら、フォームを送信する
+        const confirmBtn = document.getElementById('confirmRegisterBtn');
+        if (confirmBtn) {
+            confirmBtn.onclick = function() {
+                document.getElementById('deleteForm').submit();
+            };
+        }
+    });
+</script>

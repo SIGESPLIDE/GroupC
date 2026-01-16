@@ -29,6 +29,7 @@
 
         <hr class="mt-0 flex-shrink-0">
 
+
         <%-- 入力欄 --%>
 		<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_change" method="post">
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
@@ -41,6 +42,7 @@
 					</div>
 			</div>
 		</form>
+
 
 		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 

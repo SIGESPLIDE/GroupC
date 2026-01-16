@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報登録" /></jsp:include>
@@ -26,12 +27,17 @@
 
         <hr class="mt-0 flex-shrink-0">
 
+<%-- IDが重複した時に表示 --%>
+		<c:if test="${not empty overlappError}">
+		  <div class="text-center text-primary">${overlappError}</div>
+		</c:if>
+
         <%-- 入力欄 --%>
         <form action="${pageContext.request.contextPath}/studentinfo/studentinfo_regist" method="post">
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
-					<label>生徒ID</label><input type="text" id="idInput" name="studentId" value="${newStuId}" readonly>
-					<label>年・組</label><input type="text" id="classesInput" name="classes" placeholder="年・組を入力してください" required>
-					<label>名前</label><input type="text" id="nameInput" name="studentName" placeholder="名前を入力してください" required>
+					<label>生徒ID</label><input type="text" id="idInput" name="studentId" value="${stuInfo.studentId}" placeholder="生徒IDを入力してください" required>
+					<label>年・組</label><input type="text" id="classesInput" name="classes" value="${stuInfo.classes}" placeholder="年・組を入力してください" required>
+					<label>名前</label><input type="text" id="nameInput" name="studentName" value="${stuInfo.studentName}" placeholder="名前を入力してください" required>
 	    		<div class="mb-3">
 	  				<label for="fileInput" class="form-label">QR</label>
 	  				<input class="form-control border-secondary" type="file" id="fileInput">
@@ -71,14 +77,20 @@
 <script>
     document.getElementById('preRegisterCheck').addEventListener('click', function() {
         const input = document.getElementById('idInput');
-        const input2 = document.getElementById('nameInput');
-        const input3 = document.getElementById('classesInput');
+        const input2 = document.getElementById('classesInput');
+        const input3 = document.getElementById('nameInput');
 
         // 1. 入力チェック（ブラウザ標準の吹き出しを出す）
         if (!input.checkValidity()) {
             // 入力が空、または形式が正しくない場合に吹き出しを表示
             input.reportValidity();
             return; // モーダルは開かずに終了
+        }else if (!input2.checkValidity()) {
+        	input2.reportValidity();
+        	return;
+        } else if (!input3.checkValidity()){
+        	input3.reportValidity();
+        	return;
         }
 
         // 2. 入力がある場合のみ、モーダルを表示

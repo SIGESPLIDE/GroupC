@@ -17,46 +17,55 @@ public class studentinfo_regist_controller extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        // 生徒情報一覧画面に遷移
+        // 生徒情報登録画面を表示
         req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
     }
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//    	} else {
-			// 登録処理
-			// フォームから学生情報を取得
-	    	int studentId = Integer.parseInt(req.getParameter("studentId"));
-	    	String studentName = req.getParameter("studentName");
-	    	String classes = req.getParameter("classes");
+		// 生徒情報登録から登録処理を行う為に起動
+    	// 入力された情報を取得
+    	int studentId = Integer.parseInt(req.getParameter("studentId"));
+    	String studentName = req.getParameter("studentName");
+    	String classes = req.getParameter("classes");
 
-	    	// 入力された内容で学生インスタンス作成
-	    	studentinfo stuInfo = new studentinfo();
+    	// 入力された内容で学生インスタンス作成
+    	studentinfo stuInfo = new studentinfo();
 
-	    	stuInfo.setStudentId(studentId);
-	    	stuInfo.setStudentName(studentName);
-	    	stuInfo.setClasses(classes);
+    	stuInfo.setStudentId(studentId);
+    	stuInfo.setStudentName(studentName);
+    	stuInfo.setClasses(classes);
 
-	    	// 登録処理
-	    	studentinfo_dao stuInfoDao = new studentinfo_dao();
+    	// 登録処理
+    	studentinfo_dao stuInfoDao = new studentinfo_dao();
 
-	    	// 重複確認 入力内容が既に存在していた場合、登録処理を行わず、画面に戻る
-	    	boolean flg = true;
-	    	List<Integer> stuIdList = stuInfoDao.getAllID();
+    	// 重複確認
+    	boolean overlapping = false;
+    	List<Integer> stuIdList = stuInfoDao.getAllID();
 
-	    	for (int i = 0; i < stuIdList.size(); i++) {
-	    		if (studentId == stuIdList.get(i)) {
-	    			flg = false;
-	    			break; //内容が同じだったらループを抜ける
-	    		}
-	    	}
+    	// id一覧を見て、重複がないかどうかの確認
+    	for (int i = 0; i < stuIdList.size(); i++) {
+    		if (studentId == stuIdList.get(i)) {
+    			overlapping = true;
+    			break; //内容が同じだったらループを抜ける
+    		}
+    	}
 
-	    	// 登録の実行
-	        if (stuInfoDao.save(stuInfo)){
-	            // 成功したら完了画面へ（合言葉 from=student を付ける）
-	            resp.sendRedirect(req.getContextPath() + "/ModalCompletion/update_completed.jsp?from=student");
-	        }
-//    	}
+    	// 入力された生徒IDが既に存在していた場合、登録処理を行わず、生徒登録画面に戻る
+    	if (overlapping == true) {
+    		String overlappError = "この生徒IDは存在しています";
+    		req.setAttribute("overlappError", overlappError);
+
+    		// 入力された値を保持
+    		req.setAttribute("stuInfo", stuInfo);
+    		System.out.println(overlapping);
+
+    		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+    	} else if (stuInfoDao.save(stuInfo)){ // 登録の実行
+            // 成功したら完了画面へ（合言葉 from=student を付ける）
+    		System.out.println(overlapping);
+            resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_completed.jsp?from=student");
+        }
     }
 
     @Override
