@@ -258,6 +258,15 @@ public class studentinfo_dao extends dao {
 
 	// 生徒情報を保存する 引数:生徒インスタンス
 	public boolean save(studentinfo stuInfo) throws Exception {
+		// クラスの登録処理（裏作業）
+		String className = stuInfo.getClasses();
+		if (className != null && !className.isEmpty()) {
+            classes_dao cDao = new classes_dao();
+            // 検索に引っかからなかった場合、登録処理を行う
+            if (!cDao.filter(className)) {
+                cDao.save(className);
+            }
+        }
 		//DBに接続
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
