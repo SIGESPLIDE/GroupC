@@ -40,6 +40,7 @@
 		<c:if test="${not empty deleteError}">
 		  <div class="text-center text-primary">${deleteError}</div>
 		</c:if>
+
 			<%-- テーブル --%>
 			<div style="max-height: 200px; overflow-y: auto;">
 		    <table class="table table-bordered text-center border-secondary table-responsive">

@@ -47,11 +47,14 @@
 		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 
 	        <%-- 戻るボタン --%>
-	        <a class="btn btn-secondary shadow-sm"
-	           style="width: 7rem;"
-	           href="${pageContext.request.contextPath}/studentinfo/studentinfo_detail">
-	           戻る
-	        </a>
+	        <form action="${pageContext.request.contextPath}/studentinfo/studentinfo_detail" method="post">
+	        	<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+		        <button type="submit"
+			            class="btn btn-secondary shadow-sm"
+			            style="width: 7rem;">
+			        戻る
+			    </button>
+		    </form>
 
 	        <%-- 変更ボタン --%>
 	        <button type="button"

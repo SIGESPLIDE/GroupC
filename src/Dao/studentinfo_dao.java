@@ -75,7 +75,7 @@ public class studentinfo_dao extends dao {
 	}
 
 	// 生徒idで検索を掛ける
-	public List<studentinfo> idFilter(int studentid) throws Exception {
+	public List<studentinfo> idFilter(int studentId) throws Exception {
 		List<studentinfo> list = new ArrayList<>();
 
 		// DBへの接続
@@ -90,7 +90,7 @@ public class studentinfo_dao extends dao {
 		// sqlの処理
 		try {
 			statement = connection.prepareStatement(baseSql + condition + order);
-			statement.setInt(1, studentid);
+			statement.setInt(1, studentId);
 			// sqlの実行
 				rSet = statement.executeQuery();
 				list = postFilter(rSet);
@@ -118,7 +118,7 @@ public class studentinfo_dao extends dao {
 	}
 
 	// 生徒名で検索をかける
-	public List<studentinfo> nameFilter(String studentname) throws Exception {
+	public List<studentinfo> nameFilter(String studentName) throws Exception {
 		List<studentinfo> list = new ArrayList<>();
 
 		// DBへの接続
@@ -133,7 +133,7 @@ public class studentinfo_dao extends dao {
 		// sqlの処理
 		try {
 			statement = connection.prepareStatement(baseSql + condition + order);
-			statement.setString(1, studentname);
+			statement.setString(1, studentName);
 			// sqlの実行
 				rSet = statement.executeQuery();
 				list = postFilter(rSet);
@@ -162,7 +162,7 @@ public class studentinfo_dao extends dao {
 
 	// 生徒1人の情報を返す
 	// 生徒idで検索を掛ける
-	public studentinfo idPickUp(int studentid) throws Exception {
+	public studentinfo idPickUp(int studentId) throws Exception {
 		studentinfo stuInfo = null;
 
 		// DBへの接続
@@ -176,7 +176,7 @@ public class studentinfo_dao extends dao {
 		// sqlの処理
 		try {
 			statement = connection.prepareStatement(baseSql + condition);
-			statement.setInt(1, studentid);
+			statement.setInt(1, studentId);
 			// sqlの実行
 			rSet = statement.executeQuery();
 			while (rSet.next()) {

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="交流詳細" /></jsp:include>
@@ -39,12 +40,24 @@
 				</thead>
 
 			  	<tbody>
-				    <tr>
-				      <td>12/1</td>
-				      <td class="fs-3">&#128516;</td>
-				      <td class="fs-3">&#128516;</td>
-				      <td><button onclick="location.href='${pageContext.request.contextPath}/studentsupport/communicate_detail'" type="button" class="btn btn-primary text-nowrap">詳細</button></td>
-				    </tr>
+			      	<c:forEach var="acLog" items="${acLogList}">
+					    <tr>
+					      <td>
+							${acLog.datetime}
+					      </td>
+					      <td class="fs-3">
+					      	${acLog.emotionLog}
+					      </td>
+					      <td class="fs-3">&#128516;</td>
+					      <td>
+						  <form action="${pageContext.request.contextPath}/studentsupport/communicate_detail" method="post">
+					      	<input type="hidden" name="studentId" value="${acLog.studentId}">
+					      	<input type="hidden" name="datetime" value="${acLog.datetime}">
+					      	<button onclick="location.href='${pageContext.request.contextPath}/studentsupport/communicate_detail'" type="button" class="btn btn-primary text-nowrap">詳細</button>
+						  </form>
+					      </td>
+					    </tr>
+			      	</c:forEach>
 				    <tr>
 				      <td>12/2</td>
 				      <td class="fs-3">&#128516;</td>

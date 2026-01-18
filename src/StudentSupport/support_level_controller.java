@@ -6,20 +6,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
-// 生徒情報一覧のコントローラ
+// 支援段階一覧のコントローラ
 
 @WebServlet(urlPatterns = { "/studentsupport/support_level" })
 public class support_level_controller extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        // 生徒情報一覧画面に遷移
+        // 支援段階一覧に使用
         req.getRequestDispatcher("/StudentSupport/support_level.jsp").forward(req, resp);
     }
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// 時間割変更時に使用
+    	// 支援段階に使用
+    	req.getRequestDispatcher("/StudentSupport/support_level.jsp").forward(req, resp);
     }
 
     @Override
