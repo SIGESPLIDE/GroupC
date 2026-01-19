@@ -2,7 +2,7 @@ package Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.ResultSet;
 
 import Bean.password; // 小文字のpasswordクラスをインポート
 
@@ -24,38 +24,34 @@ public class password_dao extends dao {
         return executeUpdate(sql, p.getPassword());
     }
 
-    //  共通処理の実行
-//    private boolean executeUpdate(String sql, String pass) throws Exception {
-//        try (Connection connection = getConnection();
-//             PreparedStatement statement = connection.prepareStatement(sql)) {
-//            statement.setString(1, pass);
-//            return statement.executeUpdate() > 0;
-//        }
-//    }
-
-    // 共通実行メソッド
+    //  共通処理の実行(パスワードの変更）
     private boolean executeUpdate(String sql, String pass) throws Exception {
-        Connection connection = getConnection(); // 接続を取得
-        PreparedStatement statement = null;      // 変数を準備
-        int count = 0;
-
-        try {
-            statement = connection.prepareStatement(sql);
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, pass);
-            count = statement.executeUpdate();
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            // SQL文を終了
-            if (statement != null) {
-                try { statement.close(); } catch (SQLException sqle) { throw sqle; }
-            }
-            // DBを切断
-            if (connection != null) {
-                try { connection.close(); } catch (SQLException sqle) { throw sqle; }
-            }
+            return statement.executeUpdate() > 0;
         }
-        return count > 0;
+    }
+
+    //  ログイン処理
+    public int login(String inputPassword) throws Exception{
+    	//初期値（不一致の場合）
+    	int authId = -1;
+    	// SQL文（パスワードの一致検索）
+    	String sql = "SELECT ID FROM PASSWORD WHERE PASSWORD = ?";
+
+    	try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+
+    	        statement.setString(1, inputPassword);
+
+    	        try (ResultSet rs = statement.executeQuery()) {
+    	            if (rs.next()) {
+    	                // 一致した場合、そのIDを代入
+    	                authId = rs.getInt("ID");
+    	            }
+    	        }
+    	    }
+    	    return authId;
     }
 
 }
