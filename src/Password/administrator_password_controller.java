@@ -37,7 +37,18 @@ public class administrator_password_controller extends CommonServlet {
 
 	@Override
 	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+		// 親クラス(CommonServlet)のログインチェックを実行
+	    super.execute(req, resp);
+
+	    // すでにログイン画面へリダイレクト済みなら終了
+	    if (resp.isCommitted()) return;
+
+	    // 追加の権限チェック（管理者 ID:1 かどうか）
+	    Object auth = req.getSession().getAttribute("userAuth");
+	    if (auth == null || !auth.equals(1)) {
+	        // ログインはしているが管理者ではない場合、メインメニューへ強制送還
+	        resp.sendRedirect(req.getContextPath() + "/loginlogout/mainmenu");
+	    }
 
 	}
 

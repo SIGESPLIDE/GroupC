@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * CoomonServlet extends HttpServlet 全サーブレット共通の処理を表す抽象クラス
@@ -75,5 +76,15 @@ public abstract class CommonServlet extends HttpServlet {
 	 */
 	protected abstract void post(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
-	protected abstract void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception;
+	/**
+     * 【デフォルトの共通処理】
+     * ログインしていない場合はログイン画面へリダイレクトする
+     */
+    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        HttpSession session = req.getSession();
+        // セッションに userAuth がなければログイン画面へ
+        if (session.getAttribute("userAuth") == null) {
+            resp.sendRedirect(req.getContextPath() + "/loginlogout/login");
+        }
+    }
 }
