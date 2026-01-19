@@ -17,31 +17,44 @@ public abstract class CommonServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			get(req, resp);
-		} catch (Exception e) {
-			// 開発用エラー表示
-			PrintWriter out = resp.getWriter();
-			e.printStackTrace(out);
+            // 最初の入口を設定
+			// ここでログインしているかどうかの確認をする
+            execute(req, resp);
 
-			// 本番用エラー表示
-			// e.printStackTrace();
-			// resp.sendRedirect("/shop/error");
-		}
+            // execute内でリダイレクト（ログイン画面へ飛ばす等）が行われた場合は
+            // すでにレスポンスが「確定」しているので、後続の処理を行わない
+            if (!resp.isCommitted()) {
+                get(req, resp);
+            }
+        } catch (Exception e) {
+        	// 開発用エラー表示
+            PrintWriter out = resp.getWriter();
+            e.printStackTrace(out);
+
+            // 本番用エラー表示
+         	// e.printStackTrace();
+         	// resp.sendRedirect("/shop/error");
+        }
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			post(req, resp);
-		} catch (Exception e) {
-			// 開発用エラー表示
-			PrintWriter out = resp.getWriter();
-			e.printStackTrace(out);
+            // 最初の入口を設定
+            execute(req, resp);
 
-			// 本番用エラー表示
-			// e.printStackTrace();
-			// resp.sendRedirect("/shop/error");
-		}
+            if (!resp.isCommitted()) {
+                post(req, resp);
+            }
+        } catch (Exception e) {
+        	// 開発用エラー表示
+            PrintWriter out = resp.getWriter();
+            e.printStackTrace(out);
+
+            // 本番用エラー表示
+         	// e.printStackTrace();
+         	// resp.sendRedirect("/shop/error");
+        }
 	}
 
 	/**
