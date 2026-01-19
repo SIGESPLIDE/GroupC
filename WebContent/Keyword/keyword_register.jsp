@@ -73,7 +73,7 @@
         <button type="button"
                 class="btn btn-secondary"
                 style="width: 7rem;"
-                onclick="window.location.href='keyword_index.jsp';"> <%-- キーワード一覧画面への遷移を設定 --%>
+                onclick="window.location.href='${pageContext.request.contextPath}/keyword/keyword_index';">
             戻る
         </button>
 
