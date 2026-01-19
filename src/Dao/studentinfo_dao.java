@@ -209,6 +209,47 @@ public class studentinfo_dao extends dao {
 		return stuInfo;
 	}
 
+	// 複合検索（IDと名前の両方、または片方に対応）
+	public List<studentinfo> search(String studentIdStr, String studentName) throws Exception {
+	    List<studentinfo> list = new ArrayList<>();
+	    Connection connection = getConnection();
+	    PreparedStatement statement = null;
+	    ResultSet rSet = null;
+
+	    // ベースとなるSQL
+	    StringBuilder sql = new StringBuilder("select * from studentinfo where 1=1");
+
+	    // IDが入力されている場合
+	    if (studentIdStr != null && !studentIdStr.isEmpty()) {
+	        sql.append(" and studentid = ?");
+	    }
+	    // 名前が入力されている場合
+	    if (studentName != null && !studentName.isEmpty()) {
+	        sql.append(" and studentname like ?");
+	    }
+	    sql.append(" order by studentid asc");
+
+	    try {
+	        statement = connection.prepareStatement(sql.toString());
+	        int paramIndex = 1;
+
+	        if (studentIdStr != null && !studentIdStr.isEmpty()) {
+	            statement.setInt(paramIndex++, Integer.parseInt(studentIdStr));
+	        }
+	        if (studentName != null && !studentName.isEmpty()) {
+	            statement.setString(paramIndex++, "%" + studentName + "%");
+	        }
+
+	        rSet = statement.executeQuery();
+	        list = postFilter(rSet);
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+	        if (connection != null) connection.close();
+	    }
+	    return list;
+	}
+
 
 	// 学生ID一覧を取得
 	public List<Integer> getAllID() throws Exception {
