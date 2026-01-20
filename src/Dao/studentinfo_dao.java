@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import Bean.studentinfo;
 
@@ -211,43 +212,30 @@ public class studentinfo_dao extends dao {
 
 	// 複合検索（IDと名前の両方、または片方に対応）
 	public List<studentinfo> search(String studentIdStr, String studentName) throws Exception {
-	    List<studentinfo> list = new ArrayList<>();
-	    Connection connection = getConnection();
-	    PreparedStatement statement = null;
-	    ResultSet rSet = null;
+	    List<studentinfo> resultList = new ArrayList<>();
 
-	    // ベースとなるSQL
-	    StringBuilder sql = new StringBuilder("select * from studentinfo where 1=1");
-
-	    // IDが入力されている場合
+	    // ID検索
 	    if (studentIdStr != null && !studentIdStr.isEmpty()) {
-	        sql.append(" and studentid = ?");
+	        try {
+	            int id = Integer.parseInt(studentIdStr);
+	            resultList.addAll(this.idFilter(id));
+	        } catch (NumberFormatException e) {
+	            // ここでの例外はスルー
+	        }
 	    }
-	    // 名前が入力されている場合
+
+	    // 名前検索
 	    if (studentName != null && !studentName.isEmpty()) {
-	        sql.append(" and studentname like ?");
+	        resultList.addAll(this.nameFilter(studentName));
 	    }
-	    sql.append(" order by studentid asc");
 
-	    try {
-	        statement = connection.prepareStatement(sql.toString());
-	        int paramIndex = 1;
-
-	        if (studentIdStr != null && !studentIdStr.isEmpty()) {
-	            statement.setInt(paramIndex++, Integer.parseInt(studentIdStr));
-	        }
-	        if (studentName != null && !studentName.isEmpty()) {
-	            statement.setString(paramIndex++, "%" + studentName + "%");
-	        }
-
-	        rSet = statement.executeQuery();
-	        list = postFilter(rSet);
-	    } catch (Exception e) {
-	        throw e;
-	    } finally {
-	        if (connection != null) connection.close();
-	    }
-	    return list;
+	    // 重複を除去
+	    return new ArrayList<>(resultList.stream()
+	            .collect(Collectors.toMap(
+	                studentinfo::getStudentId, // キーを生徒IDにする
+	                s -> s,                    // 値を生徒オブジェクトそのままにする
+	                (existing, replacement) -> existing // 重複したら既存を優先
+	            )).values());
 	}
 
 

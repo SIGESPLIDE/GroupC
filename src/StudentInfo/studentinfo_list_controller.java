@@ -17,7 +17,6 @@ public class studentinfo_list_controller extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
     	// daoを起動し、生徒情報一覧を取得
     	studentinfo_dao studentInfoDao = new studentinfo_dao();
     	List<studentinfo> stuInfoList = studentInfoDao.selectAll();
@@ -33,23 +32,40 @@ public class studentinfo_list_controller extends CommonServlet {
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// 2つの入力欄から値を受け取る
+    	// 入力値の受け取り
         String searchId = req.getParameter("searchId");
         String searchName = req.getParameter("searchName");
 
         studentinfo_dao studentInfoDao = new studentinfo_dao();
-        List<studentinfo> stuInfoList;
+        List<studentinfo> stuInfoList = null;
 
-        // DAOの新しい複合検索メソッドを呼び出す
-        // IDが空なら名前検索、名前が空ならID検索、両方あれば絞り込み、をDAO内で完結させる
-        stuInfoList = studentInfoDao.search(searchId, searchName);
+        try {
+            // 数値チェック
+            // IDが入力されている場合のみ、数値として正しいかチェックする
+            if (searchId != null && !searchId.isEmpty()) {
+                Integer.parseInt(searchId);
+            }
 
-        // JSPへ結果を渡す
+            // 検索実行
+            stuInfoList = studentInfoDao.search(searchId, searchName);
+
+            // ヒット件数ゼロの判定
+            if (stuInfoList.isEmpty()) {
+                req.setAttribute("searchMessage", "検索に引っかかりませんでした");
+            }
+
+        } catch (NumberFormatException e) {
+            // IDに文字が入っていた場合のエラー処理
+            req.setAttribute("errorMessage", "生徒IDには数値を入力してください");
+            stuInfoList = studentInfoDao.selectAll();
+        }
+
+        // 結果をJSPに届ける
         req.setAttribute("stuInfoList", stuInfoList);
-        // 入力値を保持させる（検索後に空にならないように）
         req.setAttribute("searchId", searchId);
         req.setAttribute("searchName", searchName);
 
+        // 一覧画面へ戻る
         req.getRequestDispatcher("/StudentInfo/studentinfo_list.jsp").forward(req, resp);
     }
 

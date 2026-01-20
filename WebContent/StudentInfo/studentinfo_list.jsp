@@ -53,13 +53,13 @@
                             <%-- ID検索欄 --%>
                             <div class="col-md-4">
                                 <label class="form-label small fw-bold text-secondary">生徒ID</label>
-                                <input type="text" name="searchId" class="form-control border-secondary-subtle" placeholder="IDを入力" value="${param.searchId}">
+                                <input type="text" name="searchId" class="form-control border-secondary-subtle" placeholder="IDを入力" value="${not empty searchId ? searchId : ''}">
                             </div>
 
                             <%-- 名前検索欄 --%>
                             <div class="col-md-5">
                                 <label class="form-label small fw-bold text-secondary">生徒名</label>
-                                <input type="text" name="searchName" class="form-control border-secondary-subtle" placeholder="名前を入力" value="${param.searchName}">
+                                <input type="text" name="searchName" class="form-control border-secondary-subtle" placeholder="名前を入力" value="${not empty searchName ? searchName : ''}">
                             </div>
 
                             <%-- 検索ボタン --%>
@@ -72,6 +72,20 @@
                     </form>
                 </div>
             </div>
+
+            <%-- 数値エラーメッセージ（IDに文字が入力された場合） --%>
+			<c:if test="${not empty errorMessage}">
+			    <div class="alert alert-warning text-center shadow-sm py-2 mb-4" role="alert">
+			        <i class="bi bi-exclamation-circle-fill me-2"></i> ${errorMessage}
+			    </div>
+			</c:if>
+
+			<%-- 検索結果なしメッセージ --%>
+			<c:if test="${not empty searchMessage}">
+			    <div class="alert alert-info text-center shadow-sm py-2 mb-4" role="alert">
+			        <i class="bi bi-info-circle-fill me-2"></i> ${searchMessage}
+			    </div>
+			</c:if>
 
             <%-- エラー表示 --%>
             <c:if test="${not empty deleteError}">
