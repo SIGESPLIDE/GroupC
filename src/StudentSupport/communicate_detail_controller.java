@@ -24,7 +24,6 @@ public class communicate_detail_controller extends CommonServlet {
 
 
 
-
     	req.getRequestDispatcher("/StudentSupport/communicate_detail.jsp").forward(req, resp);
     }
 

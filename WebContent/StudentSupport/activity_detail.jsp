@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="交流詳細" /></jsp:include>
@@ -40,10 +41,12 @@
 				</thead>
 
 			  	<tbody>
+			  		<c:set var="lastDate" value="" />
 			      	<c:forEach var="acLog" items="${acLogList}">
+					<c:if test="${acLog.formattedDate != lastDate}">
 					    <tr>
 					      <td>
-							${acLog.datetime}
+                				${acLog.formattedDate}
 					      </td>
 					      <td class="fs-3">
 					      	${acLog.emotionLog}
@@ -57,6 +60,8 @@
 						  </form>
 					      </td>
 					    </tr>
+         				</c:if>
+			      	<c:set var="lastDate" value="${acLog.formattedDate}" />
 			      	</c:forEach>
 				    <tr>
 				      <td>12/2</td>

@@ -36,7 +36,7 @@ public class activitylog_dao extends dao {
 	}
 
 
-	// 生徒IDから日付と生徒気分を取り出し
+	// 生徒IDから日時と生徒気分を取り出し
 	public List<activitylog> idFilter(int studentId) throws Exception {
 		List<activitylog> list = new ArrayList<>();
 
@@ -80,47 +80,6 @@ public class activitylog_dao extends dao {
 		return list;
 	}
 
-	// 生徒IDと日付から会話履歴を取り出し
-	public List<activitylog> chatLogFilter(int studentId, LocalDateTime dateTime) throws Exception {
-		List<activitylog> list = new ArrayList<>();
 
-		// DBへの接続
-		Connection connection = getConnection();
-		// SQL用
-		PreparedStatement statement = null;
-		ResultSet rSet = null;
 
-		String condition = " where studentid = ? and datetime = '?'";
-
-		// sqlの処理
-		try {
-			// select chatlog from activitylog where studentid=? and datetime='?' order by datetime desc
-			statement = connection.prepareStatement(baseSql + condition);
-			statement.setInt(1, studentId);
-			statement.setObject(2, dateTime);
-			// sqlの実行
-				rSet = statement.executeQuery();
-				list = postFilter(rSet);
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// SQL文の入力を終了
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-			// DBを切断
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-		return list;
-	}
 }

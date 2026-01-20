@@ -3,6 +3,7 @@ package Bean;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class activitylog implements Serializable {
 
@@ -41,5 +42,9 @@ public class activitylog implements Serializable {
 	}
 	public void setChatLog(String chatLog) {
 		this.chatLog = chatLog;
+	}
+	public String getFormattedDate() {
+	    if (this.datetime == null) return "";
+	    return this.datetime.format(DateTimeFormatter.ofPattern("M月d日"));
 	}
 }
