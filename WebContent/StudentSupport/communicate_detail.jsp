@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="会話詳細" /></jsp:include>
@@ -28,7 +29,7 @@
 
         <%-- 会話欄 --%>
 		<div class="container w-50 h-50">
-        	<textarea class="w-100 h-100" rows="50" cols=""></textarea>
+        	<textarea class="w-100 h-100" readonly><c:forEach var="chatLog" items="${chatLogList}">【${chatLog.formattedDatetime}】&NewLine;${chatLog.chatLog}&NewLine;</c:forEach></textarea>
 		</div>
 
 		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">

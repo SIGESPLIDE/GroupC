@@ -32,7 +32,6 @@ public class activity_detail_controller extends CommonServlet {
 
     	// 受け取った日時から日付を取得
     	// DAOに着けるか、コントローラーに付けるか
-    	// 日付で管理をする→DAOを変更
     	req.setAttribute("acLogList", acLogList);
     	req.getRequestDispatcher("/StudentSupport/activity_detail.jsp").forward(req, resp);
     }

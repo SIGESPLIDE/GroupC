@@ -47,4 +47,9 @@ public class activitylog implements Serializable {
 	    if (this.datetime == null) return "";
 	    return this.datetime.format(DateTimeFormatter.ofPattern("M月d日"));
 	}
+	public String getFormattedDatetime() {
+	    if (this.datetime == null) return "";
+	    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M月d日 H時mm分ss秒");
+	    return this.datetime.format(dtf);
+	}
 }

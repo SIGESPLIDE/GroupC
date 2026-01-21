@@ -56,7 +56,7 @@
 						  <form action="${pageContext.request.contextPath}/studentsupport/communicate_detail" method="post">
 					      	<input type="hidden" name="studentId" value="${acLog.studentId}">
 					      	<input type="hidden" name="datetime" value="${acLog.datetime}">
-					      	<button onclick="location.href='${pageContext.request.contextPath}/studentsupport/communicate_detail'" type="button" class="btn btn-primary text-nowrap">詳細</button>
+					      	<button type="submit" class="btn btn-primary text-nowrap">詳細</button>
 						  </form>
 					      </td>
 					    </tr>

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,57 @@ public class activitylog_dao extends dao {
 		return list;
 	}
 
+	// 生徒IDと日付から会話履歴を取り出し
+	public List<activitylog> chatFilter(int studentId,LocalDateTime datetime) throws Exception {
+		List<activitylog> list = new ArrayList<>();
+		// 受け取った日時を日付のみに変換
+		LocalDate date = datetime.toLocalDate();
 
+		// 日付からその日の始まりと翌日の始まりを取得
+		LocalDateTime start = date.atStartOfDay();
+		LocalDateTime end   = date.plusDays(1).atStartOfDay();
 
+		// DBへの接続
+		Connection connection = getConnection();
+		// SQL用
+		PreparedStatement statement = null;
+		ResultSet rSet = null;
+
+		String condition = " where studentid = ?";
+		String dateSql = " and datetime >= ? and datetime < ?";
+		String order = " order by datetime desc";
+
+		// sqlの処理
+		try {
+			// sql
+			statement = connection.prepareStatement(baseSql + condition + dateSql + order);
+			statement.setInt(1, studentId);
+			statement.setObject(2, start);
+			statement.setObject(3, end);
+
+		// sqlの実行
+				rSet = statement.executeQuery();
+				list = postFilter(rSet);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// SQL文の入力を終了
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// DBを切断
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		return list;
+	}
 }
