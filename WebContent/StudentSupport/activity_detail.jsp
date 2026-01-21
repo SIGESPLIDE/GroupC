@@ -28,8 +28,12 @@
 
         <hr class="mt-0 flex-shrink-0">
 
+		<c:if test="${acLogList == null}">
+
+		</c:if>
+
         <%-- テーブル --%>
-		<div class="container w-50">
+		<div class="container w-75 h-75">
 		    <table class="table table-bordered text-center border-secondary">
 				<thead>
 				    <tr>
@@ -49,7 +53,17 @@
                 				${acLog.formattedDate}
 					      </td>
 					      <td class="fs-3">
-					      	${acLog.emotionLog}
+					      	<c:choose>
+					      		<c:when test="${acLog.emotionLog==0}">
+					      			&#x1f622;
+					      		</c:when>
+					      		<c:when test="${acLog.emotionLog==1}">
+					      			&#x1f610;
+					      		</c:when>
+					      		<c:otherwise>
+					      			&#x1f60a;
+					      		</c:otherwise>
+					      	</c:choose>
 					      </td>
 					      <td class="fs-3">&#128516;</td>
 					      <td>
@@ -60,15 +74,9 @@
 						  </form>
 					      </td>
 					    </tr>
-         				</c:if>
+         			</c:if>
 			      	<c:set var="lastDate" value="${acLog.formattedDate}" />
 			      	</c:forEach>
-				    <tr>
-				      <td>12/2</td>
-				      <td class="fs-3">&#128516;</td>
-				      <td class="fs-3">&#128532;</td>
-				      <td><button type="button" class="btn btn-primary text-nowrap">詳細</button></td>
-				    </tr>
 		  		</tbody>
 			</table>
 		</div>

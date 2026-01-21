@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class activitylog implements Serializable {
 
@@ -51,5 +52,11 @@ public class activitylog implements Serializable {
 	    if (this.datetime == null) return "";
 	    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M月d日 H時mm分ss秒");
 	    return this.datetime.format(dtf);
+	}
+	public void highlightKeywords(List<String> keywords) {
+	    if (this.chatLog == null || keywords == null) return;
+	    for (String word : keywords) {
+	        this.chatLog = this.chatLog.replace(word, "<span style='color:red; font-weight:bold;'>" + word + "</span>");
+	    }
 	}
 }
