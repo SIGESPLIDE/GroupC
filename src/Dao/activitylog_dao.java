@@ -25,8 +25,9 @@ public class activitylog_dao extends dao {
 
 				acLog.setStudentId(rSet.getInt("studentid"));
 				acLog.setDatetime(rSet.getObject("datetime", LocalDateTime.class));
-				acLog.setEmotionLog(rSet.getInt("emotionlog"));
-				acLog.setChatLog(rSet.getString("chatlog"));
+				acLog.setStudentMoodLog(rSet.getInt("studentmoodlog"));
+				acLog.setStudentChatLog(rSet.getString("studentchatlog"));
+				acLog.setUniboChatLog(rSet.getString("unibochatlog"));
 
 				list.add(acLog);
 			}
@@ -99,7 +100,7 @@ public class activitylog_dao extends dao {
 
 		String condition = " where studentid = ?";
 		String dateSql = " and datetime >= ? and datetime < ?";
-		String order = " order by datetime desc";
+		String order = " order by datetime asc";
 
 		// sqlの処理
 		try {

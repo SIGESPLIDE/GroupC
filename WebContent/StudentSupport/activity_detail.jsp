@@ -59,10 +59,10 @@
 									<tr>
 										<td>${acLog.formattedDate}</td>
 										<td class="fs-3"><c:choose>
-												<c:when test="${acLog.emotionLog==0}">
+												<c:when test="${acLog.studentMoodLog==0}">
 					      			&#x1f622;
 					      		</c:when>
-												<c:when test="${acLog.emotionLog==1}">
+												<c:when test="${acLog.studentMoodLog==1}">
 					      			&#x1f610;
 					      		</c:when>
 												<c:otherwise>

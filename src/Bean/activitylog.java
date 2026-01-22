@@ -11,9 +11,28 @@ public class activitylog implements Serializable {
 	LocalDateTime jstNow = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
 	private int studentId;
 	private LocalDateTime datetime;
-	private int emotionLog;
-	private String chatLog;
+	private int studentMoodLog;
+	private String studentChatLog;
+	private String uniboChatLog;
 
+	public int getStudentMoodLog() {
+		return studentMoodLog;
+	}
+	public void setStudentMoodLog(int studentMoodLog) {
+		this.studentMoodLog = studentMoodLog;
+	}
+	public String getStudentChatLog() {
+		return studentChatLog;
+	}
+	public void setStudentChatLog(String studentChatLog) {
+		this.studentChatLog = studentChatLog;
+	}
+	public String getUniboChatLog() {
+		return uniboChatLog;
+	}
+	public void setUniboChatLog(String uniboChatLog) {
+		this.uniboChatLog = uniboChatLog;
+	}
 	public LocalDateTime getJstNow() {
 		return jstNow;
 	}
@@ -32,18 +51,6 @@ public class activitylog implements Serializable {
 	public void setDatetime(LocalDateTime datetime) {
 		this.datetime = datetime;
 	}
-	public int getEmotionLog() {
-		return emotionLog;
-	}
-	public void setEmotionLog(int emotionLog) {
-		this.emotionLog = emotionLog;
-	}
-	public String getChatLog() {
-		return chatLog;
-	}
-	public void setChatLog(String chatLog) {
-		this.chatLog = chatLog;
-	}
 	public String getFormattedDate() {
 	    if (this.datetime == null) return "";
 	    return this.datetime.format(DateTimeFormatter.ofPattern("M月d日"));
@@ -54,9 +61,9 @@ public class activitylog implements Serializable {
 	    return this.datetime.format(dtf);
 	}
 	public void highlightKeywords(List<String> keywords) {
-	    if (this.chatLog == null || keywords == null) return;
+	    if (this.studentChatLog == null || keywords == null) return;
 	    for (String word : keywords) {
-	        this.chatLog = this.chatLog.replace(word, "<span style='color:red; font-weight:bold;'>" + word + "</span>");
+	        this.studentChatLog = this.studentChatLog.replace(word, "<span style='color:red; font-weight:bold;'>" + word + "</span>");
 	    }
 	}
 }
