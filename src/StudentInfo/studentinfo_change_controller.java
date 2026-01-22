@@ -37,9 +37,20 @@ public class studentinfo_change_controller extends CommonServlet {
         	studentinfo_dao studentInfoDao = new studentinfo_dao();
         	studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
 
-        	req.setAttribute("stuInfo", stuInfo);
+        	// 文字の位置を探して動的に切り出す
+        	String fullClass = stuInfo.getClasses();
 
-	    	// 生徒情報変更画面に遷移
+        	// 「年」の前の文字をすべて学年とする
+        	String grade = fullClass.substring(0, fullClass.indexOf("年"));
+
+        	// 「年」と「組」の間の文字をクラスとする
+        	String cla = fullClass.substring(fullClass.indexOf("年") + 1, fullClass.indexOf("組"));
+
+        	req.setAttribute("stuInfo", stuInfo);
+        	req.setAttribute("grade", grade);
+        	req.setAttribute("cla", cla);
+
+        	// 生徒情報変更画面に遷移
 	    	req.getRequestDispatcher("/StudentInfo/studentinfo_change.jsp").forward(req, resp);
 
     	} else {
@@ -47,7 +58,7 @@ public class studentinfo_change_controller extends CommonServlet {
 	    	// 入力された値の受け取り
 	    	int studentId = Integer.parseInt(req.getParameter("studentId"));
 	    	String studentName = req.getParameter("studentName");
-	    	String classes = req.getParameter("classes");
+	    	String classes = req.getParameter("grade") + "年" + req.getParameter("cla") + "組";
 	    	// 変更された内容で学生インスタンス作成
 	    	studentinfo stuInfo = new studentinfo();
 

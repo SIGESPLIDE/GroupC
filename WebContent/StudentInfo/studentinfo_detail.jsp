@@ -40,7 +40,7 @@
         <hr class="mt-0 flex-shrink-0">
 
         <%-- 情報欄 --%>
-        <div class="container form-group form-control form-control-lg d-flex flex-column w-50 shadow-sm p-4">
+        <div class="container form-group form-control form-control-lg d-flex flex-column w-50 shadow-sm">
             <label class="small text-muted">生徒ID</label>
             <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.studentId}</div>
 
@@ -50,11 +50,6 @@
             <label class="small text-muted">名前</label>
             <div class="text-center border bg-light rounded mb-3 py-2">${stuInfo.studentName}</div>
             <div class="mb-3">
-                <label class="small text-muted">QR</label>
-                <div class="qr-display-box border border-secondary mx-auto">
-                    <%-- ここに実際のQR画像を表示 --%>
-                    <img src="${pageContext.request.contextPath}/images/qr-sample.png" alt="QR" style="max-width: 100%; height: auto;">
-                </div>
             </div>
         </div>
     </div>

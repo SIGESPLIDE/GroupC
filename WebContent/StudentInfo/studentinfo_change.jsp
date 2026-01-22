@@ -34,12 +34,10 @@
 		<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_change" method="post">
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
 					<label>生徒ID</label><input type="text" id="idInput" value="${stuInfo.studentId}" name="studentId" placeholder="生徒IDを入力してください" required>
-					<label>年・組</label><input type="text" id="classesInput" value="${stuInfo.classes}" name="classes" placeholder="年・組を入力してください" required>
+					<label>年</label><input type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
+					<label>組</label><input type="text" id="classInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
 					<label>名前</label><input type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" placeholder="名前を入力してください" required>
-		    		<div class="mb-3">
-		  				<label for="fileInput" class="form-label">QR</label>
-		  				<input class="form-control border-secondary" type="file" id="fileInput">
-					</div>
+
 			</div>
 		</form>
 

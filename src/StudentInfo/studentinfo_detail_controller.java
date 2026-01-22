@@ -29,7 +29,9 @@ public class studentinfo_detail_controller extends CommonServlet {
     	studentinfo_dao studentInfoDao = new studentinfo_dao();
     	studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
 
+
     	req.setAttribute("stuInfo", stuInfo);
+
 
     	// 生徒情報一覧画面に遷移
         req.getRequestDispatcher("/StudentInfo/studentinfo_detail.jsp").forward(req, resp);

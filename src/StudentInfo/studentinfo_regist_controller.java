@@ -27,7 +27,7 @@ public class studentinfo_regist_controller extends CommonServlet {
     	// 入力された情報を取得
     	int studentId = Integer.parseInt(req.getParameter("studentId"));
     	String studentName = req.getParameter("studentName");
-    	String classes = req.getParameter("classes");
+    	String classes = req.getParameter("grade") + "年" + req.getParameter("cla") + "組";
 
     	// 入力された内容で学生インスタンス作成
     	studentinfo stuInfo = new studentinfo();
@@ -58,6 +58,8 @@ public class studentinfo_regist_controller extends CommonServlet {
 
     		// 入力された値を保持
     		req.setAttribute("stuInfo", stuInfo);
+    		req.setAttribute("grade", req.getParameter("grade"));
+    		req.setAttribute("cla", req.getParameter("cla"));
 
     		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
     	} else if (stuInfoDao.save(stuInfo)){ // 登録の実行

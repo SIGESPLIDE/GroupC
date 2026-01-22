@@ -48,8 +48,7 @@
 							<tr>
 								<th scope="col" class="w-18">日付</th>
 								<th scope="col" class="w-18">生徒気分</th>
-								<th scope="col" class="w-18">ユニボ気分</th>
-								<th scope="col" style="width: 1%;"></th>
+								<th scope="col" class="w-18">会話詳細</th>
 							</tr>
 						</thead>
 
@@ -70,7 +69,6 @@
 					      			&#x1f60a;
 					      		</c:otherwise>
 											</c:choose></td>
-										<td class="fs-3">&#128516;</td>
 										<td>
 											<form
 												action="${pageContext.request.contextPath}/studentsupport/communicate_detail"
