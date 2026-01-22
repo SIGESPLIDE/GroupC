@@ -30,6 +30,12 @@ public class activity_detail_controller extends CommonServlet {
     	activitylog_dao acDao = new activitylog_dao();
     	List<activitylog> acLogList = acDao.idFilter(studentId);
 
+    	// 学生情報が一つも存在していない場合
+    	if (acLogList.isEmpty()) {
+    		req.setAttribute("emptyError", "まだ交流詳細が存在していません");
+    	}
+
+
     	// 受け取った日時から日付を取得
     	// DAOに着けるか、コントローラーに付けるか
     	req.setAttribute("acLogList", acLogList);

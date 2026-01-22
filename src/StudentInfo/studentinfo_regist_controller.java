@@ -58,12 +58,10 @@ public class studentinfo_regist_controller extends CommonServlet {
 
     		// 入力された値を保持
     		req.setAttribute("stuInfo", stuInfo);
-    		System.out.println(overlapping);
 
     		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
     	} else if (stuInfoDao.save(stuInfo)){ // 登録の実行
             // 成功したら完了画面へ（合言葉 from=student を付ける）
-    		System.out.println(overlapping);
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=student");
         }
     }

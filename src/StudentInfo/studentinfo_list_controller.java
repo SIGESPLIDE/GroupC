@@ -21,7 +21,10 @@ public class studentinfo_list_controller extends CommonServlet {
     	studentinfo_dao studentInfoDao = new studentinfo_dao();
     	List<studentinfo> stuInfoList = studentInfoDao.selectAll();
 
-
+    	// 学生情報が一つも存在していない場合
+    	if (stuInfoList.isEmpty()) {
+    		req.setAttribute("emptyError", "まだ学生情報が存在していません");
+    	}
 
     	// 受け取った一覧をjspに渡す
     	req.setAttribute("stuInfoList", stuInfoList);
@@ -59,6 +62,8 @@ public class studentinfo_list_controller extends CommonServlet {
             req.setAttribute("errorMessage", "生徒IDには数値を入力してください");
             stuInfoList = studentInfoDao.selectAll();
         }
+
+
 
         // 結果をJSPに届ける
         req.setAttribute("stuInfoList", stuInfoList);
