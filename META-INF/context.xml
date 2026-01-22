@@ -25,4 +25,13 @@
 		username="sa"
 		password=""
 	/>
+	<!-- mysqlと接続するための設定 -->
+	<!--<Resource name = "jdbc/groupc"
+              auth = "Container"
+              type = "javax.sql.DataSource"
+              driverClassName = "com.mysql.jdbc.Driver"
+              url      = "jdbc:mysql://localhost/book"
+              username = "root"
+              password = "password">
+	</Resource>-->
 </Context>
