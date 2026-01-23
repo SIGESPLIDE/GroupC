@@ -26,18 +26,25 @@ public class studentinfo_regist_controller extends CommonServlet {
 		// 生徒情報登録から登録処理を行う為に起動
 
     	int studentId;
+    	// 入力された情報を取得
+    	String studentName = req.getParameter("studentName");
+    	String classes = req.getParameter("grade") + "年" + req.getParameter("cla") + "組";
 
     	try {
     		studentId = Integer.parseInt(req.getParameter("studentId"));
     	} catch (NumberFormatException nfex) {
     		req.setAttribute("numError", "数値で入力してください");
+
+    		// 入力された値を保持
+    		req.setAttribute("studentId", req.getParameter("studentId"));
+    		req.setAttribute("studentName", studentName);
+    		req.setAttribute("grade", req.getParameter("grade"));
+    		req.setAttribute("cla", req.getParameter("cla"));
+
     		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
     		return;
     	}
 
-    	// 入力された情報を取得
-    	String studentName = req.getParameter("studentName");
-    	String classes = req.getParameter("grade") + "年" + req.getParameter("cla") + "組";
 
     	// 入力された内容で学生インスタンス作成
 
@@ -67,7 +74,8 @@ public class studentinfo_regist_controller extends CommonServlet {
     		req.setAttribute("overlappError", overlappError);
 
     		// 入力された値を保持
-    		req.setAttribute("stuInfo", stuInfo);
+    		req.setAttribute("studentId", req.getParameter("studentId"));
+    		req.setAttribute("studentName", studentName);
     		req.setAttribute("grade", req.getParameter("grade"));
     		req.setAttribute("cla", req.getParameter("cla"));
 

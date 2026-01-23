@@ -33,10 +33,11 @@
         <%-- 入力欄 --%>
 		<form action="${pageContext.request.contextPath}/studentinfo/studentinfo_change" method="post">
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
-					<label>生徒ID</label><input type="text" id="idInput" value="${stuInfo.studentId}" name="studentId" placeholder="生徒IDを入力してください" required>
-					<label>年</label><input type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
-					<label>組</label><input type="text" id="classInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
-					<label>名前</label><input type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" placeholder="名前を入力してください" required>
+					<label>生徒ID</label><div class="text-center border rounded bg-light opacity-50 py-2">${stuInfo.studentId}</div>
+					<input type="hidden" name="studentId" value="${stuInfo.studentId}">
+					<label>年</label><input class="bg-light" type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
+					<label>組</label><input class="bg-light" type="text" id="claInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
+					<label>名前</label><input class="bg-light" type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" placeholder="名前を入力してください" required>
 
 			</div>
 		</form>
@@ -76,12 +77,22 @@
 <%-- 制御用のスクリプト --%>
 <script>
     document.getElementById('preUpdateCheck').addEventListener('click', function() {
-        const input = document.getElementById('idInput');
+        const input = document.getElementById('gradeInput');
+        const input2 = document.getElementById('claInput');
+        const input3 = document.getElementById('nameInput');
 
         // 1. 入力チェック（ブラウザ標準の吹き出しを出す）
         if (!input.checkValidity()) {
             // 入力が空、または形式が正しくない場合に吹き出しを表示
             input.reportValidity();
+            return; // モーダルは開かずに終了
+        } else if (!input2.checkValidity()) {
+            // 入力が空、または形式が正しくない場合に吹き出しを表示
+            input2.reportValidity();
+            return; // モーダルは開かずに終了
+        } else if (!input3.checkValidity()) {
+            // 入力が空、または形式が正しくない場合に吹き出しを表示
+            input3.reportValidity();
             return; // モーダルは開かずに終了
         }
 
