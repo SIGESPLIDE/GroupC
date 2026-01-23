@@ -41,37 +41,44 @@ public class timetable_regist_controller extends CommonServlet {
         List<timetable> registList = new ArrayList<>();
         List<String> weekdays = Arrays.asList("月曜日", "火曜日", "水曜日", "木曜日", "金曜日");
 
-        // 5曜日 × 6時限 = 30コマ分のデータをループで取得
+       //空かどうかのチェック
+        boolean hasAnyData = false;
+
+        //時間割が全て空かの確認
         for (String wd : weekdays) {
             for (int p = 1; p <= 6; p++) {
-                // JSPのname属性「subject_曜日_時限」に合わせて値を取得
                 String subject = req.getParameter("subject_" + wd + "_" + p);
 
-                // 空文字やnullの場合はハイフンなどを入れるか、そのまま保存
-                if (subject == null || subject.isEmpty()) {
+                // 空文字やハイフン以外が入力されているか
+                if (subject != null && !subject.trim().isEmpty() && !subject.equals("-")) {
+                    hasAnyData = true;
+                } else {
                     subject = "-";
                 }
 
-                // Beanにセット
                 timetable t = new timetable();
                 t.setClasses(className);
                 t.setWeekday(wd);
                 t.setPeriod(p);
                 t.setSubject(subject);
-
                 registList.add(t);
             }
         }
 
+        // 全てハイフン（または空）だった場合
+        if (!hasAnyData) {
+            req.setAttribute("error", "すべてのコマが空です。正しく登録できません。");
+            // 登録画面を再表示
+            req.getRequestDispatcher("/Timetable/timetable_regist.jsp").forward(req, resp);
+            return;
+        }
+
         try {
-            // 一括登録
             dao.insertAll(registList);
-
-            // 完了画面へ
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=time");
-
         } catch (Exception e) {
             e.printStackTrace();
+            // 必要に応じてエラー画面へ
         }
     }
 

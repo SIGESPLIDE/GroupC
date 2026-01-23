@@ -6,8 +6,17 @@
 <jsp:include page="../header.jsp"><jsp:param name="title" value="時間割登録" /></jsp:include>
 
 <style>
-    .scroll-content { padding-bottom: 100px !important; }
-    /* 入力欄 */
+    /* 全体コンテナの高さ固定 */
+    .content-area {
+        height: 100vh;
+        overflow: hidden;
+    }
+    /* スクロールエリアの設定 */
+    .scrollable-area {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-bottom: 120px; /* 下部ボタンと被らないための余白 */
+    }
     .table input[type="text"] {
         border: 1px solid #ced4da;
         border-radius: 4px;
@@ -21,17 +30,27 @@
 </div>
 
 <%-- メイン --%>
-<form action="${pageContext.request.contextPath}/timetable/timetable_regist" method="post" class="col-md-10">
+<form action="${pageContext.request.contextPath}/timetable/timetable_regist" method="post" class="col-md-10 h-100">
     <div class="content-area d-flex flex-column h-100 position-relative">
 
-        <%-- クラス名の保持（URLパラメータから取得） --%>
+        <%-- クラス名の保持 --%>
         <input type="hidden" name="class_name" value="${param.class_name}">
 
-        <div class="container mt-5 flex-grow-1 overflow-y-auto">
+        <%-- スクロール可能なエリア --%>
+        <div class="scrollable-area container mt-5">
             <div class="text-center mb-4 flex-shrink-0">
                 <h2 class="mb-0">【<c:out value="${param.class_name}" />】の時間割登録</h2>
             </div>
             <hr class="mt-0 flex-shrink-0">
+
+            <%-- エラーメッセージ --%>
+            <div id="errorMessageArea">
+                <c:if test="${not empty error}">
+                    <div class="alert alert-danger text-center py-2" role="alert" style="font-size: 0.9rem;">
+                        ${error}
+                    </div>
+                </c:if>
+            </div>
 
             <div class="container w-75">
                 <table class="table table-bordered table-hover text-center shadow-sm">
@@ -46,15 +65,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%-- 1時限〜6時限をループ --%>
                         <c:forEach var="period" begin="1" end="6">
                             <tr>
                                 <th scope="row" class="table-secondary border-dark align-middle">${period}</th>
-                                <%-- 月曜(1)〜金曜(5)をループ --%>
                                 <c:forEach var="day" begin="1" end="5">
                                     <c:set var="weekdayName" value="${day==1 ? '月曜日' : day==2 ? '火曜日' : day==3 ? '水曜日' : day==4 ? '木曜日' : '金曜日'}" />
                                     <td class="border-dark align-middle">
-                                        <%-- name属性を subject_月曜日_1 のようにして一意にする --%>
                                         <input type="text"
                                                name="subject_${weekdayName}_${period}"
                                                class="form-control form-control-sm mx-auto"
@@ -69,8 +85,8 @@
             </div>
         </div>
 
-        <%-- ボタンエリア --%>
-        <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
+        <%-- ボタンエリア（常に下部に固定） --%>
+        <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white border-top pt-3" style="z-index: 1000;">
             <a class="btn btn-secondary shadow-sm" style="width: 7rem;"
                href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${param.class_name}">
                 戻る
@@ -83,8 +99,5 @@
     </div>
 </form>
 
-<%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
-
-<%-- modalの読込 --%>
 <jsp:include page="/ModalCompletion/register_modal.jsp" flush="true" />

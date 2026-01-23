@@ -50,13 +50,23 @@ public class timetable_change_controller extends CommonServlet {
         List<timetable> newList = new ArrayList<>();
         List<String> weekdays = Arrays.asList("月曜日", "火曜日", "水曜日", "木曜日", "金曜日");
 
-        // 30コマ分のデータを取得してListに詰める
+        //空であるかのフラグ
+        boolean hasAnyData = false;
+
         for (String wd : weekdays) {
             for (int p = 1; p <= 6; p++) {
                 String subject = req.getParameter("subject_" + wd + "_" + p);
 
+                // 有効なデータ（空でもハイフンでもない）があるかチェック
+                if (subject != null && !subject.trim().isEmpty() && !subject.equals("-")) {
+                    hasAnyData = true;
+                } else {
+                	// 空ならハイフンに統一
+                    subject = "-";
+                }
+
                 timetable t = new timetable();
-                t.setClasses(className); // Beanのメソッド名に合わせてください
+                t.setClasses(className);
                 t.setWeekday(wd);
                 t.setPeriod(p);
                 t.setSubject(subject);
@@ -64,13 +74,31 @@ public class timetable_change_controller extends CommonServlet {
             }
         }
 
+        // すべて空の場合の処理
+        if (!hasAnyData) {
+            // 画面表示に必要なデータを再取得してリ送付
+            req.setAttribute("error", "すべてのコマが空です。変更を保存できません。");
+            req.setAttribute("className", className);
+
+            // 入力値を保持させるためにnewListからMapを再構成
+            Map<String, Map<Integer, String>> timetableMap = new HashMap<>();
+            for (timetable t : newList) {
+                timetableMap.computeIfAbsent(t.getWeekday(), k -> new HashMap<>())
+                            .put(t.getPeriod(), t.getSubject());
+            }
+            req.setAttribute("timetableMap", timetableMap);
+            req.setAttribute("weekdayList", weekdays);
+
+            req.getRequestDispatcher("/Timetable/timetable_change.jsp").forward(req, resp);
+            return;
+        }
+
         try {
-            // 古いデータを削除
+            // 元のデータを削除
             dao.deleteAllByClass(className);
-            // 新しいデータを一括挿入
+            // 新しい時間割を登録
             dao.insertAll(newList);
 
-            // 完了画面へ
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/update_completed.jsp?from=time");
         } catch (Exception e) {
             e.printStackTrace();

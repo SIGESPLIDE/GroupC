@@ -5,9 +5,18 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="時間割変更" /></jsp:include>
 
-<%-- スタイル --%>
 <style>
-    .scroll-content { padding-bottom: 100px !important; }
+    /* 全体コンテナの高さ固定 */
+    .content-area {
+        height: 100vh;
+        overflow: hidden;
+    }
+    /* スクロールエリアの設定 */
+    .scrollable-area {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-bottom: 120px; /* 下部ボタンと被らないための余白 */
+    }
     .table input[type="text"] {
         border: 1px solid #ced4da;
         border-radius: 4px;
@@ -21,24 +30,33 @@
 </div>
 
 <%-- メイン --%>
-<form action="${pageContext.request.contextPath}/timetable/timetable_change" method="post" class="col-md-10">
+<form action="${pageContext.request.contextPath}/timetable/timetable_change" method="post" class="col-md-10 h-100">
     <div class="content-area d-flex flex-column h-100 position-relative">
 
         <%-- どのクラスのデータか送信するために隠し持っておく --%>
         <input type="hidden" name="class_name" value="${className}">
 
-        <div class="container mt-5 flex-grow-1 overflow-y-auto">
+        <%-- スクロール可能なエリア --%>
+        <div class="scrollable-area container mt-5">
             <div class="text-center mb-4 flex-shrink-0">
                 <h2 class="mb-0">時間割変更</h2>
             </div>
             <hr class="mt-0 flex-shrink-0">
+
+            <%-- エラーメッセージ --%>
+            <div id="errorMessageArea">
+                <c:if test="${not empty error}">
+                    <div class="alert alert-danger text-center py-2" role="alert" style="font-size: 0.9rem;">
+                        ${error}
+                    </div>
+                </c:if>
+            </div>
 
             <div class="container w-75">
                 <table class="table table-bordered table-hover text-center shadow-sm">
                     <thead>
                         <tr class="table-secondary">
                             <th scope="col" style="width: 50px;"></th>
-                            <%-- 曜日ヘッダー --%>
                             <c:forEach var="wd" items="${weekdayList}">
                                 <th scope="col">${fn:substring(wd, 0, 1)}</th>
                             </c:forEach>
@@ -65,8 +83,8 @@
             </div>
         </div>
 
-        <%-- ボタンエリア --%>
-        <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
+        <%-- ボタンエリア（常に下部に固定） --%>
+        <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white border-top pt-3" style="z-index: 1000;">
             <a class="btn btn-secondary shadow-sm"
                style="width: 7rem;"
                href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${className}">
@@ -84,8 +102,5 @@
     </div>
 </form>
 
-<%-- footerの読込 --%>
 <jsp:include page="../footer.jsp" />
-
-<%-- modalの読込 --%>
 <jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />
