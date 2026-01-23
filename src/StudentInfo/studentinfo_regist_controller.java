@@ -24,14 +24,24 @@ public class studentinfo_regist_controller extends CommonServlet {
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 生徒情報登録から登録処理を行う為に起動
+
+    	int studentId;
+
+    	try {
+    		studentId = Integer.parseInt(req.getParameter("studentId"));
+    	} catch (NumberFormatException nfex) {
+    		req.setAttribute("numError", "数値で入力してください");
+    		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+    		return;
+    	}
+
     	// 入力された情報を取得
-    	int studentId = Integer.parseInt(req.getParameter("studentId"));
     	String studentName = req.getParameter("studentName");
     	String classes = req.getParameter("grade") + "年" + req.getParameter("cla") + "組";
 
     	// 入力された内容で学生インスタンス作成
-    	studentinfo stuInfo = new studentinfo();
 
+    	studentinfo stuInfo = new studentinfo();
     	stuInfo.setStudentId(studentId);
     	stuInfo.setStudentName(studentName);
     	stuInfo.setClasses(classes);
@@ -62,7 +72,9 @@ public class studentinfo_regist_controller extends CommonServlet {
     		req.setAttribute("cla", req.getParameter("cla"));
 
     		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
-    	} else if (stuInfoDao.save(stuInfo)){ // 登録の実行
+    		return;
+    	}
+    	else if (stuInfoDao.save(stuInfo)){ // 登録の実行
             // 成功したら完了画面へ（合言葉 from=student を付ける）
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=student");
         }

@@ -32,12 +32,17 @@
 		  <div class="text-center text-primary">${overlappError}</div>
 		</c:if>
 
+		<c:if test="${not empty numError}">
+		  <div class="text-center text-primary">${numError}</div>
+		</c:if>
+
+
         <%-- 入力欄 --%>
         <form action="${pageContext.request.contextPath}/studentinfo/studentinfo_regist" method="post">
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
 					<label>生徒ID</label><input type="text" id="idInput" name="studentId" value="${stuInfo.studentId}" placeholder="生徒IDを入力してください" required>
-					<label>年</label><input type="text" id="classesInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
-					<label>組</label><input type="text" id="classesInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
+					<label>年</label><input type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
+					<label>組</label><input type="text" id="claInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
 					<label>名前</label><input type="text" id="nameInput" name="studentName" value="${stuInfo.studentName}" placeholder="名前を入力してください" required>
 			</div>
 		</form>
@@ -74,8 +79,9 @@
 <script>
     document.getElementById('preRegisterCheck').addEventListener('click', function() {
         const input = document.getElementById('idInput');
-        const input2 = document.getElementById('classesInput');
-        const input3 = document.getElementById('nameInput');
+        const input2 = document.getElementById('gradeInput');
+        const input3 = document.getElementById('claInput');
+        const input4 = document.getElementById('nameInput');
 
         // 1. 入力チェック（ブラウザ標準の吹き出しを出す）
         if (!input.checkValidity()) {
@@ -87,6 +93,9 @@
         	return;
         } else if (!input3.checkValidity()){
         	input3.reportValidity();
+        	return;
+        } else if (!input4.checkValidity()){
+        	input4.reportValidity();
         	return;
         }
 
