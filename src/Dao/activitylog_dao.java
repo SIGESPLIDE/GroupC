@@ -26,8 +26,8 @@ public class activitylog_dao extends dao {
 				acLog.setStudentId(rSet.getInt("studentid"));
 				acLog.setDatetime(rSet.getObject("datetime", LocalDateTime.class));
 				acLog.setStudentMoodLog(rSet.getInt("studentmoodlog"));
-				acLog.setStudentChatLog(rSet.getString("studentchatlog"));
-				acLog.setUniboChatLog(rSet.getString("unibochatlog"));
+				acLog.setSpeaker(rSet.getInt("speaker"));
+				acLog.setChatLog(rSet.getString("chatlog"));
 
 				list.add(acLog);
 			}

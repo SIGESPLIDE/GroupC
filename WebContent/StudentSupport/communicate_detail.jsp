@@ -28,22 +28,29 @@
 
         <hr class="mt-0 flex-shrink-0">
 
-        <%-- 会話欄 --%>
-        <%-- 生徒がユニボに投げかけた言葉にキーワードが含まれていたら色を付けて表示 --%>
-        <%-- キーワードリストから一個ずつ出して比較して、文字があったら<c:if test=""> --%>
-		<div class="container w-75 h-75">
-        	<div class="w-75 h-75 border border-2 border-secondary rounded p-3" style="overflow-y: scroll;">
+        <%-- メイン --%>
+		<div class="container w-100 h-75">
+			<%-- 会話ボックス --%>
+        	<div class="w-auto h-75 border border-1 border-secondary rounded p-3" style="overflow-y: scroll;">
         		<c:forEach var="chatLog" items="${chatLogList}">
+        			<%-- それぞれのふきだし --%>
 	        		<div class="m-2">
-	        			<div class="text-center"><p>【${chatLog.formattedDatetime}】</p></div>
-	        			<div class="w-100 d-flex justify-content-end mt-2">
-		        			<div class="rounded bg-primary-subtle w-50">
-		        				<p class=" m-2 mb-0 ">生徒:<c:out value="${chatLog.studentChatLog}" escapeXml="false" /></p>
-		        			</div>
-	        			</div>
-	        				<div class="rounded bg-secondary-subtle p-2 w-50">
-	        					<p class="mb-0">ユニボ:${chatLog.uniboChatLog}</p>
-	        				</div>
+	        			<c:choose>
+	        				<%-- 生徒のふきだし --%>
+		        			<c:when test="${chatLog.speaker==1}">
+	        						<div class="text-end"><p class="mb-0">${chatLog.formattedDatetime}</p></div>
+			        				<div class="w-100 d-flex justify-content-end">
+				        				<p class="m-2 mt-0 p-2 rounded bg-primary-subtle d-inline-block" style="max-width: 70%;">生徒:<c:out value="${chatLog.chatLog}" escapeXml="false" /></p>
+			        				</div>
+		        			</c:when>
+		        			<%-- ユニボのふきだし --%>
+		        			<c:otherwise>
+		        					<div><p class="mb-0">${chatLog.formattedDatetime}</p></div>
+				        			<div class="w-100">
+				        				<p class="m-2 mt-0 p-2 rounded bg-secondary-subtle d-inline-block" style="max-width: 70%;">ユニボ:<c:out value="${chatLog.chatLog}" escapeXml="false" /></p>
+				        			</div>
+		        			</c:otherwise>
+	        			</c:choose>
 	        		</div>
         		</c:forEach>
 			</div>

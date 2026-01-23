@@ -41,7 +41,7 @@ public class communicate_detail_controller extends CommonServlet {
 
     	for (activitylog acLog : chatLogList) {
     		// 交流履歴リストから会話履歴のみを取り出し
-    		String chatLog = acLog.getStudentChatLog();
+    		String chatLog = acLog.getChatLog();
     		if (chatLog != null) {
     			// 取り出した会話履歴と、キーワードを比較
     			for (keyword key : keywords) {
@@ -51,7 +51,7 @@ public class communicate_detail_controller extends CommonServlet {
     				}
     			}
     			// 元に戻す
-    			acLog.setStudentChatLog(chatLog);
+    			acLog.setChatLog(chatLog);
     		}
     	}
 
