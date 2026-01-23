@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import Bean.classes;
 import Bean.studentinfo;
 
 public class studentinfo_dao extends dao {
@@ -383,5 +384,26 @@ public class studentinfo_dao extends dao {
 			// 実行件数が0件の場合
 			return false;
 		}
+	}
+
+	// 時間割用のクラス抽出
+	public List<classes> findActiveClasses() throws Exception {
+	    List<classes> list = new ArrayList<>();
+
+	    // DISTINCT を使うことで、同じクラスに複数の生徒がいても1つに絞り込みます
+	    String sql = "SELECT DISTINCT classes FROM studentinfo WHERE classes IS NOT NULL AND classes != '' ORDER BY classes ASC";
+
+	    try (Connection connection = getConnection();
+	         PreparedStatement statement = connection.prepareStatement(sql);
+	         ResultSet rSet = statement.executeQuery()) {
+
+	        while (rSet.next()) {
+	            classes c = new classes();
+	            // 重複が除かれたクラス名が1つずつ入ってきます
+	            c.setClasses(rSet.getString("classes"));
+	            list.add(c);
+	        }
+	    }
+	    return list;
 	}
 }
