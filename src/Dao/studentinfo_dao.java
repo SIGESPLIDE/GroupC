@@ -85,13 +85,14 @@ public class studentinfo_dao extends dao {
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
 
-		String condition = " where studentid = ?";
+		String condition = " where studentid like ?";
 		String order = " order by studentid asc";
 
 		// sqlの処理
 		try {
 			statement = connection.prepareStatement(baseSql + condition + order);
-			statement.setInt(1, studentId);
+
+			statement.setString(1, "%" + String.valueOf(studentId) + "%");
 			// sqlの実行
 				rSet = statement.executeQuery();
 				list = postFilter(rSet);
@@ -128,13 +129,13 @@ public class studentinfo_dao extends dao {
 		PreparedStatement statement = null;
 		ResultSet rSet = null;
 
-		String condition = " where studentname like '%' || ? || '%'";
+		String condition = " where studentname like ?";
 		String order = " order by studentid asc";
 
 		// sqlの処理
 		try {
 			statement = connection.prepareStatement(baseSql + condition + order);
-			statement.setString(1, studentName);
+			statement.setString(1, "%" + studentName + "%");
 			// sqlの実行
 				rSet = statement.executeQuery();
 				list = postFilter(rSet);
