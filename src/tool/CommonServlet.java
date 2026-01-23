@@ -81,6 +81,7 @@ public abstract class CommonServlet extends HttpServlet {
      * ログインしていない場合はログイン画面へリダイレクトする
      */
     protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+    	req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         // セッションに userAuth がなければログイン画面へ
         if (session.getAttribute("userAuth") == null) {

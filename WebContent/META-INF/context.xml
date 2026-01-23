@@ -3,9 +3,9 @@
 <!DOCTYPE configuration>
 
 <Context reloadable="true">
-<!-- postgres SQL と接続する為の設定 -->
+	<!-- postgres SQL と接続する為の設定 -->
 <!--
-<Resource
+	<Resource
 		name="jdbc/book/posgre"
 		auth="Container"
 		type="javax.sql.DataSource"
@@ -15,8 +15,8 @@
 		password="pass"
 	/>
 -->
-<!-- h2 データベースと接続する為の設定 -->
-<Resource
+	<!-- h2 データベースと接続する為の設定 -->
+	<!--<Resource
 		name="jdbc/groupc"
 		auth="Container"
 		type="javax.sql.DataSource"
@@ -24,5 +24,15 @@
 		url="jdbc:h2:tcp://localhost/~/groupc"
 		username="sa"
 		password=""
+	/>-->
+	<!-- mysqlと接続するための設定 -->
+	<Resource
+		name="jdbc/mysql"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://10.250.159.133:3306/groupc_unibo?useSSL=false&amp;serverTimezone=Japan&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"
+		username="teacher"
+		password="teacher"
 	/>
 </Context>

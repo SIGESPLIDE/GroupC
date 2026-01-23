@@ -15,7 +15,7 @@ public class dao {
 			InitialContext ic = new InitialContext();
 
 			// 繋ぐDBをきめる
-			ds = (DataSource)ic.lookup("java:/comp/env/jdbc/groupc");
+			ds = (DataSource)ic.lookup("java:/comp/env/jdbc/mysql");
 		}
 		//DBへの接続
 		return ds.getConnection();
