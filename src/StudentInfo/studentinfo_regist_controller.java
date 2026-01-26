@@ -60,40 +60,13 @@ public class studentinfo_regist_controller extends CommonServlet {
         stuInfo.setStudentName(studentName);
         stuInfo.setClasses(classes);
 
-<<<<<<< HEAD
-
-    	studentinfo_dao stuInfoDao = new studentinfo_dao();
-=======
         // 登録処理
         studentinfo_dao stuInfoDao = new studentinfo_dao();
->>>>>>> branch 'master' of https://github.com/SIGESPLIDE/GroupC.git
 
         // 重複確認
         boolean overlapping = false;
         List<Integer> stuIdList = stuInfoDao.getAllID();
 
-<<<<<<< HEAD
-    	// id一覧を見て、重複がないかどうかの確認
-    	for (int i = 0; i < stuIdList.size(); i++) {
-    		if (studentId == stuIdList.get(i)) {
-    			overlapping = true;
-    			break; //内容が同じだったらループを抜ける
-    		}
-    	}
-
-    	if (String.valueOf(stuInfo.getStudentId()).length() > 3) {
-    		req.setAttribute("lengthError", "入力は3桁までです");
-
-    		// 入力された値を保持
-    		req.setAttribute("studentId", req.getParameter("studentId"));
-    		req.setAttribute("studentName", studentName);
-    		req.setAttribute("grade", req.getParameter("grade"));
-    		req.setAttribute("cla", req.getParameter("cla"));
-
-    		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
-    		return;
-    	}
-=======
         // id一覧を見て、重複がないかどうかの確認
         for (int i = 0; i < stuIdList.size(); i++) {
             if (studentId == stuIdList.get(i)) {
@@ -101,7 +74,6 @@ public class studentinfo_regist_controller extends CommonServlet {
                 break;
             }
         }
->>>>>>> branch 'master' of https://github.com/SIGESPLIDE/GroupC.git
 
         // 入力された生徒IDが既に存在していた場合、登録処理を行わず、生徒登録画面に戻る
         if (overlapping == true) {
@@ -114,18 +86,11 @@ public class studentinfo_regist_controller extends CommonServlet {
             req.setAttribute("grade", grade);
             req.setAttribute("cla", cla);
 
-<<<<<<< HEAD
-    		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
-    		return;
-    	}else if (stuInfoDao.save(stuInfo)){ // 登録の実行
-            // 成功したら完了画面へ（合言葉 from=student を付ける）
-=======
             req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
             return;
         }
         else if (stuInfoDao.save(stuInfo)) {
             // 完了画面へ
->>>>>>> branch 'master' of https://github.com/SIGESPLIDE/GroupC.git
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=student");
         }
     }
