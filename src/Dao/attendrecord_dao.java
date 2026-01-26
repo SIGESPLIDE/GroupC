@@ -5,14 +5,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Bean.supportlevel;
+import Bean.attendrecord;
 
-public class supportlevel_dao extends dao {
-	private String baseSql = "select * from supportlevel";
+public class attendrecord_dao extends dao {
 
-	// 生徒IDから支援段階を取得
-	public supportlevel idFilter(int studentId) throws Exception{
-		supportlevel supLev = new supportlevel();
+	private String baseSql = "select * from attendrecord";
+
+	// 検索結果をリストに格納して返す
+	private attendrecord postFilter(ResultSet rSet) throws Exception {
+		attendrecord attReco = new attendrecord();
+
+		try {
+			while (rSet.next()) {
+
+				attReco.setStudentId(rSet.getInt("studentid"));
+				attReco.setSequentialDays(rSet.getInt("sequentialdays"));
+				attReco.setTotalDays(rSet.getInt("totaldays"));
+				attReco.setSchoolTime(rSet.getInt("schooltime"));
+				attReco.setClassTime(rSet.getInt("classtime"));
+			}
+		} catch (SQLException | NullPointerException e) {
+			e.printStackTrace();
+		}
+		return attReco;
+	}
+
+	// 生徒IDを使ってインスタンスを返す
+	public attendrecord idFilter(int studentId) throws Exception{
+		attendrecord attReco = new attendrecord();
 
 		// DBへの接続
 		Connection connection = getConnection();
@@ -28,10 +48,7 @@ public class supportlevel_dao extends dao {
 			statement.setInt(1, studentId);
 
 			rSet = statement.executeQuery();
-			while (rSet.next()) {
-				supLev.setSupportLevel(rSet.getInt("supportlevel"));
-				supLev.setStudentId(rSet.getInt("studentid"));
-			}
+			postFilter(rSet);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -52,10 +69,11 @@ public class supportlevel_dao extends dao {
 				}
 			}
 		}
-		return supLev;
+		return attReco;
 	}
 
-	// 支援段階の登録
+
+	// 登録
 	public boolean regist(int studentId) throws Exception{
 		//DBに接続
 		Connection connection = getConnection();
@@ -65,10 +83,13 @@ public class supportlevel_dao extends dao {
 
 		try {
 				// SQL文にinsert文を加え、の新規登録を行う
-				statement = connection.prepareStatement("insert into supportlevel (studentid,supportlevel) values(?,?)");
+				statement = connection.prepareStatement("insert into attendrecord (studentid,sequentialdays,totaldays,schooltime,classtime) values(?,?,?,?,?)");
 				// PreparedStatementに値をバインド
 				statement.setInt(1, studentId);
-				statement.setInt(2, 1);
+				statement.setInt(2, 0);
+				statement.setInt(3, 0);
+				statement.setInt(4, 0);
+				statement.setInt(5, 0);
 			// SQL文を実行
 			count = statement.executeUpdate();
 		} catch (Exception e) {
@@ -101,8 +122,9 @@ public class supportlevel_dao extends dao {
 		}
 	}
 
-	// 支援段階の変更
-	public boolean change(int studentId,int supportLevel) throws Exception{
+
+	// 更新
+	public boolean change(int studentId,int sequentialdays,int totaldays,int schooltime,int classtime) throws Exception{
 		//DBに接続
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
@@ -110,12 +132,17 @@ public class supportlevel_dao extends dao {
 		int count = 0;
 
 		try {
+			attendrecord attReco = new attendrecord();
+			attReco = this.idFilter(studentId);
+
 			// SQL文にupdate文を加え、支援段階の更新を行う
-			statement = connection.prepareStatement("update supportlevel set studentid=?,supportlevel=? where studentid=?");
+			statement = connection.prepareStatement("update supportlevel set studentid=?,sequentialdays=?,totaldays=?,schooltime=?,classtime=? where studentid=?");
 			// SQL文の条件文に値をセット
 			statement.setInt(1, studentId);
-			statement.setInt(2, supportLevel);
-			statement.setInt(3, studentId);
+			statement.setInt(2, attReco.getSequentialDays() + sequentialdays);
+			statement.setInt(3, attReco.getTotalDays() + totaldays);
+			statement.setInt(4, attReco.getSchoolTime() + schooltime);
+			statement.setInt(5, attReco.getClassTime() + classtime);
 
 			count = statement.executeUpdate();
 		} catch (Exception e) {
@@ -148,13 +175,14 @@ public class supportlevel_dao extends dao {
 		}
 	}
 
-	// 指定した支援段階を削除する
+
+	// 指定した記録を削除する
 	public boolean delete(int studentId) throws Exception {
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		int count = 0;
 
-		String delete = "delete from supportlevel";
+		String delete = "delete from attendrecord";
 		String condition = " where studentid=?";
 
 		try {

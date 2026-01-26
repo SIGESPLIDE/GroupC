@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Bean.studentinfo;
+import Dao.attendrecord_dao;
 import Dao.studentinfo_dao;
+import Dao.supportlevel_dao;
 import tool.CommonServlet;
 
 // 生徒情報登録のコントローラ
@@ -60,7 +62,7 @@ public class studentinfo_regist_controller extends CommonServlet {
         stuInfo.setStudentName(studentName);
         stuInfo.setClasses(classes);
 
-        // 登録処理
+        // 生徒情報dao
         studentinfo_dao stuInfoDao = new studentinfo_dao();
 
         // 重複確認
@@ -80,8 +82,8 @@ public class studentinfo_regist_controller extends CommonServlet {
     		req.setAttribute("lengthError", "入力は3桁までです");
 
     		// 入力された値を保持
-    		req.setAttribute("studentId", req.getParameter("studentId"));
-    		req.setAttribute("studentName", studentName);
+    		req.setAttribute("studentId", stuInfo.getStudentId());
+    		req.setAttribute("studentName", stuInfo.getStudentName());
     		req.setAttribute("grade", req.getParameter("grade"));
     		req.setAttribute("cla", req.getParameter("cla"));
 
@@ -95,8 +97,8 @@ public class studentinfo_regist_controller extends CommonServlet {
             req.setAttribute("overlappError", overlappError);
 
             // 入力された値を保持
-            req.setAttribute("studentId", req.getParameter("studentId"));
-            req.setAttribute("studentName", studentName);
+            req.setAttribute("studentId", stuInfo.getStudentId());
+            req.setAttribute("studentName", stuInfo.getStudentName());
             req.setAttribute("grade", grade);
             req.setAttribute("cla", cla);
 
@@ -104,6 +106,13 @@ public class studentinfo_regist_controller extends CommonServlet {
             return;
         }
         else if (stuInfoDao.save(stuInfo)) {
+        	// 支援段階の登録
+        	supportlevel_dao supLevDao = new supportlevel_dao();
+        	supLevDao.regist(stuInfo.getStudentId());
+
+        	attendrecord_dao attRecDao = new attendrecord_dao();
+        	attRecDao.regist(stuInfo.getStudentId());
+
             // 完了画面へ
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=student");
         }
