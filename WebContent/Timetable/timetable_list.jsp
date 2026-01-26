@@ -37,7 +37,7 @@
                                             <td class="py-3">
                                                 <a href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${c.classes}"
                                                    class="btn btn-outline-primary shadow-sm px-4">
-                                                    表示する <i class="bi bi-chevron-right small"></i>
+                                                    詳細 <i class="bi bi-chevron-right small"></i>
                                                 </a>
                                             </td>
                                         </tr>
