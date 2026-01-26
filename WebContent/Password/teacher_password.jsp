@@ -96,7 +96,7 @@
 	            </div>
 	            <div class="password-card-body">
 	            	<form action="${pageContext.request.contextPath}/password/teacher_password" method="post">
-					    <input type="password" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力">
+					    <input type="password" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力" required>
 					    <div>
 					        <button type="button"
 					                class="btn btn-submit-red"

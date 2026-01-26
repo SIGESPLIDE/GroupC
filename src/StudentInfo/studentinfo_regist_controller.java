@@ -75,6 +75,20 @@ public class studentinfo_regist_controller extends CommonServlet {
             }
         }
 
+        // 入力は3桁まで
+    	if (String.valueOf(stuInfo.getStudentId()).length() > 3) {
+    		req.setAttribute("lengthError", "入力は3桁までです");
+
+    		// 入力された値を保持
+    		req.setAttribute("studentId", req.getParameter("studentId"));
+    		req.setAttribute("studentName", studentName);
+    		req.setAttribute("grade", req.getParameter("grade"));
+    		req.setAttribute("cla", req.getParameter("cla"));
+
+    		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+    		return;
+    	}
+
         // 入力された生徒IDが既に存在していた場合、登録処理を行わず、生徒登録画面に戻る
         if (overlapping == true) {
             String overlappError = "この生徒IDは存在しています";
