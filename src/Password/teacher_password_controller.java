@@ -23,6 +23,13 @@ public class teacher_password_controller extends CommonServlet {
 		// 別室担任パスワードの変更処理
 		String newPass = req.getParameter("newPassword");
 
+		// 空文字（スペースのみも含む）のチェック
+	    if (newPass == null || newPass.trim().isEmpty()) {
+	        req.setAttribute("error", "新規パスワードが未入力です");
+	        req.getRequestDispatcher("/Password/teacher_password.jsp").forward(req, resp);
+	        return;
+	    }
+
 	    password p = new password();
 	    p.setPassword(newPass);
 	    password_dao dao = new password_dao();

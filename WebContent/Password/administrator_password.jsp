@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="キーワード" /></jsp:include>
@@ -95,17 +96,19 @@
 	                    管理者パスワード変更
 	            </div>
 	            <div class="password-card-body">
+	            	<%-- エラーメッセージ表示エリア --%>
+	                <c:if test="${not empty error}">
+	                    <div class="alert alert-danger text-center py-2" role="alert" style="font-size: 0.9rem;">
+	                        ${error}
+	                    </div>
+	                </c:if>
 	            	<form action="${pageContext.request.contextPath}/password/administrator_password" method="post">
-					    <input type="password" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力" required>
-					    <div>
-					        <button type="button"
-					                class="btn btn-submit-red"
-					                style="width: 7rem;"
-					                data-bs-toggle="modal"
-					                data-bs-target="#updateConfirmModal">
-					            変更
-					        </button>
-					    </div>
+					    <input type="password" id="newPassInput" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力" required>
+						<div>
+						    <button type="button" id="changeBtn" class="btn btn-submit-red" style="width: 7rem;">
+						        変更
+						    </button>
+						</div>
 					</form>
 	            </div>
 			</div>
@@ -131,3 +134,22 @@
 
 <%-- 変更専用モーダルの読込 --%>
 <jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />
+
+<script>
+    document.getElementById('changeBtn').addEventListener('click', function() {
+        // パスワード入力欄を取得
+        const passInput = document.getElementById('newPassInput');
+
+        // ブラウザのバリデーションチェックを実行
+        if (!passInput.checkValidity()) {
+            // 入力が空（またはrequired違反）の場合、吹き出しを表示
+            passInput.reportValidity();
+            return;
+        }
+
+        // 入力がOKな場合のみ、モーダルを表示
+        const modalElement = document.getElementById('updateConfirmModal');
+        const myModal = new bootstrap.Modal(modalElement);
+        myModal.show();
+    });
+</script>
