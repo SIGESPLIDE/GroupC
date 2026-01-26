@@ -37,25 +37,25 @@
 
 			<c:choose>
 				<c:when test="${empty attReco}">
-					<div class="text-center text-primary">まだ情報が記録されていません</div>
+					<div class="text-center text-primary"><h4>まだ情報が記録されていません</h4></div>
 				</c:when>
 				<c:otherwise>
 					<div class="d-flex h-75">
 						<%-- テーブル --%>
 						<table
-							class="table table-bordered text-center border-secondary w-100 h-100">
+							class="table table-striped text-center border-secondary w-100 h-100">
 							<tbody>
 								<tr>
-									<td>連続登校日数:${attReco.sequentialDays}</td>
+									<td><h4>連続登校日数:${attReco.sequentialDays}</h4></td>
 								</tr>
 								<tr>
-									<td>学校滞在時間:${attReco.schoolTime}</td>
+									<td><h4>学校滞在時間:${attReco.schoolTime}</h4></td>
 								</tr>
 								<tr>
-									<td>教室滞在時間:${attReco.classTime}</td>
+									<td><h4>教室滞在時間:${attReco.classTime}</h4></td>
 								</tr>
 								<tr>
-									<td>合計登校日数:${attReco.totalDays}</td>
+									<td><h4>合計登校日数:${attReco.totalDays}</h4></td>
 								</tr>
 							</tbody>
 						</table>
@@ -77,7 +77,7 @@
 	            class="btn btn-primary shadow-sm"
 	            style="width: 7rem;"
 	            id="preRegisterCheck">
-		        登録
+		        支援段階を上げる
 		    </button>
 		</div>
 	</div>
@@ -87,4 +87,4 @@
 <jsp:include page="../footer.jsp" />
 
 <%-- 登録完了専用モーダルの読込 --%>
-<jsp:include page="/ModalCompletion/register_modal.jsp" flush="true" />
+<jsp:include page="/ModalCompletion/support_levelup_modal.jsp" flush="true" />
