@@ -142,13 +142,21 @@
 <jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />
 
 <script>
-    document.getElementById('changeBtn').addEventListener('click', function() {
-        // パスワード入力欄を取得
-        const passInput = document.getElementById('newPassInput');
+    const passInput = document.getElementById('newPassInput');
+    const changeBtn = document.getElementById('changeBtn');
 
+    // エンターキー対策
+    document.querySelector('form').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); //
+            changeBtn.click();
+        }
+    });
+
+    // ボタンクリック時の処理
+    changeBtn.addEventListener('click', function() {
         // ブラウザのバリデーションチェックを実行
         if (!passInput.checkValidity()) {
-            // 入力が空（またはrequired違反）の場合、吹き出しを表示
             passInput.reportValidity();
             return;
         }
