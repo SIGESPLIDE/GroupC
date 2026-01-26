@@ -14,6 +14,8 @@
     	backUrl = request.getContextPath() + "/studentinfo/studentinfo_list";
     } else if ("time".equals(from)){
     	backUrl = request.getContextPath() + "/timetable/timetable_list";
+    } else if ("support".equals(from)){
+    	backUrl = request.getContextPath() + "/studentsupport/support_level";
     }
 %>
 
