@@ -32,6 +32,10 @@
 		  <div class="text-center text-primary">${overlappError}</div>
 		</c:if>
 
+		<c:if test="${not empty lengthError}">
+		  <div class="text-center text-primary">${lengthError}</div>
+		</c:if>
+
 		<c:if test="${not empty numError}">
 		  <div class="text-center text-primary">${numError}</div>
 		</c:if>

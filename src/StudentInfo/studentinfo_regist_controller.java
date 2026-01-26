@@ -53,7 +53,7 @@ public class studentinfo_regist_controller extends CommonServlet {
     	stuInfo.setStudentName(studentName);
     	stuInfo.setClasses(classes);
 
-    	// 登録処理
+
     	studentinfo_dao stuInfoDao = new studentinfo_dao();
 
     	// 重複確認
@@ -66,6 +66,19 @@ public class studentinfo_regist_controller extends CommonServlet {
     			overlapping = true;
     			break; //内容が同じだったらループを抜ける
     		}
+    	}
+
+    	if (String.valueOf(stuInfo.getStudentId()).length() > 3) {
+    		req.setAttribute("lengthError", "入力は3桁までです");
+
+    		// 入力された値を保持
+    		req.setAttribute("studentId", req.getParameter("studentId"));
+    		req.setAttribute("studentName", studentName);
+    		req.setAttribute("grade", req.getParameter("grade"));
+    		req.setAttribute("cla", req.getParameter("cla"));
+
+    		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+    		return;
     	}
 
     	// 入力された生徒IDが既に存在していた場合、登録処理を行わず、生徒登録画面に戻る
@@ -81,8 +94,7 @@ public class studentinfo_regist_controller extends CommonServlet {
 
     		req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
     		return;
-    	}
-    	else if (stuInfoDao.save(stuInfo)){ // 登録の実行
+    	}else if (stuInfoDao.save(stuInfo)){ // 登録の実行
             // 成功したら完了画面へ（合言葉 from=student を付ける）
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=student");
         }
