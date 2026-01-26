@@ -8,6 +8,6 @@
 
     <%-- 管理者がログインしている場合 --%>
     <c:if test="${userAuth == 1}">
-        <a href="${pageContext.request.contextPath}/password/teacher_password">パスワード</a>
+        <a href="${pageContext.request.contextPath}/password/teacher_password">パスワード変更</a>
     </c:if>
 </div>
