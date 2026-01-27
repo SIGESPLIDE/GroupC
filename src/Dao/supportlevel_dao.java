@@ -102,7 +102,7 @@ public class supportlevel_dao extends dao {
 	}
 
 	// 支援段階の変更
-	public boolean change(int studentId,int supportLevel) throws Exception{
+	public boolean change(int studentId,int updateLevel) throws Exception{
 		//DBに接続
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
@@ -110,11 +110,12 @@ public class supportlevel_dao extends dao {
 		int count = 0;
 
 		try {
+			supportlevel old = this.idFilter(studentId);
 			// SQL文にupdate文を加え、支援段階の更新を行う
 			statement = connection.prepareStatement("update supportlevel set studentid=?,supportlevel=? where studentid=?");
 			// SQL文の条件文に値をセット
 			statement.setInt(1, studentId);
-			statement.setInt(2, supportLevel);
+			statement.setInt(2, old.getSupportLevel() + updateLevel);
 			statement.setInt(3, studentId);
 
 			count = statement.executeUpdate();

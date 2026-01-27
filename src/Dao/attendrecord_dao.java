@@ -132,17 +132,16 @@ public class attendrecord_dao extends dao {
 		int count = 0;
 
 		try {
-			attendrecord attReco = new attendrecord();
-			attReco = this.idFilter(studentId);
+			attendrecord old = this.idFilter(studentId);
 
 			// SQL文にupdate文を加え、支援段階の更新を行う
 			statement = connection.prepareStatement("update supportlevel set studentid=?,sequentialdays=?,totaldays=?,schooltime=?,classtime=? where studentid=?");
 			// SQL文の条件文に値をセット
 			statement.setInt(1, studentId);
-			statement.setInt(2, attReco.getSequentialDays() + sequentialdays);
-			statement.setInt(3, attReco.getTotalDays() + totaldays);
-			statement.setInt(4, attReco.getSchoolTime() + schooltime);
-			statement.setInt(5, attReco.getClassTime() + classtime);
+			statement.setInt(2, old.getSequentialDays() + sequentialdays);
+			statement.setInt(3, old.getTotalDays() + totaldays);
+			statement.setInt(4, old.getSchoolTime() + schooltime);
+			statement.setInt(5, old.getClassTime() + classtime);
 
 			count = statement.executeUpdate();
 		} catch (Exception e) {
