@@ -76,7 +76,7 @@
 			<button type="button"
 	            class="btn btn-primary shadow-sm"
 	            style="width: 7rem;"
-	            id="preRegisterCheck">
+	            id="preLe">
 		        支援段階を上げる
 		    </button>
 		</div>
