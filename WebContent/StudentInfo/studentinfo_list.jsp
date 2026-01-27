@@ -128,7 +128,7 @@
 
 	<%-- 下部固定ボタンエリア --%>
 	<div class="mt-auto d-flex justify-content-between px-5 py-4 bg-white border-top flex-shrink-0">
-		<a class="btn btn-secondary shadow-sm" style="width: 8rem;"
+		<a class="btn btn-secondary shadow-sm" style="width: 7rem;"
 			href="${pageContext.request.contextPath}/loginlogout/mainmenu">
 			<i class="bi bi-arrow-left"></i> 戻る
 		</a>
