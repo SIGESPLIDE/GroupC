@@ -75,7 +75,8 @@
                                                name="subject_${weekdayName}_${period}"
                                                class="form-control form-control-sm mx-auto"
                                                style="width: 90%;"
-                                               placeholder="-">
+                                               placeholder="-"
+                                               maxlength="10">
                                     </td>
                                 </c:forEach>
                             </tr>

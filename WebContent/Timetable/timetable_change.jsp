@@ -73,7 +73,8 @@
                                                name="subject_${wd}_${i}"
                                                value="${timetableMap[wd][i]}"
                                                class="form-control form-control-sm mx-auto"
-                                               style="width: 90%;">
+                                               style="width: 90%;"
+                                               maxlength="10">
                                     </td>
                                 </c:forEach>
                             </tr>
