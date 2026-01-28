@@ -54,19 +54,19 @@
                     </div>
                 </c:when>
 
-                <%-- クラスが存在していない場合 --%>
+                <%-- 生徒が存在しない場合 --%>
                 <c:otherwise>
-                    <div class="alert alert-light border text-center py-5 shadow-sm" role="alert">
-                        <i class="bi bi-info-circle fs-1 text-secondary mb-3 d-block"></i>
-                        <h5 class="fw-bold">クラスが見つかりません</h5>
-                        <p class="text-muted mb-0">利用する生徒の情報を先に登録してください。</p>
+                    <div class="alert alert-info text-center py-5 shadow-sm" role="alert">
+                        <i class="bi bi-info-circle fs-1 mb-3 d-block"></i>
+                        <h4 class="alert-heading fw-bold">表示できるクラスがありません</h4>
+                        <p class="mb-0">時間割を表示するには、まず生徒情報の登録をしてください。</p>
                     </div>
                 </c:otherwise>
             </c:choose>
         </div>
     </div>
 
-    <%-- 下部固定戻るボタンエリア --%>
+    <%-- ボタンエリア --%>
     <div class="mt-auto d-flex justify-content-between px-5 py-4 bg-white border-top flex-shrink-0">
         <a class="btn btn-secondary shadow-sm" style="width: 7rem;" href="${pageContext.request.contextPath}/loginlogout/mainmenu">
             <i class="bi bi-arrow-left"></i> 戻る
