@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+/* 1. CSS変数による全体的な上書き */
+:root {
+    /* text-secondary の上書き */
+    --bs-secondary-color: #375862 !important;
+    --bs-secondary-rgb: 55, 88, 98 !important;
+
+    /* bg-light の上書き */
+    --bs-light-rgb: 241, 250, 255 !important; /* #f1faff */
+}
+
+/* 2. table-dark の背景色をピンポイントで上書き */
+.table-dark {
+    --bs-table-bg: #20354A !important;
+    border-color: #374b5e; /* 背景に合わせて枠線も少し調整すると綺麗です */
+}
+
+/* 3. sidebar-bg の上書き（独自クラスと想定） */
+.sidebar-bg {
+    background-color: #f1f4ff !important;
+}
+
+/* 4. text-secondary クラスへの強制適用 */
+.text-secondary {
+    color: #375862 !important;
+}
+
+/* 5. bg-light クラスへの強制適用 */
+.bg-light {
+    background-color: #f1faff !important;
+}

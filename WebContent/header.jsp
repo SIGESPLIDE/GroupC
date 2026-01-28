@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${param.title} | ユニパス連携システム</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
 
     <%-- スタイル --%>
     <style>
@@ -23,7 +24,7 @@
         .main-content-wrapper { flex-grow: 1; overflow: hidden; display: flex; padding: 0; }
         .main-content-wrapper > .row { width: 100%; height: 100%; margin: 0; }
         .sidebar-bg {
-            background-color: #f7f7f7; border-right: 1px solid #c0c0c0;
+            border-right: 1px solid #c0c0c0;
             height: 100%; overflow-y: auto; padding: 20px; flex-shrink: 0;
         }
         .content-area { flex-grow: 1; padding: 20px; }
