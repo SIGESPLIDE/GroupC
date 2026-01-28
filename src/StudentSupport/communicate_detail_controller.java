@@ -59,10 +59,4 @@ public class communicate_detail_controller extends CommonServlet {
     	req.setAttribute("chatLogList", chatLogList);
     	req.getRequestDispatcher("/StudentSupport/communicate_detail.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }

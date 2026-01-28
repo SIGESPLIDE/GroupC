@@ -104,10 +104,4 @@ public class timetable_change_controller extends CommonServlet {
             e.printStackTrace();
         }
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }

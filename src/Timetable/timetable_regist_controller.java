@@ -81,10 +81,4 @@ public class timetable_regist_controller extends CommonServlet {
             // 必要に応じてエラー画面へ
         }
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
-    }
-
 }

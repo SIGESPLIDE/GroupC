@@ -46,11 +46,4 @@ public class keyword_index_controller extends CommonServlet {
 	    }
 
 	}
-
-	@Override
-	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// ログインされているかどうかの確認
-
-	}
-
 }

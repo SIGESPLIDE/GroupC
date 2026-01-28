@@ -37,10 +37,4 @@ public class studentinfo_delete_controller extends CommonServlet {
         	req.getRequestDispatcher("/StudentInfo/studentinfo_list.jsp").forward(req, resp);
         }
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }

@@ -27,10 +27,4 @@ public class MenuController extends CommonServlet {
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
-    }
-
 }

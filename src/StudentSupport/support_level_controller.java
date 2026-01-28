@@ -65,8 +65,4 @@ public class support_level_controller extends CommonServlet {
 
         req.getRequestDispatcher("/StudentSupport/support_level.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    }
 }

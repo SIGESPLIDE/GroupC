@@ -33,9 +33,4 @@ public class timetable_list_controller extends CommonServlet {
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         // 必要に応じて実装
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        // 必要に応じて実装
-    }
 }

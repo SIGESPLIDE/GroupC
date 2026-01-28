@@ -73,10 +73,4 @@ public class studentinfo_list_controller extends CommonServlet {
         // 一覧画面へ戻る
         req.getRequestDispatcher("/StudentInfo/studentinfo_list.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }

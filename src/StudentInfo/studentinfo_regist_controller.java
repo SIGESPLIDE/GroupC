@@ -117,9 +117,4 @@ public class studentinfo_regist_controller extends CommonServlet {
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=student");
         }
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        // ログインしているかの確認
-    }
 }

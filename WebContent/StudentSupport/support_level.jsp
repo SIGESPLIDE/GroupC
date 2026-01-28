@@ -50,10 +50,10 @@
                 <c:otherwise>
                     <table class="table table-striped text-center border-secondary w-100 shadow-sm">
                         <tbody>
-                            <tr><td class="py-4"><h4>連続登校日数 : ${attReco.sequentialDays}</h4></td></tr>
-                            <tr><td class="py-4"><h4>学校滞在時間 : ${attReco.schoolTime}</h4></td></tr>
-                            <tr><td class="py-4"><h4>教室滞在時間 : ${attReco.classTime}</h4></td></tr>
-                            <tr><td class="py-4"><h4>合計登校日数 : ${attReco.totalDays}</h4></td></tr>
+                            <tr><td class="py-4"><h5>連続登校日数 : ${attReco.sequentialDays}</h5></td></tr>
+                            <tr><td class="py-4"><h5>学校滞在時間 : ${attReco.schoolTime}</h5></td></tr>
+                            <tr><td class="py-4"><h5>教室滞在時間 : ${attReco.classTime}</h5></td></tr>
+                            <tr><td class="py-4"><h5>合計登校日数 : ${attReco.totalDays}</h5></td></tr>
                         </tbody>
                     </table>
                 </c:otherwise>

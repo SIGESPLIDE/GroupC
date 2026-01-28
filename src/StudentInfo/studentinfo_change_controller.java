@@ -76,10 +76,4 @@ public class studentinfo_change_controller extends CommonServlet {
 	        }
     	}
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }

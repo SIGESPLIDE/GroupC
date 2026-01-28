@@ -36,10 +36,4 @@ public class studentinfo_detail_controller extends CommonServlet {
     	// 生徒情報一覧画面に遷移
         req.getRequestDispatcher("/StudentInfo/studentinfo_detail.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }

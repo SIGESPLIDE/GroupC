@@ -36,11 +36,4 @@ public class keyword_register_controller extends CommonServlet {
         }
 
 	}
-
-	@Override
-	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// ログインしているかどうかの確認
-
-	}
-
 }

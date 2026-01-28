@@ -51,10 +51,4 @@ public class timetable_detail_controller extends CommonServlet {
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
     }
-
-    @Override
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	// ログインしているかの確認
-    }
-
 }
