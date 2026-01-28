@@ -135,4 +135,33 @@ public class activitylog_dao extends dao {
 		}
 		return list;
 	}
+
+	// 指定した記録を削除する
+	public boolean delete(int studentId) throws Exception {
+		Connection connection = getConnection();
+		PreparedStatement statement = null;
+		int count = 0;
+
+		String delete = "delete from activitylog";
+		String condition = " where studentid=?";
+
+		try {
+			statement = connection.prepareStatement(delete + condition);
+			statement.setInt(1, studentId);
+			count = statement.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (statement != null) { try { statement.close(); } catch (SQLException sqle) { throw sqle; } }
+			if (connection != null) { try { connection.close(); } catch (SQLException sqle) { throw sqle; } }
+		}
+
+		if (count > 0) {
+			// 実行件数が1件以上ある場合
+			return true;
+		} else {
+			// 実行件数が0件の場合
+			return false;
+		}
+	}
 }
