@@ -29,15 +29,15 @@
 
 <%-- IDが重複した時に表示 --%>
 		<c:if test="${not empty overlappError}">
-		  <div class="text-center text-primary">${overlappError}</div>
+		  <div class="alert alert-danger text-center shadow-sm">${overlappError}</div>
 		</c:if>
 
 		<c:if test="${not empty lengthError}">
-		  <div class="text-center text-primary">${lengthError}</div>
+		  <div class="alert alert-danger text-center shadow-sm">${lengthError}</div>
 		</c:if>
 
 		<c:if test="${not empty numError}">
-		  <div class="text-center text-primary">${numError}</div>
+		  <div class="alert alert-danger text-center shadow-sm">${numError}</div>
 		</c:if>
 
 
