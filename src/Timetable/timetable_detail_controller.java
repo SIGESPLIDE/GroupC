@@ -20,6 +20,11 @@ public class timetable_detail_controller extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+    }
+
+    @Override
+    protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
     	// クラス名の取得
         String className = req.getParameter("class_name");
 
@@ -45,10 +50,5 @@ public class timetable_detail_controller extends CommonServlet {
 
         // 詳細画面に遷移
         req.getRequestDispatcher("/Timetable/timetable_detail.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
     }
 }
