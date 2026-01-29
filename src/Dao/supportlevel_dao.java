@@ -65,10 +65,9 @@ public class supportlevel_dao extends dao {
 
 		try {
 				// SQL文にinsert文を加え、の新規登録を行う
-				statement = connection.prepareStatement("insert into supportlevel (studentid,supportlevel) values(?,?)");
+				statement = connection.prepareStatement("insert into supportlevel (studentid) values(?)");
 				// PreparedStatementに値をバインド
 				statement.setInt(1, studentId);
-				statement.setInt(2, 1);
 			// SQL文を実行
 			count = statement.executeUpdate();
 		} catch (Exception e) {
