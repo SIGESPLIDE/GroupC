@@ -85,7 +85,7 @@
 
 
         <div class="text-center mb-4 flex-shrink-0">
-            <h2 class="mb-0">パスワード</h2>
+            <h2 class="mb-0">パスワード変更</h2>
         </div>
 
         <hr class="mt-0 flex-shrink-0">
