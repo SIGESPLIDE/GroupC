@@ -10,13 +10,13 @@
     --bs-light-rgb: 241, 250, 255 !important; /* #f1faff */
 }
 
-/* 2. table-dark の背景色をピンポイントで上書き */
+/* 2. table-dark の背景色を上書き */
 .table-dark {
     --bs-table-bg: #20354A !important;
-    border-color: #374b5e; /* 背景に合わせて枠線も少し調整すると綺麗です */
+    border-color: #374b5e;
 }
 
-/* 3. sidebar-bg の上書き（独自クラスと想定） */
+/* 3. sidebar-bg の上書き */
 .sidebar-bg {
     background-color: #f1f4ff !important;
 }
