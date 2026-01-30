@@ -3,204 +3,135 @@ package Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.List;
 
 import Bean.attendrecord;
+import Bean.dailyattend;
 
 public class attendrecord_dao extends dao {
 
-	private String baseSql = "select * from attendrecord";
+    private String baseSql = "select * from attendrecord";
 
-	// 検索結果をリストに格納して返す
-	private attendrecord postFilter(ResultSet rSet) throws Exception {
-		attendrecord attReco = new attendrecord();
+    // 統計情報を計算してDBを更新する（ボタン押下時にこれを呼ぶ）
+    public void updateAttendStats(int studentId) throws Exception {
+        dailyattend_dao daDao = new dailyattend_dao();
+        // 昨日以前の確定レコードのみ取得
+        List<dailyattend> records = daDao.filterYesterdayAndBefore(studentId);
 
-		try {
-			while (rSet.next()) {
+        int totalDays = records.size();
+        int maxContinuousDays = 0;
+        int currentContinuousDays = 0;
+        long totalStayMinutes = 0;
+        LocalDate lastDate = null;
 
-				attReco.setStudentId(rSet.getInt("studentid"));
-				attReco.setSequentialDays(rSet.getInt("sequentialdays"));
-				attReco.setTotalDays(rSet.getInt("totaldays"));
-				attReco.setSchoolTime(rSet.getInt("schooltime"));
-				attReco.setClassTime(rSet.getInt("classtime"));
-			}
-		} catch (SQLException | NullPointerException e) {
-			e.printStackTrace();
-		}
-		return attReco;
-	}
+        for (dailyattend record : records) {
+            // 滞在時間の計算
+            totalStayMinutes += Duration.between(record.getLoginTime(), record.getLogoutTime()).toMinutes();
 
-	// 生徒IDを使ってインスタンスを返す
-	public attendrecord idFilter(int studentId) throws Exception{
-		attendrecord attReco = new attendrecord();
+            // 連続登校日数の計算
+            LocalDate currentDate = record.getLoginTime().toLocalDate();
+            if (lastDate == null) {
+                currentContinuousDays = 1;
+            } else {
+                if (lastDate.plusDays(1).equals(currentDate)) {
+                    currentContinuousDays++;
+                } else {
+                    currentContinuousDays = 1;
+                }
+            }
+            maxContinuousDays = Math.max(maxContinuousDays, currentContinuousDays);
+            lastDate = currentDate;
+        }
 
-		// DBへの接続
-		Connection connection = getConnection();
-		// SQL用
-		PreparedStatement statement = null;
-		ResultSet rSet = null;
+        // 算出結果を保存（学校滞在時間は分を時間に変換）
+        this.change(studentId, maxContinuousDays, totalDays, (int)(totalStayMinutes / 60), 0);
+    }
 
-		String condition = " where studentid = ?";
+    // 更新
+    public boolean change(int studentId, int sequentialdays, int totaldays, int schooltime, int classtime) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        int count = 0;
+        try {
+            // attendrecordテーブルの値を最新の状態に更新
+            statement = connection.prepareStatement(
+                "update attendrecord set sequentialdays=?, totaldays=?, schooltime=?, classtime=? where studentid=?"
+            );
+            statement.setInt(1, sequentialdays);
+            statement.setInt(2, totaldays);
+            statement.setInt(3, schooltime);
+            statement.setInt(4, classtime);
+            statement.setInt(5, studentId);
 
-		// sqlの処理
-		try {
-			statement = connection.prepareStatement(baseSql + condition);
-			statement.setInt(1, studentId);
+            count = statement.executeUpdate();
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return count > 0;
+    }
 
-			rSet = statement.executeQuery();
-			postFilter(rSet);
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// SQL文の入力を終了
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-			// DBを切断
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-		return attReco;
-	}
+    // 生徒IDを使ってインスタンスを取得
+    public attendrecord idFilter(int studentId) throws Exception {
+        attendrecord attReco = new attendrecord();
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        ResultSet rSet = null;
 
+        try {
+            statement = connection.prepareStatement(baseSql + " where studentid = ?");
+            statement.setInt(1, studentId);
+            rSet = statement.executeQuery();
+            if (rSet.next()) {
+                attReco.setStudentId(rSet.getInt("studentid"));
+                attReco.setSequentialDays(rSet.getInt("sequentialdays"));
+                attReco.setTotalDays(rSet.getInt("totaldays"));
+                attReco.setSchoolTime(rSet.getInt("schooltime"));
+                attReco.setClassTime(rSet.getInt("classtime"));
+            }
+        } finally {
+            if (rSet != null) rSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return attReco;
+    }
 
-	// 登録
-	public boolean regist(int studentId) throws Exception{
-		//DBに接続
-		Connection connection = getConnection();
-		PreparedStatement statement = null;
-		// 実行件数
-		int count = 0;
+    // 初期登録
+    public boolean regist(int studentId) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        int count = 0;
+        try {
+            statement = connection.prepareStatement("insert into attendrecord (studentid,sequentialdays,totaldays,schooltime,classtime) values(?,?,?,?,?)");
+            statement.setInt(1, studentId);
+            statement.setInt(2, 0);
+            statement.setInt(3, 0);
+            statement.setInt(4, 0);
+            statement.setInt(5, 0);
+            count = statement.executeUpdate();
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return count > 0;
+    }
 
-		try {
-				// SQL文にinsert文を加え、の新規登録を行う
-				statement = connection.prepareStatement("insert into attendrecord (studentid,sequentialdays,totaldays,schooltime,classtime) values(?,?,?,?,?)");
-				// PreparedStatementに値をバインド
-				statement.setInt(1, studentId);
-				statement.setInt(2, 0);
-				statement.setInt(3, 0);
-				statement.setInt(4, 0);
-				statement.setInt(5, 0);
-			// SQL文を実行
-			count = statement.executeUpdate();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// SQL入力を終了
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-			// DBを切断
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-
-		if (count > 0) {
-			// 実行件数が1件以上ある場合
-			return true;
-		} else {
-			// 実行件数が0件の場合
-			return false;
-		}
-	}
-
-
-	// 更新
-	public boolean change(int studentId,int sequentialdays,int totaldays,int schooltime,int classtime) throws Exception{
-		//DBに接続
-		Connection connection = getConnection();
-		PreparedStatement statement = null;
-		// 実行件数
-		int count = 0;
-
-		try {
-			attendrecord old = this.idFilter(studentId);
-
-			// SQL文にupdate文を加え、支援段階の更新を行う
-			statement = connection.prepareStatement("update supportlevel set studentid=?,sequentialdays=?,totaldays=?,schooltime=?,classtime=? where studentid=?");
-			// SQL文の条件文に値をセット
-			statement.setInt(1, studentId);
-			statement.setInt(2, old.getSequentialDays() + sequentialdays);
-			statement.setInt(3, old.getTotalDays() + totaldays);
-			statement.setInt(4, old.getSchoolTime() + schooltime);
-			statement.setInt(5, old.getClassTime() + classtime);
-
-			count = statement.executeUpdate();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// SQL入力を終了
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-			// DBを切断
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-
-		if (count > 0) {
-			// 実行件数が1件以上ある場合
-			return true;
-		} else {
-			// 実行件数が0件の場合
-			return false;
-		}
-	}
-
-
-	// 指定した記録を削除する
-	public boolean delete(int studentId) throws Exception {
-		Connection connection = getConnection();
-		PreparedStatement statement = null;
-		int count = 0;
-
-		String delete = "delete from attendrecord";
-		String condition = " where studentid=?";
-
-		try {
-			statement = connection.prepareStatement(delete + condition);
-			statement.setInt(1, studentId);
-			count = statement.executeUpdate();
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (statement != null) { try { statement.close(); } catch (SQLException sqle) { throw sqle; } }
-			if (connection != null) { try { connection.close(); } catch (SQLException sqle) { throw sqle; } }
-		}
-
-		if (count > 0) {
-			// 実行件数が1件以上ある場合
-			return true;
-		} else {
-			// 実行件数が0件の場合
-			return false;
-		}
-	}
+    // 削除
+    public boolean delete(int studentId) throws Exception {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        int count = 0;
+        try {
+            statement = connection.prepareStatement("delete from attendrecord where studentid=?");
+            statement.setInt(1, studentId);
+            count = statement.executeUpdate();
+        } finally {
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        }
+        return count > 0;
+    }
 }
