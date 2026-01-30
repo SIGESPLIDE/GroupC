@@ -30,7 +30,7 @@
 </div>
 
 <%-- メイン --%>
-<form action="${pageContext.request.contextPath}/timetable/timetable_change" method="post" class="col-md-10 h-100">
+<form id="mainForm" action="${pageContext.request.contextPath}/timetable/timetable_change" method="post" class="col-md-10 h-100">
     <%-- どのクラスのデータか送信するために隠し持っておく --%>
     <input type="hidden" name="class_name" value="${className}">
     <div class="content-area d-flex flex-column h-100 position-relative">
@@ -88,11 +88,9 @@
         	<%-- <form action="${pageContext.request.contextPath}/timetable/timetable_detail" method="post">
 		        <button type="submit" class="btn btn-secondary shadow-sm" style="width: 7rem;">戻る</button>
         	</form> --%>
-            <a class="btn btn-secondary shadow-sm"
-               style="width: 7rem;"
-               href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${className}">
+            <button type="button" class="btn btn-secondary shadow-sm" style="width: 7rem;" onclick="submitBack();">
                 戻る
-            </a>
+            </button>
 
             <button type="button"
                     class="btn btn-primary shadow-sm"
@@ -104,6 +102,17 @@
         </div>
     </div>
 </form>
+
+<%-- 送信先の切り替え --%>
+<script>
+function submitBack() {
+    const form = document.getElementById('mainForm');
+    // JavaScriptで一時的に送信先(action)を「詳細画面」に書き換える
+    form.action = "${pageContext.request.contextPath}/timetable/timetable_detail";
+    // 送信実行
+    form.submit();
+}
+</script>
 
 <jsp:include page="../footer.jsp" />
 <jsp:include page="/ModalCompletion/update_modal.jsp" flush="true" />
