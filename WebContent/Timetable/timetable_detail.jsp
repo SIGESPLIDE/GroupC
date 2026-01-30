@@ -61,8 +61,13 @@
         <c:choose>
             <%-- 時間割が存在している場合 --%>
             <c:when test="${not empty timetableList}">
-                <a class="btn btn-primary shadow-sm" style="width: 7rem;"
-                   href="${pageContext.request.contextPath}/timetable/timetable_change?class_name=${className}">変更</a>
+            	<form action="${pageContext.request.contextPath}/timetable/timetable_change" method="post">
+            		<input type="hidden" name="action" value="execute">
+            		<input type="hidden" name="class_name" value="${className}">
+                   	<button type="submit" class="btn btn-primary shadow-sm" style="width: 7rem;">変更</button>
+                	<%--<a class="btn btn-primary shadow-sm" style="width: 7rem;"
+                   	href="${pageContext.request.contextPath}/timetable/timetable_change?class_name=${className}">変更</a>--%>
+                   </form>
             </c:when>
             <%-- 時間割が存在していない場合 --%>
             <c:otherwise>

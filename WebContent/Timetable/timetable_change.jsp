@@ -31,10 +31,9 @@
 
 <%-- メイン --%>
 <form action="${pageContext.request.contextPath}/timetable/timetable_change" method="post" class="col-md-10 h-100">
+    <%-- どのクラスのデータか送信するために隠し持っておく --%>
+    <input type="hidden" name="class_name" value="${className}">
     <div class="content-area d-flex flex-column h-100 position-relative">
-
-        <%-- どのクラスのデータか送信するために隠し持っておく --%>
-        <input type="hidden" name="class_name" value="${className}">
 
         <%-- スクロール可能なエリア --%>
         <div class="scrollable-area container mt-5">
@@ -86,6 +85,9 @@
 
         <%-- ボタンエリア（常に下部に固定） --%>
         <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white border-top pt-3" style="z-index: 1000;">
+        	<%-- <form action="${pageContext.request.contextPath}/timetable/timetable_detail" method="post">
+		        <button type="submit" class="btn btn-secondary shadow-sm" style="width: 7rem;">戻る</button>
+        	</form> --%>
             <a class="btn btn-secondary shadow-sm"
                style="width: 7rem;"
                href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${className}">

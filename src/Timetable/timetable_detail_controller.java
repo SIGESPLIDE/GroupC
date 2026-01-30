@@ -20,7 +20,7 @@ public class timetable_detail_controller extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
+    	post(req,resp);
     }
 
     @Override
