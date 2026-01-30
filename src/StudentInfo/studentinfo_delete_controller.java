@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Dao.activitylog_dao;
 import Dao.attendrecord_dao;
+import Dao.dailyattend_dao;
 import Dao.studentinfo_dao;
 import Dao.supportlevel_dao;
 import tool.CommonServlet;
@@ -30,12 +31,14 @@ public class studentinfo_delete_controller extends CommonServlet {
     	supportlevel_dao supLevDao = new supportlevel_dao();
     	attendrecord_dao attRecDao = new attendrecord_dao();
     	activitylog_dao acLogDao = new activitylog_dao();
+    	dailyattend_dao dailyDao = new dailyattend_dao();
 
     	// 削除の実行
         if (stuInfoDao.delete(studentId)){
         	supLevDao.delete(studentId);
         	attRecDao.delete(studentId);
         	acLogDao.delete(studentId);
+        	dailyDao.delete(studentId);
 
             // 成功したら完了画面へ（合言葉 from=student を付ける）
             resp.sendRedirect(req.getContextPath() + "/ModalCompletion/delete_completed.jsp?from=student");

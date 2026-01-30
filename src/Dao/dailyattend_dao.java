@@ -47,7 +47,7 @@ public class dailyattend_dao extends dao {
     }
 
     // 生徒IDに紐づく全ての記録を削除
-    public boolean deleteByStudentId(int studentId) throws Exception {
+    public boolean delete(int studentId) throws Exception {
         Connection connection = getConnection();
         PreparedStatement statement = null;
         int count = 0;
