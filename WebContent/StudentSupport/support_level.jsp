@@ -48,6 +48,10 @@
                 </div>
             </div>
 
+            <div class="alert alert-info text-center shadow-sm">
+            	昨日までの確定データに基づいた集計です。本日分は翌日反映されます。
+            </div>
+
             <c:choose>
             	<%-- ログインログアウト情報がない場合 --%>
                 <c:when test="${empty attReco || attReco.totalDays == 0}">
@@ -62,7 +66,6 @@
                             <tr><td class="py-4"><h5>累計登校日数 : ${attReco.totalDays} 日</h5></td></tr>
                         </tbody>
                     </table>
-                    <p class="text-muted small text-end">※昨日までの確定データに基づいた集計です。本日分は翌日反映されます。</p>
                 </c:otherwise>
             </c:choose>
         </div>
