@@ -36,7 +36,7 @@ public class timetable_change_controller extends CommonServlet {
         req.setAttribute("timetableMap", timetableMap);
         req.setAttribute("weekdayList", Arrays.asList("月曜日", "火曜日", "水曜日", "木曜日", "金曜日"));
 
-     // 時間割詳細画面に遷移
+     // 時間割変更画面に遷移
         req.getRequestDispatcher("/Timetable/timetable_change.jsp").forward(req, resp);
     }
 
