@@ -31,7 +31,7 @@ public class studentinfo_regist_controller extends CommonServlet {
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
     	// 生徒情報登録画面へ遷移
-        req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+        req.getRequestDispatcher("/StudentInfo/studentinfo_register.jsp").forward(req, resp);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class studentinfo_regist_controller extends CommonServlet {
             req.setAttribute("studentName", studentName);
             req.setAttribute("grade", rawGrade);
             req.setAttribute("cla", rawCla);
-            req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+            req.getRequestDispatcher("/StudentInfo/studentinfo_register.jsp").forward(req, resp);
             return;
         }
 
@@ -80,7 +80,7 @@ public class studentinfo_regist_controller extends CommonServlet {
             req.setAttribute("studentName", studentName);
             req.setAttribute("grade", rawGrade);
             req.setAttribute("cla", rawCla);
-            req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+            req.getRequestDispatcher("/StudentInfo/studentinfo_register.jsp").forward(req, resp);
             return;
         }
 
@@ -91,7 +91,7 @@ public class studentinfo_regist_controller extends CommonServlet {
             req.setAttribute("studentName", studentName);
             req.setAttribute("grade", rawGrade);
             req.setAttribute("cla", rawCla);
-            req.getRequestDispatcher("/StudentInfo/studentinfo_regist.jsp").forward(req, resp);
+            req.getRequestDispatcher("/StudentInfo/studentinfo_register.jsp").forward(req, resp);
             return;
         } else if (stuInfoDao.save(stuInfo)) {
         	// 生徒情報登録処理
