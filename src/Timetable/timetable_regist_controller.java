@@ -26,7 +26,7 @@ public class timetable_regist_controller extends CommonServlet {
         req.setAttribute("className", className);
 
         // 時間割登録画面に遷移
-        req.getRequestDispatcher("/Timetable/timetable_regist.jsp").forward(req, resp);
+        req.getRequestDispatcher("/Timetable/timetable_register.jsp").forward(req, resp);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class timetable_regist_controller extends CommonServlet {
         if (!hasAnyData) {
             req.setAttribute("error", "すべてのコマが空です。正しく登録できません。");
             // 登録画面を再表示
-            req.getRequestDispatcher("/Timetable/timetable_regist.jsp").forward(req, resp);
+            req.getRequestDispatcher("/Timetable/timetable_register.jsp").forward(req, resp);
             return;
         }
 
