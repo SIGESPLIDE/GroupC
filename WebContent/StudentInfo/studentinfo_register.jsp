@@ -17,9 +17,8 @@
 </div>
 
 <%-- メイン --%>
-<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
-
-    <div class="container mt-5 flex-grow-1 overflow-y-auto">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative p-0">
+    <div class="container-fluid mt-5 flex-grow-1 overflow-y-auto mb-3">
 
         <div class="text-center mb-4 flex-shrink-0">
             <h2 class="mb-0">生徒情報登録</h2>

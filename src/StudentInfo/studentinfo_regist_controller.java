@@ -51,7 +51,7 @@ public class studentinfo_regist_controller extends CommonServlet {
         try {
             studentId = Integer.parseInt(req.getParameter("studentId"));
         } catch (NumberFormatException nfex) {
-            req.setAttribute("numError", "数値で入力してください");
+            req.setAttribute("numError", "IDは数値で入力してください");
             req.setAttribute("studentId", req.getParameter("studentId"));
             req.setAttribute("studentName", studentName);
             req.setAttribute("grade", rawGrade);
