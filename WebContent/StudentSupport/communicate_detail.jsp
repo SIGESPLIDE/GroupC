@@ -3,7 +3,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%-- headerの読込 --%>
-<jsp:include page="../header.jsp"><jsp:param name="title" value="会話詳細" /></jsp:include>
+<jsp:include page="../header.jsp"><jsp:param name="title" value="会話履歴" /></jsp:include>
 
 <style>
     /* メインエリア */
@@ -23,7 +23,7 @@
     <div class="container mt-5 flex-grow-1 overflow-y-auto">
 
         <div class="text-center mb-4 flex-shrink-0">
-            <h2 class="mb-0">会話詳細</h2>
+            <h2 class="mb-0">会話履歴</h2>
         </div>
 
         <hr class="mt-0 flex-shrink-0">

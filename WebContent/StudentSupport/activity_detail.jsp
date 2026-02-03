@@ -5,7 +5,7 @@
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title"
-		value="交流詳細" /></jsp:include>
+		value="交流一覧" /></jsp:include>
 
 <style>
 /* メインエリア */
@@ -26,12 +26,12 @@
 	<div class="container mt-5 flex-grow-1 overflow-y-auto">
 
 		<div class="text-center mb-4 flex-shrink-0">
-			<h2 class="mb-0">交流詳細</h2>
+			<h2 class="mb-0">交流一覧</h2>
 		</div>
 
 		<hr class="mt-0 flex-shrink-0">
 
-		<%-- まだ交流詳細が存在していなかった場合 --%>
+		<%-- まだ交流一覧が存在していなかった場合 --%>
 		<c:choose>
 			<c:when test="${emptyError!=null}">
 				<div class="alert alert-info text-center py-5 shadow-sm"
