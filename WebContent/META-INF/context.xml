@@ -31,7 +31,7 @@
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="com.mysql.cj.jdbc.Driver"
-		url="jdbc:mysql://10.250.157.18:3306/groupc_unibo?useSSL=false&amp;serverTimezone=Japan&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"
+		url="jdbc:mysql://10.250.157.12:3306/groupc_unibo?useSSL=false&amp;serverTimezone=Japan&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"
 		username="teacher"
 		password="teacher"
 	/>
