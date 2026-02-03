@@ -13,67 +13,85 @@ import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/studentinfo/studentinfo_change" })
 public class studentinfo_change_controller extends CommonServlet {
 
+    // 数字のみを全角から半角に変換するメソッド
+    private String convertDigit(String text) {
+        if (text == null) return "";
+        StringBuilder sb = new StringBuilder(text);
+        for (int i = 0; i < sb.length(); i++) {
+            char c = sb.charAt(i);
+            if (c >= '０' && c <= '９') {
+                sb.setCharAt(i, (char) (c - '０' + '0'));
+            }
+        }
+        return sb.toString();
+    }
+
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	int studentId = Integer.parseInt(req.getParameter("studentId"));
+        int studentId = Integer.parseInt(req.getParameter("studentId"));
 
-    	// 生徒IDから生徒情報を取り出す
-    	studentinfo_dao studentInfoDao = new studentinfo_dao();
-    	studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
+        // 生徒IDから生徒情報を取り出す
+        studentinfo_dao studentInfoDao = new studentinfo_dao();
+        studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
 
-    	req.setAttribute("stuInfo", stuInfo);
+        req.setAttribute("stuInfo", stuInfo);
 
-    	// 生徒情報一覧画面に遷移
+        // 生徒情報一覧画面に遷移
         req.getRequestDispatcher("/StudentInfo/studentinfo_change.jsp").forward(req, resp);
     }
 
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	String action = req.getParameter("action");
-    	// detailから遷移したときに使用
-    	if (action != null){
-    		int studentId = Integer.parseInt(req.getParameter("studentId"));
-        	// 生徒IDから生徒情報を取り出す
-        	studentinfo_dao studentInfoDao = new studentinfo_dao();
-        	studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
+        String action = req.getParameter("action");
+        // detailから遷移したときに使用
+        if (action != null){
+            int studentId = Integer.parseInt(req.getParameter("studentId"));
+            // 生徒IDから生徒情報を取り出す
+            studentinfo_dao studentInfoDao = new studentinfo_dao();
+            studentinfo stuInfo = studentInfoDao.idPickUp(studentId);
 
-        	// 文字の位置を探して動的に切り出す
-        	String fullClass = stuInfo.getClasses();
+            // 文字の位置を探して動的に切り出す
+            String fullClass = stuInfo.getClasses();
 
-        	// 「年」の前の文字をすべて学年とする
-        	String grade = fullClass.substring(0, fullClass.indexOf("年"));
+            // 「年」の前の文字をすべて学年とする
+            String grade = fullClass.substring(0, fullClass.indexOf("年"));
 
-        	// 「年」と「組」の間の文字をクラスとする
-        	String cla = fullClass.substring(fullClass.indexOf("年") + 1, fullClass.indexOf("組"));
+            // 「年」と「組」の間の文字をクラスとする
+            String cla = fullClass.substring(fullClass.indexOf("年") + 1, fullClass.indexOf("組"));
 
-        	req.setAttribute("stuInfo", stuInfo);
-        	req.setAttribute("grade", grade);
-        	req.setAttribute("cla", cla);
+            req.setAttribute("stuInfo", stuInfo);
+            req.setAttribute("grade", grade);
+            req.setAttribute("cla", cla);
 
-        	// 生徒情報変更画面に遷移
-	    	req.getRequestDispatcher("/StudentInfo/studentinfo_change.jsp").forward(req, resp);
+            // 生徒情報変更画面に遷移
+            req.getRequestDispatcher("/StudentInfo/studentinfo_change.jsp").forward(req, resp);
 
-    	} else {
-	    	// 変更処理で使用
-	    	// 入力された値の受け取り
-	    	int studentId = Integer.parseInt(req.getParameter("studentId"));
-	    	String studentName = req.getParameter("studentName");
-	    	String classes = req.getParameter("grade") + "年" + req.getParameter("cla") + "組";
-	    	// 変更された内容で学生インスタンス作成
-	    	studentinfo stuInfo = new studentinfo();
+        } else {
+            // 変更処理で使用
+            // 入力された値の受け取り
+            int studentId = Integer.parseInt(req.getParameter("studentId"));
+            String studentName = req.getParameter("studentName");
 
-	    	stuInfo.setStudentId(studentId);
-	    	stuInfo.setStudentName(studentName);
-	    	stuInfo.setClasses(classes);
+            // 数字のみ全角を半角に変換
+            String grade = convertDigit(req.getParameter("grade"));
+            String cla = convertDigit(req.getParameter("cla"));
+            String classes = grade + "年" + cla + "組";
 
-	    	// 変更処理
-	    	studentinfo_dao stuInfoDao = new studentinfo_dao();
+            // 変更された内容で学生インスタンス作成
+            studentinfo stuInfo = new studentinfo();
 
-	    	// 変更の実行
-	        if (stuInfoDao.save(stuInfo)){
-	            // 成功したら完了画面へ（合言葉 from=student を付ける）
-	            resp.sendRedirect(req.getContextPath() + "/ModalCompletion/update_completed.jsp?from=student");
-	        }
-    	}
+            stuInfo.setStudentId(studentId);
+            stuInfo.setStudentName(studentName);
+            stuInfo.setClasses(classes);
+
+            // 変更処理
+            studentinfo_dao stuInfoDao = new studentinfo_dao();
+
+            // 変更の実行
+            if (stuInfoDao.save(stuInfo)){
+                // 成功したら完了画面へ（合言葉 from=student を付ける）
+                resp.sendRedirect(req.getContextPath() + "/ModalCompletion/update_completed.jsp?from=student");
+            }
+        }
     }
 }
