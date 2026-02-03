@@ -5,7 +5,7 @@
 
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title"
-		value="交流一覧" /></jsp:include>
+		value="交流詳細一覧" /></jsp:include>
 
 <style>
 /* メインエリア */
@@ -26,7 +26,7 @@
 	<div class="container mt-5 flex-grow-1 overflow-y-auto">
 
 		<div class="text-center mb-4 flex-shrink-0">
-			<h2 class="mb-0">交流一覧</h2>
+			<h2 class="mb-0">交流詳細一覧</h2>
 		</div>
 
 		<hr class="mt-0 flex-shrink-0">
@@ -48,7 +48,7 @@
 							<tr>
 								<th scope="col" class="w-18">日付</th>
 								<th scope="col" class="w-18">生徒気分</th>
-								<th scope="col" class="w-18">会話詳細</th>
+								<th scope="col" class="w-18">会話履歴</th>
 							</tr>
 						</thead>
 
