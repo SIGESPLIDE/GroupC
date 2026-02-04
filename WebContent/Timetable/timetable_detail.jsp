@@ -19,7 +19,6 @@
         <hr class="mt-0 mb-5">
     </div>
 
-    <%-- メイン --%>
     <div class="container w-75 flex-grow-1 overflow-y-auto mb-3">
         <c:choose>
             <%-- 時間割が存在している場合 --%>

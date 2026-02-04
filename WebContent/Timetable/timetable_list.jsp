@@ -47,11 +47,6 @@
 													<button type="submit" class="btn btn-outline-primary shadow-sm px-4 bi bi-chevron-right small">
 														詳細
 													</button>
-													<%--<a
-														href="${pageContext.request.contextPath}/timetable/timetable_detail?class_name=${c.classes}"
-														class="btn btn-outline-primary shadow-sm px-4"> 詳細 <i
-														class="bi bi-chevron-right small"></i>
-													</a> --%>
 												</form>
 											</td>
 										</tr>

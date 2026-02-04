@@ -4,82 +4,13 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="キーワード" /></jsp:include>
 
-<%-- スタイル --%>
-<style>
-	/* メインエリア */
-    .scroll-content {
-        padding-bottom: 100px !important;
-    }
-
-    /* パスワード変更画面専用のスタイル */
-    .content-area {
-        background-color: #ffffff;
-        min-height: 80vh;
-        position: relative;
-    }
-
-    /* 中央のパスワード変更カード */
-    .password-card {
-        max-width: 600px;
-        width: 100%;
-        border: 1px solid #999;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    .password-card-header {
-        background-color: #0099d9; /* 画像の青色 */
-        color: white;
-        padding: 10px 20px;
-        font-weight: bold;
-    }
-
-    .password-card-body {
-        background-color: #eeeeee;
-        padding: 40px;
-        text-align: center;
-    }
-
-    /* 入力フィールド */
-    .custom-input {
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        padding: 10px;
-        width: 100%;
-        max-width: 400px;
-        margin-bottom: 20px;
-    }
-
-    /* 変更ボタン（赤色） */
-    .btn-submit-red {
-        background-color: #d9334e;
-        color: white;
-        padding: 8px 40px;
-        border: none;
-        border-radius: 4px;
-    }
-
-    .btn-submit-red:hover {
-        background-color: #b52a41;
-        color: white;
-    }
-
-    /* フッター付近のボタン配置用 */
-    .action-footer {
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />
 </div>
 
 <%-- メイン --%>
-<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative scroll-content p-0">
 
     <div class="container mt-5 flex-grow-1 overflow-y-auto">
 

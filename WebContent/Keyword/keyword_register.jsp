@@ -3,33 +3,13 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="キーワード登録" /></jsp:include>
 
-<%-- スタイル --%>
-<style>
-	/* メインエリア */
-    .scroll-content {
-        padding-bottom: 100px !important;
-    }
-
-    /* キーワード登録画面専用のスタイル */
-    .register-form-container {
-        /* フォームの枠線や背景が必要な場合はここにスタイルを追加 */
-        padding: 40px; /* コンテナ内のパディング */
-    }
-
-    /* 入力フィールドの幅調整 */
-    .keyword-input {
-        width: 100%;
-        max-width: 500px; /* 入力フィールドの最大幅を制限 */
-    }
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />
 </div>
 
 <%-- メインコンテンツエリア --%>
-<div class="col-md-10 content-area d-flex flex-column h-100 position-relative">
+<div class="col-md-10 content-area d-flex flex-column h-100 position-relative scroll-content p-0">
 
     <div class="container mt-5 flex-grow-1 overflow-y-auto">
 

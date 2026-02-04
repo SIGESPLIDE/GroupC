@@ -9,27 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ユニパス連携システム - ログイン</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-	<%-- スタイル --%>
-    <style>
-        html, body { height: 100%; background-color: #f7f7f7; }
-        .custom-header-blue {
-            background-color: #e0f0ff !important; color: #333333;
-            border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem;
-            border-bottom: 1px solid #dee2e6; padding: 1rem !important;
-            font-size: 1.1rem !important;
-        }
-        .login-card-width { width: 30rem; max-width: 90%; }
-        .custom-login-button {
-            background-color: #d9534f !important; border: 1px solid #d9534f !important;
-            color: white !important; width: 7rem; height: 2.5rem; font-size: 1rem;
-        }
-        .custom-login-button:hover {
-            background-color: white !important; color: #d9534f !important;
-            border-color: #d9534f !important; box-shadow: 0 0 0 0.25rem rgba(217, 83, 79, 0.5);
-        }
-        .input-container { width: 70%; margin: 0 auto; }
-    </style>
+	<link href="../css/custom.css" rel="stylesheet">
 </head>
 
 <%-- メイン --%>

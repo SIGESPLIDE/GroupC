@@ -5,25 +5,6 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="時間割登録" /></jsp:include>
 
-<style>
-    /* 全体コンテナの高さ固定 */
-    .content-area {
-        height: 100vh;
-        overflow: hidden;
-    }
-    /* スクロールエリアの設定 */
-    .scrollable-area {
-        flex-grow: 1;
-        overflow-y: auto;
-        padding-bottom: 120px; /* 下部ボタンと被らないための余白 */
-    }
-    .table input[type="text"] {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 4px;
-    }
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />

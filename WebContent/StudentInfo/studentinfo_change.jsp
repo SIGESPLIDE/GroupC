@@ -4,14 +4,6 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報変更" /></jsp:include>
 
-<%-- スタイル --%>
-<style>
-    /* メインエリア */
-    .scroll-content {
-        padding-bottom: 100px !important;
-    }
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />

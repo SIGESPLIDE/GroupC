@@ -5,13 +5,6 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="会話履歴" /></jsp:include>
 
-<style>
-    /* メインエリア */
-    .scroll-content {
-        padding-bottom: 100px !important;
-    }
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />

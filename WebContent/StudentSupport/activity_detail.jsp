@@ -7,13 +7,6 @@
 <jsp:include page="../header.jsp"><jsp:param name="title"
 		value="交流詳細一覧" /></jsp:include>
 
-<style>
-/* メインエリア */
-.scroll-content {
-	padding-bottom: 100px !important;
-}
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
 	<jsp:include page="../sidebar.jsp" flush="true" />

@@ -4,25 +4,6 @@
 <%-- headerの読込 --%>
 <jsp:include page="../header.jsp"><jsp:param name="title" value="生徒情報詳細" /></jsp:include>
 
-<%-- スタイル --%>
-<style>
-    /* メインエリア */
-    .scroll-content {
-        padding-bottom: 100px !important;
-    }
-
-    /* QR画像の表示枠 */
-    .qr-display-box {
-        width: 150px;
-        height: 150px;
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 5px;
-    }
-</style>
-
 <%-- sidebarの読込 --%>
 <div class="col-md-2 sidebar-bg">
     <jsp:include page="../sidebar.jsp" flush="true" />
@@ -56,7 +37,6 @@
 
     <div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
 
-        	<input type="hidden" value="${stuInfo.studentId}" name="studentId">
 	        <%-- 戻るボタン --%>
 	        <a class="btn btn-secondary shadow-sm"
 	           style="width: 7rem;"
