@@ -29,7 +29,7 @@
 					<input type="hidden" name="studentId" value="${stuInfo.studentId}">
 					<label>年</label><input class="bg-light" type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
 					<label>組</label><input class="bg-light" type="text" id="claInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
-					<label>名前</label><input class="bg-light" type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" placeholder="名前を入力してください" required>
+					<label>名前</label><input class="bg-light" type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" maxlength="25" placeholder="名前を入力してください" required>
 
 			</div>
 		</form>

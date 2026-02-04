@@ -39,7 +39,7 @@
 					<label>生徒ID</label><input type="text" id="idInput" name="studentId" value="${studentId}" placeholder="生徒IDを入力してください" required>
 					<label>年</label><input type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
 					<label>組</label><input type="text" id="claInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
-					<label>名前</label><input type="text" id="nameInput" name="studentName" value="${studentName}" placeholder="名前を入力してください" required>
+					<label>名前</label><input type="text" id="nameInput" name="studentName" value="${studentName}" maxlength="25" placeholder="名前を入力してください" required>
 			</div>
 		</form>
 		<div class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white" style="z-index: 1000;">
