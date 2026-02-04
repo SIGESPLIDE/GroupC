@@ -34,8 +34,9 @@
                                    class="form-control keyword-input"
                                    id="keywordInput"
                                    name="keyword"
-                                   placeholder="キーワードを入力してください"
-                                   required>
+                                   placeholder="キーワードを入力してください(20字以内)"
+                                   required
+                                   maxlength="20">
                         </div>
 
                     </div>

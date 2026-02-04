@@ -34,7 +34,7 @@
 	                    </div>
 	                </c:if>
 	            	<form action="${pageContext.request.contextPath}/password/administrator_password" method="post">
-					    <input type="password" id="newPassInput" name="newPassword" class="form-control mx-auto custom-input" placeholder="新しいパスワードを入力" required>
+					    <input type="password" id="newPassInput" name="newPassword" class="form-control mx-auto custom-input" maxlength="10" placeholder="新しいパスワードを入力(10字以内)" required>
 						<div>
 						    <button type="button" id="changeBtn" class="btn btn-submit-red" style="width: 7rem;">
 						        変更

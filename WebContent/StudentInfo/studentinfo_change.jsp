@@ -27,9 +27,9 @@
 			<div class="container form-group form-control form-control-lg d-flex flex-column w-50">
 					<label>生徒ID</label><div class="text-center border rounded bg-light opacity-50 py-2">${stuInfo.studentId}</div>
 					<input type="hidden" name="studentId" value="${stuInfo.studentId}">
-					<label>年</label><input class="bg-light" type="text" id="gradeInput" value="${grade}" name="grade" placeholder="年を入力してください" required>
-					<label>組</label><input class="bg-light" type="text" id="claInput" value="${cla}" name="cla" placeholder="組を入力してください" required>
-					<label>名前</label><input class="bg-light" type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" maxlength="25" placeholder="名前を入力してください" required>
+					<label>年</label><input class="bg-light" type="text" id="gradeInput" value="${grade}" name="grade" maxlength="4" placeholder="年を入力してください(4字以内)" required>
+					<label>組</label><input class="bg-light" type="text" id="claInput" value="${cla}" name="cla" maxlength="4" placeholder="組を入力してください(4字以内)" required>
+					<label>名前</label><input class="bg-light" type="text" id="nameInput" value="${stuInfo.studentName}" name="studentName" maxlength="25" placeholder="名前を入力してください(25字以内)" required>
 
 			</div>
 		</form>
