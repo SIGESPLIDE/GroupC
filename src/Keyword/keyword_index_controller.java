@@ -32,18 +32,18 @@ public class keyword_index_controller extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 削除処理
 		// フォームから削除したいキーワードのIDを取得
-	    String idStr = req.getParameter("id");
+		String idStr = req.getParameter("id");
 
-	    if (idStr != null) {
-	        int id = Integer.parseInt(idStr);
+		if (idStr != null) {
+			int id = Integer.parseInt(idStr);
 
-	        // DAOを呼んで削除実行
-	        keyword_dao dao = new keyword_dao();
-	        if (dao.delete(id)) {
-	            // 成功したら完了画面へ
-	            resp.sendRedirect(req.getContextPath() + "/ModalCompletion/delete_completed.jsp?from=keyword");
-	        }
-	    }
+			// DAOを呼んで削除実行
+			keyword_dao dao = new keyword_dao();
+			if (dao.delete(id)) {
+				// 成功したら完了画面へ
+				resp.sendRedirect(req.getContextPath() + "/ModalCompletion/delete_completed.jsp?from=keyword");
+			}
+		}
 
 	}
 }

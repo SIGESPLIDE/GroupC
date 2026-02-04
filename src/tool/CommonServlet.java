@@ -18,44 +18,44 @@ public abstract class CommonServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-            // 最初の入口を設定
+			// 最初の入口を設定
 			// ここでログインしているかどうかの確認をする
-            execute(req, resp);
+			execute(req, resp);
 
-            // execute内でリダイレクト（ログイン画面へ飛ばす等）が行われた場合は
-            // すでにレスポンスが「確定」しているので、後続の処理を行わない
-            if (!resp.isCommitted()) {
-                get(req, resp);
-            }
-        } catch (Exception e) {
-        	// 開発用エラー表示
-            PrintWriter out = resp.getWriter();
-            e.printStackTrace(out);
+			// execute内でリダイレクト（ログイン画面へ飛ばす等）が行われた場合は
+			// すでにレスポンスが「確定」しているので、後続の処理を行わない
+			if (!resp.isCommitted()) {
+				get(req, resp);
+			}
+		} catch (Exception e) {
+			// 開発用エラー表示
+			PrintWriter out = resp.getWriter();
+			e.printStackTrace(out);
 
-            // 本番用エラー表示
-         	// e.printStackTrace();
-         	// resp.sendRedirect("/shop/error");
-        }
+			// 本番用エラー表示
+			// e.printStackTrace();
+			// resp.sendRedirect("/shop/error");
+		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-            // 最初の入口を設定
-            execute(req, resp);
+			// 最初の入口を設定
+			execute(req, resp);
 
-            if (!resp.isCommitted()) {
-                post(req, resp);
-            }
-        } catch (Exception e) {
-        	// 開発用エラー表示
-            PrintWriter out = resp.getWriter();
-            e.printStackTrace(out);
+			if (!resp.isCommitted()) {
+				post(req, resp);
+			}
+		} catch (Exception e) {
+			// 開発用エラー表示
+			PrintWriter out = resp.getWriter();
+			e.printStackTrace(out);
 
-            // 本番用エラー表示
-         	// e.printStackTrace();
-         	// resp.sendRedirect("/shop/error");
-        }
+			// 本番用エラー表示
+			// e.printStackTrace();
+			// resp.sendRedirect("/shop/error");
+		}
 	}
 
 	/**
@@ -77,15 +77,14 @@ public abstract class CommonServlet extends HttpServlet {
 	protected abstract void post(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
 	/**
-     * 【デフォルトの共通処理】
-     * ログインしていない場合はログイン画面へリダイレクトする
-     */
-    protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-    	req.setCharacterEncoding("UTF-8");
-        HttpSession session = req.getSession();
-        // セッションに userAuth がなければログイン画面へ
-        if (session.getAttribute("userAuth") == null) {
-            resp.sendRedirect(req.getContextPath() + "/loginlogout/login");
-        }
-    }
+	 * 【デフォルトの共通処理】 ログインしていない場合はログイン画面へリダイレクトする
+	 */
+	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		req.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
+		// セッションに userAuth がなければログイン画面へ
+		if (session.getAttribute("userAuth") == null) {
+			resp.sendRedirect(req.getContextPath() + "/loginlogout/login");
+		}
+	}
 }

@@ -10,14 +10,14 @@ public class dao {
 	static DataSource ds;
 
 	public Connection getConnection() throws Exception {
-		if (ds==null) {
+		if (ds == null) {
 			// 接続設定をcontext.xmlから取得する
 			InitialContext ic = new InitialContext();
 
 			// 繋ぐDBをきめる
-			ds = (DataSource)ic.lookup("java:/comp/env/jdbc/mysql");
+			ds = (DataSource) ic.lookup("java:/comp/env/jdbc/mysql");
 		}
-		//DBへの接続
+		// DBへの接続
 		return ds.getConnection();
 	}
 

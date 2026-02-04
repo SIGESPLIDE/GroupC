@@ -84,7 +84,7 @@
 
 		<div
 			class="position-absolute bottom-0 start-0 end-0 d-flex justify-content-between px-5 pb-4 bg-white border-top pt-3"
-	style="z-index: 1000;">
+			style="z-index: 1000;">
 
 			<%-- 戻るボタン --%>
 			<a class="btn btn-secondary shadow-sm" style="width: 7rem;"

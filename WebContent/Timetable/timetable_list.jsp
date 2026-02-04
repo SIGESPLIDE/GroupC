@@ -42,11 +42,13 @@
 												class="bi bi-door-closed me-2 text-primary"></i> <c:out
 													value="${c.classes}" /></td>
 											<td class="py-3">
-												<form action="${pageContext.request.contextPath}/timetable/timetable_detail" method="post">
+												<form
+													action="${pageContext.request.contextPath}/timetable/timetable_detail"
+													method="post">
 													<input type="hidden" name="class_name" value="${c.classes}">
-													<button type="submit" class="btn btn-outline-primary shadow-sm px-4 bi bi-chevron-right small">
-														詳細
-													</button>
+													<button type="submit"
+														class="btn btn-outline-primary shadow-sm px-4 bi bi-chevron-right small">
+														詳細</button>
 												</form>
 											</td>
 										</tr>

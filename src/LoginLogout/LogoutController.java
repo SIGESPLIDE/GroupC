@@ -14,16 +14,16 @@ public class LogoutController extends CommonServlet {
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// ログアウト処理
 		// セッションを取得
-        HttpSession session = req.getSession(false);
+		HttpSession session = req.getSession(false);
 
-        if (session != null) {
-            // セッションそのものを無効化（破棄）する
-            session.invalidate();
-        }
+		if (session != null) {
+			// セッションそのものを無効化（破棄）する
+			session.invalidate();
+		}
 
-        // ログイン画面へリダイレクト（URLを確実に上書きする）
-        resp.sendRedirect(req.getContextPath() + "/LoginLogout/login.jsp");
-    }
+		// ログイン画面へリダイレクト（URLを確実に上書きする）
+		resp.sendRedirect(req.getContextPath() + "/LoginLogout/login.jsp");
+	}
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {

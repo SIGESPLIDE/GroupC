@@ -15,30 +15,29 @@ import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/studentsupport/activity_detail" })
 public class activity_detail_controller extends CommonServlet {
 
-    @Override
-    protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        //
-        req.getRequestDispatcher("/StudentSupport/activity_detail.jsp").forward(req, resp);
-    }
+	@Override
+	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		//
+		req.getRequestDispatcher("/StudentSupport/activity_detail.jsp").forward(req, resp);
+	}
 
-    @Override
-    protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+	@Override
+	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-    	int studentId = Integer.parseInt(req.getParameter("studentId"));
-    	// 画面表示用
-    	// 受け取った学生IDで交流詳細を特定
-    	activitylog_dao acDao = new activitylog_dao();
-    	List<activitylog> acLogList = acDao.idFilter(studentId);
+		int studentId = Integer.parseInt(req.getParameter("studentId"));
+		// 画面表示用
+		// 受け取った学生IDで交流詳細を特定
+		activitylog_dao acDao = new activitylog_dao();
+		List<activitylog> acLogList = acDao.idFilter(studentId);
 
-    	// 学生情報が一つも存在していない場合
-    	if (acLogList.isEmpty()) {
-    		req.setAttribute("emptyError", "まだ交流詳細が存在していません");
-    	}
+		// 学生情報が一つも存在していない場合
+		if (acLogList.isEmpty()) {
+			req.setAttribute("emptyError", "まだ交流詳細が存在していません");
+		}
 
-
-    	// 受け取った日時から日付を取得
-    	// DAOに着けるか、コントローラーに付けるか
-    	req.setAttribute("acLogList", acLogList);
-    	req.getRequestDispatcher("/StudentSupport/activity_detail.jsp").forward(req, resp);
-    }
+		// 受け取った日時から日付を取得
+		// DAOに着けるか、コントローラーに付けるか
+		req.setAttribute("acLogList", acLogList);
+		req.getRequestDispatcher("/StudentSupport/activity_detail.jsp").forward(req, resp);
+	}
 }
