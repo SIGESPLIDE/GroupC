@@ -51,8 +51,8 @@ public class studentinfo_dao extends dao {
 		try {
 			statement = connection.prepareStatement(baseSql + order);
 			// sqlの実行
-				rSet = statement.executeQuery();
-				list = postFilter(rSet);
+			rSet = statement.executeQuery();
+			list = postFilter(rSet);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -95,8 +95,8 @@ public class studentinfo_dao extends dao {
 
 			statement.setString(1, "%" + String.valueOf(studentId) + "%");
 			// sqlの実行
-				rSet = statement.executeQuery();
-				list = postFilter(rSet);
+			rSet = statement.executeQuery();
+			list = postFilter(rSet);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -138,8 +138,8 @@ public class studentinfo_dao extends dao {
 			statement = connection.prepareStatement(baseSql + condition + order);
 			statement.setString(1, "%" + studentName + "%");
 			// sqlの実行
-				rSet = statement.executeQuery();
-				list = postFilter(rSet);
+			rSet = statement.executeQuery();
+			list = postFilter(rSet);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -214,32 +214,30 @@ public class studentinfo_dao extends dao {
 
 	// 複合検索（IDと名前の両方、または片方に対応）
 	public List<studentinfo> search(String studentIdStr, String studentName) throws Exception {
-	    List<studentinfo> resultList = new ArrayList<>();
+		List<studentinfo> resultList = new ArrayList<>();
 
-	    // ID検索
-	    if (studentIdStr != null && !studentIdStr.isEmpty()) {
-	        try {
-	            int id = Integer.parseInt(studentIdStr);
-	            resultList.addAll(this.idFilter(id));
-	        } catch (NumberFormatException e) {
-	            // ここでの例外はスルー
-	        }
-	    }
+		// ID検索
+		if (studentIdStr != null && !studentIdStr.isEmpty()) {
+			try {
+				int id = Integer.parseInt(studentIdStr);
+				resultList.addAll(this.idFilter(id));
+			} catch (NumberFormatException e) {
+				// ここでの例外はスルー
+			}
+		}
 
-	    // 名前検索
-	    if (studentName != null && !studentName.isEmpty()) {
-	        resultList.addAll(this.nameFilter(studentName));
-	    }
+		// 名前検索
+		if (studentName != null && !studentName.isEmpty()) {
+			resultList.addAll(this.nameFilter(studentName));
+		}
 
-	    // 重複を除去
-	    return new ArrayList<>(resultList.stream()
-	            .collect(Collectors.toMap(
-	                studentinfo::getStudentId, // キーを生徒IDにする
-	                s -> s,                    // 値を生徒オブジェクトそのままにする
-	                (existing, replacement) -> existing // 重複したら既存を優先
-	            )).values());
+		// 重複を除去
+		return new ArrayList<>(resultList.stream()
+				.collect(Collectors.toMap(studentinfo::getStudentId, // キーを生徒IDにする
+						s -> s, // 値を生徒オブジェクトそのままにする
+						(existing, replacement) -> existing // 重複したら既存を優先
+				)).values());
 	}
-
 
 	// 学生ID一覧を取得
 	public List<Integer> getAllID() throws Exception {
@@ -292,25 +290,26 @@ public class studentinfo_dao extends dao {
 		// クラスの登録処理（裏作業）
 		String className = stuInfo.getClasses();
 		if (className != null && !className.isEmpty()) {
-            classes_dao cDao = new classes_dao();
-            // 検索に引っかからなかった場合、登録処理を行う
-            if (!cDao.filter(className)) {
-                cDao.save(className);
-            }
-        }
-		//DBに接続
+			classes_dao cDao = new classes_dao();
+			// 検索に引っかからなかった場合、登録処理を行う
+			if (!cDao.filter(className)) {
+				cDao.save(className);
+			}
+		}
+		// DBに接続
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		// 実行件数
 		int count = 0;
 
 		try {
-			//今DBにあるこの番号の生徒を取得
+			// 今DBにあるこの番号の生徒を取得
 			studentinfo old = idPickUp(stuInfo.getStudentId());
 			if (old == null) {
 				// 生徒が存在しなかった場合
 				// SQL文にinsert文を加え、学生の新規登録を行う
-				statement = connection.prepareStatement("insert into studentinfo (studentid,studentname,classes) values(?,?,?)");
+				statement = connection
+						.prepareStatement("insert into studentinfo (studentid,studentname,classes) values(?,?,?)");
 				// PreparedStatementに値をバインド
 				statement.setInt(1, stuInfo.getStudentId());
 				statement.setString(2, stuInfo.getStudentName());
@@ -318,7 +317,8 @@ public class studentinfo_dao extends dao {
 			} else {
 				// 学生が存在した場合
 				// SQL文にupdate文を加え、学生の更新を行う
-				statement = connection.prepareStatement("update studentinfo set studentid=?,studentname=?,classes=? where studentid=?");
+				statement = connection.prepareStatement(
+						"update studentinfo set studentid=?,studentname=?,classes=? where studentid=?");
 				// SQL文の条件文に値をセット
 				statement.setInt(1, stuInfo.getStudentId());
 				statement.setString(2, stuInfo.getStudentName());
@@ -373,8 +373,20 @@ public class studentinfo_dao extends dao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			if (statement != null) { try { statement.close(); } catch (SQLException sqle) { throw sqle; } }
-			if (connection != null) { try { connection.close(); } catch (SQLException sqle) { throw sqle; } }
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
 		}
 
 		if (count > 0) {
@@ -388,22 +400,22 @@ public class studentinfo_dao extends dao {
 
 	// 時間割用のクラス抽出
 	public List<classes> findActiveClasses() throws Exception {
-	    List<classes> list = new ArrayList<>();
+		List<classes> list = new ArrayList<>();
 
-	    // DISTINCT を使うことで、同じクラスに複数の生徒がいても1つに絞り込みます
-	    String sql = "SELECT DISTINCT classes FROM studentinfo WHERE classes IS NOT NULL AND classes != '' ORDER BY classes ASC";
+		// DISTINCT を使うことで、同じクラスに複数の生徒がいても1つに絞り込みます
+		String sql = "SELECT DISTINCT classes FROM studentinfo WHERE classes IS NOT NULL AND classes != '' ORDER BY classes ASC";
 
-	    try (Connection connection = getConnection();
-	         PreparedStatement statement = connection.prepareStatement(sql);
-	         ResultSet rSet = statement.executeQuery()) {
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(sql);
+				ResultSet rSet = statement.executeQuery()) {
 
-	        while (rSet.next()) {
-	            classes c = new classes();
-	            // 重複が除かれたクラス名が1つずつ入ってきます
-	            c.setClasses(rSet.getString("classes"));
-	            list.add(c);
-	        }
-	    }
-	    return list;
+			while (rSet.next()) {
+				classes c = new classes();
+				// 重複が除かれたクラス名が1つずつ入ってきます
+				c.setClasses(rSet.getString("classes"));
+				list.add(c);
+			}
+		}
+		return list;
 	}
 }

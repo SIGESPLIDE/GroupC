@@ -22,18 +22,18 @@ public class keyword_register_controller extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 登録処理
 		// フォームからキーワードを取得
-        String phrase = req.getParameter("keyword");
+		String phrase = req.getParameter("keyword");
 
-        // Beanにセット
-        keyword k = new keyword();
-        k.setPhrase(phrase);
+		// Beanにセット
+		keyword k = new keyword();
+		k.setPhrase(phrase);
 
-        // DAOで保存
-        keyword_dao dao = new keyword_dao();
-        if (dao.insert(k)) {
-            // 成功したら完了画面へ（合言葉 from=keyword_index を付ける）
-            resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=keyword");
-        }
+		// DAOで保存
+		keyword_dao dao = new keyword_dao();
+		if (dao.insert(k)) {
+			// 成功したら完了画面へ（合言葉 from=keyword_index を付ける）
+			resp.sendRedirect(req.getContextPath() + "/ModalCompletion/register_complete.jsp?from=keyword");
+		}
 
 	}
 }

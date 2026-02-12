@@ -11,7 +11,7 @@ public class supportlevel_dao extends dao {
 	private String baseSql = "select * from supportlevel";
 
 	// 生徒IDから支援段階を取得
-	public supportlevel idFilter(int studentId) throws Exception{
+	public supportlevel idFilter(int studentId) throws Exception {
 		supportlevel supLev = new supportlevel();
 
 		// DBへの接続
@@ -56,18 +56,18 @@ public class supportlevel_dao extends dao {
 	}
 
 	// 支援段階の登録
-	public boolean regist(int studentId) throws Exception{
-		//DBに接続
+	public boolean regist(int studentId) throws Exception {
+		// DBに接続
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		// 実行件数
 		int count = 0;
 
 		try {
-				// SQL文にinsert文を加え、の新規登録を行う
-				statement = connection.prepareStatement("insert into supportlevel (studentid) values(?)");
-				// PreparedStatementに値をバインド
-				statement.setInt(1, studentId);
+			// SQL文にinsert文を加え、の新規登録を行う
+			statement = connection.prepareStatement("insert into supportlevel (studentid) values(?)");
+			// PreparedStatementに値をバインド
+			statement.setInt(1, studentId);
 			// SQL文を実行
 			count = statement.executeUpdate();
 		} catch (Exception e) {
@@ -101,8 +101,8 @@ public class supportlevel_dao extends dao {
 	}
 
 	// 支援段階の変更
-	public boolean change(int studentId,int updateLevel) throws Exception{
-		//DBに接続
+	public boolean change(int studentId, int updateLevel) throws Exception {
+		// DBに接続
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		// 実行件数
@@ -111,7 +111,8 @@ public class supportlevel_dao extends dao {
 		try {
 			supportlevel old = this.idFilter(studentId);
 			// SQL文にupdate文を加え、支援段階の更新を行う
-			statement = connection.prepareStatement("update supportlevel set studentid=?,supportlevel=? where studentid=?");
+			statement = connection
+					.prepareStatement("update supportlevel set studentid=?,supportlevel=? where studentid=?");
 			// SQL文の条件文に値をセット
 			statement.setInt(1, studentId);
 			statement.setInt(2, old.getSupportLevel() + updateLevel);
@@ -164,8 +165,20 @@ public class supportlevel_dao extends dao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			if (statement != null) { try { statement.close(); } catch (SQLException sqle) { throw sqle; } }
-			if (connection != null) { try { connection.close(); } catch (SQLException sqle) { throw sqle; } }
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
 		}
 
 		if (count > 0) {

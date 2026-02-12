@@ -37,7 +37,6 @@ public class activitylog_dao extends dao {
 		return list;
 	}
 
-
 	// 生徒IDから日時と生徒気分を取り出し
 	public List<activitylog> idFilter(int studentId) throws Exception {
 		List<activitylog> list = new ArrayList<>();
@@ -53,12 +52,13 @@ public class activitylog_dao extends dao {
 
 		// sqlの処理
 		try {
-			// select chatlog from activitylog where studentid = ? order by datetime desc
+			// select chatlog from activitylog where studentid = ? order by
+			// datetime desc
 			statement = connection.prepareStatement(baseSql + condition + order);
 			statement.setInt(1, studentId);
 			// sqlの実行
-				rSet = statement.executeQuery();
-				list = postFilter(rSet);
+			rSet = statement.executeQuery();
+			list = postFilter(rSet);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -83,14 +83,14 @@ public class activitylog_dao extends dao {
 	}
 
 	// 生徒IDと日付から会話履歴を取り出し
-	public List<activitylog> chatFilter(int studentId,LocalDateTime datetime) throws Exception {
+	public List<activitylog> chatFilter(int studentId, LocalDateTime datetime) throws Exception {
 		List<activitylog> list = new ArrayList<>();
 		// 受け取った日時を日付のみに変換
 		LocalDate date = datetime.toLocalDate();
 
 		// 日付からその日の始まりと翌日の始まりを取得
 		LocalDateTime start = date.atStartOfDay();
-		LocalDateTime end   = date.plusDays(1).atStartOfDay();
+		LocalDateTime end = date.plusDays(1).atStartOfDay();
 
 		// DBへの接続
 		Connection connection = getConnection();
@@ -110,9 +110,9 @@ public class activitylog_dao extends dao {
 			statement.setObject(2, start);
 			statement.setObject(3, end);
 
-		// sqlの実行
-				rSet = statement.executeQuery();
-				list = postFilter(rSet);
+			// sqlの実行
+			rSet = statement.executeQuery();
+			list = postFilter(rSet);
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -152,8 +152,20 @@ public class activitylog_dao extends dao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			if (statement != null) { try { statement.close(); } catch (SQLException sqle) { throw sqle; } }
-			if (connection != null) { try { connection.close(); } catch (SQLException sqle) { throw sqle; } }
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
 		}
 
 		if (count > 0) {
